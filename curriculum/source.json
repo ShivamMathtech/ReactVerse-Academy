@@ -1,0 +1,2914 @@
+[
+  {
+    "id": "00",
+    "title": "Course Introduction",
+    "slug": "00-getting-started",
+    "phase": 0,
+    "difficulty": "beginner",
+    "tags": [
+      "react",
+      "vite",
+      "javascript",
+      "frontend-fundamentals"
+    ],
+    "analogy": "A component is a reusable recipe; props are its ingredients and state is the changing order ticket.",
+    "lessons": [
+      {
+        "title": "Think in user interfaces",
+        "notes": [
+          {
+            "title": "What React is and what it solves",
+            "text": "React describes a view from data. You compose functions that return UI instead of manually coordinating many DOM edits. It is a library, so you still choose routing and data tools."
+          },
+          {
+            "title": "React versus vanilla JavaScript",
+            "text": "Both run JavaScript. Vanilla code can update textContent directly; React owns the DOM under its root and reconciles component output. A tiny static page may not need React."
+          },
+          {
+            "title": "React versus React Native",
+            "text": "React DOM renders browser elements such as button. React Native uses native platform primitives such as View. Component thinking transfers; markup and platform APIs do not."
+          }
+        ],
+        "code": "export default function App() {\n  const learner = 'Shivam';\n  return <h1>Hello, {learner}!</h1>;\n}",
+        "language": "jsx",
+        "output": "Hello, Shivam!",
+        "why": "A declarative view makes changing data easier to follow than scattered DOM mutations.",
+        "internals": "React calls App to calculate an element description. React DOM creates or updates the matching browser nodes. Rendering is not the same as changing every DOM node.",
+        "mistake": "Do not write document.querySelector(...).textContent inside render for a node React owns. Return the desired text in JSX instead.",
+        "exercise": "Change the name, then add a paragraph showing your learning goal. Independently add a reusable greeting for two learners.",
+        "solution": "function Greeting({ name }) {\n  return <h1>Hello, {name}!</h1>;\n}\nexport default function App() {\n  return <><Greeting name=\"Shivam\" /><p>Build useful interfaces.</p></>;\n}",
+        "question": "What does React primarily help you describe?",
+        "options": [
+          "A user interface from data",
+          "A database schema",
+          "A native operating system"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Understand the toolchain",
+        "notes": [
+          {
+            "title": "What Vite is and why it is used",
+            "text": "Vite serves modules during development and bundles assets for release. It does not replace React and does not automatically provide a backend."
+          },
+          {
+            "title": "Frontend development roadmap",
+            "text": "Learn semantic HTML, CSS, and JavaScript first, then components, state, forms, routing, testing, accessibility, and delivery. Advanced APIs become useful after these foundations."
+          },
+          {
+            "title": "How to use this repository",
+            "text": "Run npm ci at the root, then npm run dev. lessons/ contains the same teaching text as the site; examples/ and projects/ contain executable entry points. Follow chapter IDs in order."
+          }
+        ],
+        "code": "npm ci\nnpm run dev\nnpm run build\nnpm run preview",
+        "language": "bash",
+        "output": "The development command prints a local URL. The build command writes dist/. Preview serves that build.",
+        "why": "Build tooling translates authoring formats and packages dependencies into files a browser can load.",
+        "internals": "The dev server transforms source on demand. The production build resolves the module graph and emits browser assets; preview serves those emitted files.",
+        "mistake": "Do not deploy node_modules or use the development server as production hosting. Deploy dist and configure routing.",
+        "exercise": "Run the four commands and compare development with preview. Independently locate the generated JavaScript file in dist/assets.",
+        "solution": "npm run build\nnpm run preview\n# Visit the URL printed by preview, then open browser Network tools.",
+        "question": "Which directory is the default deployment output?",
+        "options": [
+          "dist",
+          "src",
+          "node_modules"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Practice with feedback",
+        "notes": [
+          {
+            "title": "How to practice effectively",
+            "text": "Predict output before running an example. Change one input, explain the result, then rebuild from memory. Debugging your own mistake teaches more than copying a finished component."
+          },
+          {
+            "title": "Study workflow",
+            "text": "Read objectives, run the small example, complete the guided task, solve the independent challenge, and answer the quiz. Mark complete only after explaining the behavior aloud."
+          },
+          {
+            "title": "Self-assessment",
+            "text": "Browser progress records completion, not mastery. Revisit missed questions and build a project without looking at its solution. Keep notes about what you misunderstood."
+          }
+        ],
+        "code": "const sessions = [25, 30, 20];\nconst minutes = sessions.reduce((sum, value) => sum + value, 0);\nconsole.log(minutes);",
+        "language": "js",
+        "output": "75",
+        "why": "A short feedback loop reveals which mental model needs correction before you build on it.",
+        "internals": "reduce visits array elements in order. The initial 0 establishes the accumulator; the callback returns the next value each time.",
+        "mistake": "Watching a video is not the same as reproducing its behavior. Check understanding with a changed input and an explanation.",
+        "exercise": "Predict the sum after adding a 15-minute session. Independently calculate how many sessions were at least 25 minutes.",
+        "solution": "const sessions = [25, 30, 20, 15];\nconsole.log(sessions.reduce((sum, value) => sum + value, 0));\nconsole.log(sessions.filter(value => value >= 25).length);",
+        "question": "Which practice best checks transfer of understanding?",
+        "options": [
+          "Rebuild with a changed requirement",
+          "Only reread the solution",
+          "Mark every lesson complete"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "01",
+    "title": "Web Development Foundations",
+    "slug": "01-web-foundations",
+    "phase": 0,
+    "difficulty": "beginner",
+    "tags": [
+      "html",
+      "css",
+      "javascript",
+      "accessibility",
+      "frontend-fundamentals"
+    ],
+    "analogy": "HTML is the structure of a classroom, CSS arranges it, and JavaScript responds when someone interacts.",
+    "lessons": [
+      {
+        "title": "Build a meaningful document",
+        "notes": [
+          {
+            "title": "HTML structure and semantic HTML",
+            "text": "Use headings in a logical order and main, nav, article, and button for their meaning. Semantics expose structure and native behaviors to assistive tools."
+          },
+          {
+            "title": "CSS fundamentals",
+            "text": "Selectors choose elements; declarations apply values. The cascade, inheritance, specificity, and source order decide conflicts. The box model includes content, padding, border, and margin."
+          },
+          {
+            "title": "DOM and browser rendering",
+            "text": "HTML becomes a DOM tree and CSS contributes style information. Layout calculates geometry, painting draws pixels, and compositing combines layers. Changing width can require layout; visual effects have different costs."
+          }
+        ],
+        "code": "<main>\n  <h1>Learning journal</h1>\n  <article>\n    <h2>First entry</h2>\n    <p>I built a semantic page.</p>\n  </article>\n</main>",
+        "language": "html",
+        "output": "A main region with a page heading, article heading, and journal paragraph.",
+        "why": "Meaningful structure provides usable navigation before styling or scripting exists.",
+        "internals": "The browser parses nested elements into nodes and exposes their semantics through its accessibility tree. CSS changes appearance without changing meaning.",
+        "mistake": "A clickable div does not automatically behave like a button. Prefer native controls rather than adding a click handler and hoping keyboard access works.",
+        "exercise": "Add a navigation region with two links. Independently style the article with padding and a readable max-width.",
+        "solution": "<nav aria-label=\"Journal\"><a href=\"#entry\">First entry</a></nav>\n<main><article id=\"entry\"><h1>First entry</h1><p>Today I practiced.</p></article></main>\n<style>article { max-width: 60ch; padding: 1rem; }</style>",
+        "question": "Which element describes the primary page content?",
+        "options": [
+          "main",
+          "span",
+          "b"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Connect browser and server",
+        "notes": [
+          {
+            "title": "JavaScript execution in browsers",
+            "text": "Scripts execute on the main thread unless explicitly moved to a worker. Long synchronous tasks delay input and rendering. Modules have their own scope."
+          },
+          {
+            "title": "HTTP basics",
+            "text": "A request has a method, URL, headers, and possibly a body. A response has a status, headers, and body. GET reads; POST commonly creates. A 404 is an HTTP response, not a network rejection."
+          },
+          {
+            "title": "Client-server architecture",
+            "text": "The browser presents UI and sends requests. A server controls trusted data and authorization. A static React bundle cannot keep secrets or enforce permissions."
+          }
+        ],
+        "code": "async function loadText() {\n  const response = await fetch('/data/courses.json');\n  if (!response.ok) throw new Error(`HTTP ${response.status}`);\n  const courses = await response.json();\n  console.log(courses.length);\n}\nloadText().catch(console.error);",
+        "language": "js",
+        "output": "Logs the number of records in the bundled courses fixture, or an error when unavailable.",
+        "why": "Network boundaries explain why UI needs loading, failure, and permission states.",
+        "internals": "await yields control while the Promise is pending. fetch resolves on HTTP error statuses, so response.ok must be checked separately.",
+        "mistake": "Do not treat a client-side role flag as authorization. A trusted service must verify access for each protected operation.",
+        "exercise": "Use the Network panel to inspect the local JSON response. Independently change the URL to a missing file and explain the difference between HTTP and JSON parsing errors.",
+        "solution": "fetch('/data/courses.json')\n  .then(response => {\n    if (!response.ok) throw new Error(`HTTP ${response.status}`);\n    return response.json();\n  })\n  .then(rows => console.log(rows.length))\n  .catch(error => console.error(error.message));",
+        "question": "Does fetch reject solely because a server responds 404?",
+        "options": [
+          "No; inspect response.ok",
+          "Yes, always",
+          "Only with GET"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Inspect and collaborate",
+        "notes": [
+          {
+            "title": "Browser developer tools",
+            "text": "Use Elements for DOM/CSS, Console for errors, Network for requests, and Sources for breakpoints. Inspect the first meaningful error before changing unrelated code."
+          },
+          {
+            "title": "Git and GitHub basics",
+            "text": "Git records local snapshots; GitHub hosts repositories and review workflows. Stage intentional changes, inspect the diff, commit a focused change, and propose it through a pull request."
+          },
+          {
+            "title": "Debugging workflow",
+            "text": "Reproduce a failure, reduce the inputs, inspect values, make one correction, and retest the original case. Version control preserves a known working state."
+          }
+        ],
+        "code": "git init\ngit status\ngit add README.md\ngit diff --staged\ngit commit -m \"Document local setup",
+        "language": "bash",
+        "output": "Git creates a local commit containing the staged README after your name and email are configured.",
+        "why": "Small inspectable changes make it easier to understand both bugs and contributions.",
+        "internals": "The working tree, staging area, and commit history are separate. git add stages the current file content; later edits need staging again.",
+        "mistake": "Do not commit .env files with credentials or node_modules. Review the staged diff instead of blindly adding every file.",
+        "exercise": "Initialize a practice repository and commit a README. Independently create a branch and add installation instructions.",
+        "solution": "git switch -c docs/setup\n# Edit README.md before staging.\ngit add README.md\ngit diff --staged\ngit commit -m \"Explain installation",
+        "question": "What does git add prepare?",
+        "options": [
+          "A snapshot for the next commit",
+          "A remote deployment",
+          "A dependency installation"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "02",
+    "title": "Modern JavaScript for React",
+    "slug": "02-javascript-for-react",
+    "phase": 1,
+    "difficulty": "beginner-plus",
+    "tags": [
+      "javascript",
+      "state",
+      "rendering",
+      "frontend-interview"
+    ],
+    "analogy": "A function is a small machine: inputs go in, a value comes out; a closure also remembers its surrounding workbench.",
+    "lessons": [
+      {
+        "title": "Values, functions, and immutable data",
+        "notes": [
+          {
+            "title": "let, const, and scope",
+            "text": "let and const are block-scoped. const prevents rebinding, not object mutation. Use const by default and let when the binding changes."
+          },
+          {
+            "title": "Primitive and reference values",
+            "text": "Primitives compare by value. Objects compare by identity; two identical object literals are different references. This matters when React compares dependencies."
+          },
+          {
+            "title": "Functions and arrow functions",
+            "text": "Functions accept parameters and return results. Arrow functions capture lexical this; they do not create their own this binding. Keep rendering calculations pure."
+          },
+          {
+            "title": "Arrays and objects",
+            "text": "Arrays represent ordered collections; objects group named fields. Destructuring extracts values. Spread copies one level; rest collects remaining values. Nested data still needs explicit copies."
+          },
+          {
+            "title": "Template literals, optional chaining, and nullish coalescing",
+            "text": "Backticks interpolate expressions. ?. stops property access for null/undefined. ?? defaults only null/undefined, preserving valid 0 and empty strings."
+          }
+        ],
+        "code": "const learner = { name: 'Maya', score: 0 };\nconst { name, ...rest } = learner;\nconst updated = { ...learner, score: 5 };\nconst label = value => `${value.name}: ${value.score ?? 10}`;\nconsole.log(label(learner), label(updated), rest.score);\n// React use case: setLearner(previous => ({ ...previous, score: 5 }));",
+        "language": "js",
+        "output": "Maya: 0 Maya: 5 0",
+        "why": "React relies on clear inputs and new values for predictable updates; JavaScript identity rules explain why mutation is risky.",
+        "internals": "Spread allocates a new outer object. Properties still point at the same nested references unless copied. ?? tests absence, not truthiness.",
+        "mistake": "Incorrect: const next = learner; next.score = 5 changes the original. Correct: create a new object with a copied spread.",
+        "exercise": "Update an address.city without mutating the learner. Independently write a function that formats a missing score as Not graded while keeping 0.",
+        "solution": "const learner = { address: { city: 'Dehradun' }, score: 0 };\nconst next = { ...learner, address: { ...learner.address, city: 'Delhi' } };\nconst format = value => `Score: ${value.score ?? 'Not graded'}`;\nconsole.log(learner.address.city, next.address.city, format(learner));",
+        "question": "What does const prevent?",
+        "options": [
+          "Reassigning the binding",
+          "Changing any property",
+          "Creating an object"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Transform collections and modules",
+        "notes": [
+          {
+            "title": "map, filter, reduce, find, and some",
+            "text": "map returns one result per item; filter selects items; reduce accumulates; find returns the first match or undefined; some returns a boolean. Choose the operation matching the question."
+          },
+          {
+            "title": "Destructuring and spread in collections",
+            "text": "Destructure callback parameters for readability. Copy before a mutating sort, or use toSorted where supported. Never mutate a state array with push or sort in render."
+          },
+          {
+            "title": "Modules and imports/exports (ES modules)",
+            "text": "Named exports use matching import names; a default export has one primary value. Use explicit module boundaries to isolate pure data operations. Import declarations are resolved by the module graph."
+          },
+          {
+            "title": "Essential JavaScript interview questions",
+            "text": "Explain why map is not for side effects, why [] !== [], and why a shallow copy does not isolate nested objects. Demonstrate rather than memorize."
+          }
+        ],
+        "code": "const students = [{ id: 'a', score: 8 }, { id: 'b', score: 5 }];\nconst passing = students.filter(({ score }) => score >= 6);\nconsole.log(passing.map(({ id }) => id));\nconsole.log(students.reduce((sum, s) => sum + s.score, 0));\nconsole.log(students.find(s => s.id === 'x'));\nconsole.log(students.some(s => s.score === 8));\n// React: passing.map(s => <li key={s.id}>{s.id}</li>)",
+        "language": "js",
+        "output": "[\"a\"], 13, undefined, true",
+        "why": "Collection transformations let a list view remain a direct calculation from its source data.",
+        "internals": "These methods call your callback for each visited element. filter and map return new arrays, but their object elements can still be shared references.",
+        "mistake": "Incorrect: students.sort(...) on state mutates the source. Correct: [...students].sort(...) or students.toSorted(...).",
+        "exercise": "Return sorted IDs of students scoring at least 6. Independently export the function from selectors.js and import it in another module.",
+        "solution": "export function passingIds(students) {\n  return students.filter(s => s.score >= 6)\n    .map(s => s.id).sort();\n}\nconsole.log(passingIds([{ id: 'z', score: 9 }, { id: 'a', score: 7 }]));",
+        "question": "Which method returns a boolean about at least one matching item?",
+        "options": [
+          "some",
+          "find",
+          "map"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Closures, callbacks, and async work",
+        "notes": [
+          {
+            "title": "Closures and lexical scope",
+            "text": "A function can access bindings from where it was created. React event handlers and Effects close over a particular render; they do not magically read later state."
+          },
+          {
+            "title": "Callbacks",
+            "text": "Passing a function lets another operation call it later. Passing save is different from invoking save(). Error-first callbacks and Promise callbacks have different contracts."
+          },
+          {
+            "title": "Promises and async/await",
+            "text": "A Promise represents eventual settlement. async functions always return Promises. try/catch around an awaited call handles rejection. Parallel independent requests can use Promise.all."
+          },
+          {
+            "title": "Fetch API and error handling",
+            "text": "Check response.ok, parse JSON, then validate the shape. Cancel irrelevant work with AbortController. A successful HTTP response can still contain invalid data."
+          },
+          {
+            "title": "Immutability and React use case",
+            "text": "Use a functional state updater when delayed work needs the latest previous value. Avoid closing over an old count when queueing increments."
+          }
+        ],
+        "code": "function makeCounter() {\n  let count = 0;\n  return () => ++count;\n}\nconst next = makeCounter();\nconsole.log(next(), next());\nconst getValue = async () => 42;\ngetValue().then(value => console.log(value));\n// React: setCount(previous => previous + 1)",
+        "language": "js",
+        "output": "1 2, followed asynchronously by 42.",
+        "why": "Closures connect JavaScript function behavior to stale-state bugs in React.",
+        "internals": "The returned function retains access to the lexical count binding. Promise callbacks run after the current synchronous stack finishes.",
+        "mistake": "A try/catch cannot catch a Promise rejection if you forget to await or return the Promise within that chain.",
+        "exercise": "Create two counters and prove their state is independent. Independently wrap a rejecting async function in try/catch.",
+        "solution": "function makeCounter() { let n = 0; return () => ++n; }\nconst a = makeCounter(); const b = makeCounter();\nconsole.log(a(), a(), b());\nasync function demo() {\n  try { await Promise.reject(new Error('Offline')); }\n  catch (error) { console.log(error.message); }\n}\ndemo();",
+        "question": "What does an async function return?",
+        "options": [
+          "A Promise",
+          "Always a plain number",
+          "A DOM node"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "03",
+    "title": "React and Vite Setup",
+    "slug": "03-react-vite-setup",
+    "phase": 2,
+    "difficulty": "beginner",
+    "tags": [
+      "react",
+      "vite",
+      "deployment",
+      "debugging"
+    ],
+    "analogy": "The source folder is your workshop; dist is the packaged product you deliver.",
+    "lessons": [
+      {
+        "title": "Install and run on Windows",
+        "notes": [
+          {
+            "title": "Node.js and npm prerequisites",
+            "text": "Use Node 24 LTS or Node >=22.12. npm is bundled with Node. Confirm both in a fresh terminal after installation. The repository pins exact direct dependencies and a lockfile."
+          },
+          {
+            "title": "Create a project with Vite",
+            "text": "For a separate practice app, npm create vite@latest my-app -- --template react creates JavaScript React files. For this repository, use npm ci instead of scaffolding over it."
+          },
+          {
+            "title": "Windows PowerShell setup instructions",
+            "text": "Extract the ZIP, cd into react-vite-complete-course, and run npm.cmd ci then npm.cmd run dev. npm.cmd avoids PowerShell script-policy errors without relaxing machine policy."
+          }
+        ],
+        "code": "node --version\nnpm.cmd --version\ncd react-vite-complete-course\nnpm.cmd ci\nnpm.cmd run dev",
+        "language": "powershell",
+        "output": "Node prints a compatible version; Vite prints a local development URL.",
+        "why": "A reproducible environment removes many problems that look like React mistakes but originate in installation.",
+        "internals": "npm ci installs from package-lock.json and fails when package.json disagrees. Native optional packages are selected for your operating system.",
+        "mistake": "Do not copy Linux node_modules onto Windows. Extract source and run npm ci locally; keep optional dependencies enabled.",
+        "exercise": "Install from the ZIP and open the printed URL. Independently stop the server with Ctrl+C and restart it.",
+        "solution": "npm.cmd ci\nnpm.cmd run dev\n# Ctrl+C stops the foreground server.\n# If the port is busy: npm.cmd run dev -- --port 5174",
+        "question": "Which command uses the committed lockfile for a clean installation?",
+        "options": [
+          "npm ci",
+          "npm update",
+          "npm init"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Read the application entry point",
+        "notes": [
+          {
+            "title": "Project structure",
+            "text": "index.html contains the root element and module entry. src/main.jsx creates the React root; app components describe content. public assets are copied without module transformation."
+          },
+          {
+            "title": "package.json and scripts",
+            "text": "Scripts name local tool commands. Dependencies are runtime imports; devDependencies support builds and tests. Both are needed when building from source."
+          },
+          {
+            "title": "Development server",
+            "text": "Vite serves source modules and updates edited modules during development. StrictMode may repeat development work to expose missing cleanup and impure renders."
+          }
+        ],
+        "code": "import { StrictMode } from 'react';\nimport { createRoot } from 'react-dom/client';\nfunction App() { return <h1>ReactVerse Academy</h1>; }\ncreateRoot(document.getElementById('root')).render(\n  <StrictMode><App /></StrictMode>\n);",
+        "language": "jsx",
+        "output": "A heading appears inside the element with id=\"root\" in index.html.",
+        "why": "Knowing the entry point helps trace how source files become visible UI.",
+        "internals": "createRoot manages one DOM container. Calling root.render schedules React rendering; StrictMode checks only development behavior.",
+        "mistake": "Do not create a new root on each state update. Create it once and let component state drive updates.",
+        "exercise": "Trace index.html to main.jsx to App. Independently change the title and observe the development update.",
+        "solution": "import { createRoot } from 'react-dom/client';\nconst root = createRoot(document.getElementById('root'));\nroot.render(<h1>My learning studio</h1>);",
+        "question": "Which file provides the DOM container in a standard Vite app?",
+        "options": [
+          "index.html",
+          "package-lock.json",
+          "README.md"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Build, configure, and diagnose",
+        "notes": [
+          {
+            "title": "Build and preview",
+            "text": "npm run build generates dist; npm run preview serves it for a local production check. Preview is not a managed production server. Check deep links and missing assets before publishing."
+          },
+          {
+            "title": "Environment variables and Vite conventions",
+            "text": "Read public configuration with import.meta.env.VITE_NAME. Values are strings and replaced during build. Never place private API keys in VITE_ variables."
+          },
+          {
+            "title": "Common installation errors",
+            "text": "An engine warning means check Node compatibility. vite not recognized means install at the package root. A native-module platform error means reinstall on the current OS. Registry timeouts need a network check, not random version changes."
+          }
+        ],
+        "code": "const mode = import.meta.env.MODE;\nconst title = import.meta.env.VITE_APP_TITLE ?? 'ReactVerse Academy';\nexport default function App() {\n  return <p>{title} — {mode}</p>;\n}",
+        "language": "bash",
+        "output": "The configured title and current Vite mode, such as development.",
+        "why": "Configuration differs by environment while code should remain reproducible.",
+        "internals": "Vite substitutes supported environment expressions at build time. A static deployment cannot read a later server environment change without rebuilding.",
+        "mistake": "Incorrect: VITE_SECRET_TOKEN contains a secret. Correct: only use public configuration in a client bundle.",
+        "exercise": "Set VITE_APP_TITLE in .env.local and restart dev. Independently inspect the built JavaScript to confirm the public title is present.",
+        "solution": "# .env.local (public configuration only)\nVITE_APP_TITLE=My React Workshop\n# Terminal:\n# npm run build\n# npm run preview",
+        "question": "Are VITE_ values private after deployment?",
+        "options": [
+          "No, they reach client code",
+          "Yes, they are encrypted",
+          "Only on localhost"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "04",
+    "title": "JSX and Components",
+    "slug": "04-jsx-components",
+    "phase": 2,
+    "difficulty": "beginner",
+    "tags": [
+      "react",
+      "jsx",
+      "components",
+      "rendering"
+    ],
+    "analogy": "JSX is a recipe for a tree of UI elements, not a string of HTML.",
+    "lessons": [
+      {
+        "title": "Write JSX expressions",
+        "notes": [
+          {
+            "title": "JSX syntax",
+            "text": "JSX is transformed JavaScript syntax. Return one enclosing element or a Fragment. Close all tags. It does not run in a plain browser console without transformation."
+          },
+          {
+            "title": "Expressions in JSX",
+            "text": "Curly braces embed expressions, such as a variable or function result. Statements such as if and for belong outside the returned JSX."
+          },
+          {
+            "title": "JSX attributes",
+            "text": "Use className, htmlFor, and camelCase DOM props such as onClick. aria-* and data-* retain hyphens. Inline style receives an object."
+          }
+        ],
+        "code": "export default function App() {\n  const name = 'Asha';\n  return <section className=\"card\">\n    <h1>{name.toUpperCase()}</h1>\n    <p style={{ color: 'teal' }}>Welcome</p>\n  </section>;\n}",
+        "language": "jsx",
+        "output": "ASHA and a teal Welcome paragraph.",
+        "why": "JSX keeps UI structure near the JavaScript that determines it.",
+        "internals": "The transform creates React element descriptions. Strings and numbers become text; objects cannot be rendered as ordinary text children.",
+        "mistake": "Incorrect: <p>{ { name: \"Asha\" } }</p>. Correct: render the name field or explicitly JSON.stringify for debugging.",
+        "exercise": "Render your name and the result of 3 + 4. Independently add an image with meaningful alt text.",
+        "solution": "export default function App() {\n  const learner = { name: 'Asha' };\n  return <><h1>{learner.name}</h1><p>{3 + 4}</p></>;\n}",
+        "question": "What fits inside JSX curly braces?",
+        "options": [
+          "A JavaScript expression",
+          "Any import statement",
+          "A raw for statement"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Compose function components",
+        "notes": [
+          {
+            "title": "Component naming",
+            "text": "Custom component names start with a capital letter. Lowercase names refer to browser elements. Name components for their domain responsibility."
+          },
+          {
+            "title": "Functional components",
+            "text": "A component is a function returning renderable output. Define it at module scope so its identity remains stable. Do not call Hooks from ordinary utility functions."
+          },
+          {
+            "title": "Component composition and Fragment syntax",
+            "text": "Combine components as children to form larger views. A Fragment groups siblings without adding a wrapper DOM element."
+          }
+        ],
+        "code": "function LessonBadge() { return <strong>Beginner</strong>; }\nfunction LessonCard() {\n  return <article><h2>JSX</h2><LessonBadge /></article>;\n}\nexport default function App() {\n  return <><h1>Lessons</h1><LessonCard /></>;\n}",
+        "language": "jsx",
+        "output": "A Lessons heading followed by one JSX lesson card and Beginner badge.",
+        "why": "Small named components let you reason about one responsibility and reuse it.",
+        "internals": "React uses element type and position to identify components. Defining a component inside another creates a new function identity on each render.",
+        "mistake": "Avoid defining LessonCard inside App when it needs stable state. Move its definition to module scope.",
+        "exercise": "Extract a Footer component and render it after the card. Independently compose a header from a logo and navigation.",
+        "solution": "function Footer() { return <footer>Practice every day.</footer>; }\nexport default function App() { return <><h1>Lessons</h1><Footer /></>; }",
+        "question": "Which JSX name refers to a custom component?",
+        "options": [
+          "LessonCard",
+          "lessoncard",
+          "article"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Conditions and styles",
+        "notes": [
+          {
+            "title": "Conditional rendering",
+            "text": "Return different UI for different data. Use if for branches and a ternary for two inline alternatives. Render null to show nothing."
+          },
+          {
+            "title": "Styling components",
+            "text": "Plain CSS suits shared tokens and layout; CSS Modules scope class names per imported module. Inline objects suit computed values, not every style rule."
+          },
+          {
+            "title": "Common JSX errors",
+            "text": "Adjacent siblings need a wrapper; missing return yields no UI; numeric 0 on the left of && renders 0. Prefer count > 0 && ... for numeric counts."
+          }
+        ],
+        "code": "export default function App() {\n  const count = 0;\n  return <section>\n    {count > 0 ? <p>{count} lessons ready</p> : <p>No lessons yet</p>}\n  </section>;\n}",
+        "language": "jsx",
+        "output": "No lessons yet",
+        "why": "A view must explain absent data as clearly as available data.",
+        "internals": "false, null, and undefined render no text. The number 0 is a valid text value, so 0 && <Panel /> leaves a visible zero.",
+        "mistake": "Incorrect: count && <List /> when count may be zero. Correct: count > 0 && <List /> or a ternary with an empty state.",
+        "exercise": "Change count to 2 and explain the branch. Independently handle loading, error, and ready values with early returns.",
+        "solution": "export default function App() {\n  const status = 'loading';\n  if (status === 'loading') return <p role=\"status\">Loading lessons…</p>;\n  if (status === 'error') return <p role=\"alert\">Could not load lessons.</p>;\n  return <p>Ready</p>;\n}",
+        "question": "What can appear from 0 && <p>Items</p>?",
+        "options": [
+          "0",
+          "Nothing, always",
+          "The paragraph"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "05",
+    "title": "Props and Data Flow",
+    "slug": "05-props-data-flow",
+    "phase": 2,
+    "difficulty": "beginner",
+    "tags": [
+      "react",
+      "props",
+      "components",
+      "state"
+    ],
+    "analogy": "Props are a delivery envelope from a parent; the receiving component reads it without rewriting its contents.",
+    "lessons": [
+      {
+        "title": "Pass and destructure props",
+        "notes": [
+          {
+            "title": "What props are",
+            "text": "Props are the inputs a parent supplies to a component. They can include strings, numbers, arrays, objects, and functions. Treat them as read-only snapshots."
+          },
+          {
+            "title": "Passing values",
+            "text": "Quoted attributes pass strings. Curly braces pass JavaScript values, so count={3} is numeric while count=\"3\" is a string."
+          },
+          {
+            "title": "Destructuring props and default values",
+            "text": "Destructure in the parameter list for a clear API. A default parameter is used for undefined or missing values, not null."
+          }
+        ],
+        "code": "function Score({ name, points = 0 }) {\n  return <p>{name}: {points}</p>;\n}\nexport default function App() {\n  return <><Score name=\"Maya\" points={9} /><Score name=\"Arun\" /></>;\n}",
+        "language": "jsx",
+        "output": "Maya: 9 and Arun: 0",
+        "why": "Props make one implementation useful for many records without copying markup.",
+        "internals": "Each parent render computes child props. Updating a parent value supplies a new snapshot; the child must not mutate its input object.",
+        "mistake": "Incorrect: props.points++. Correct: request a change through a callback or let the owning component update state.",
+        "exercise": "Pass an array of skills to a Profile component. Independently distinguish an omitted points prop from points={null}.",
+        "solution": "function Profile({ skills = [] }) { return <p>{skills.join(', ')}</p>; }\nexport default function App() { return <Profile skills={['HTML', 'React']} />; }",
+        "question": "When does points = 0 apply?",
+        "options": [
+          "When points is undefined",
+          "When points is null",
+          "For every falsy value"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Use children for flexible composition",
+        "notes": [
+          {
+            "title": "Children and composition",
+            "text": "The children prop contains nested JSX. A layout component can provide structure without knowing which content it wraps."
+          },
+          {
+            "title": "Reusable component design",
+            "text": "Expose the few inputs callers need. Use meaningful names like title and onSave rather than many unrelated boolean switches. Keep domain rules outside generic visual wrappers."
+          },
+          {
+            "title": "One-way data flow",
+            "text": "Data travels down; callbacks communicate an intent upward. The parent decides whether and how to change shared data."
+          }
+        ],
+        "code": "function Panel({ title, children }) {\n  return <section><h2>{title}</h2><div>{children}</div></section>;\n}\nexport default function App() {\n  return <Panel title=\"Today\"><p>Practice composition.</p></Panel>;\n}",
+        "language": "jsx",
+        "output": "A titled panel containing the supplied paragraph.",
+        "why": "Composition avoids duplicating wrappers while preserving flexibility for their contents.",
+        "internals": "children is an ordinary prop with renderable values. Wrapping content does not require cloning or mutating child elements.",
+        "mistake": "Do not inspect child component internals to decide layout. Prefer explicit props and slots such as children.",
+        "exercise": "Add a footer prop to Panel. Independently compose a confirmation panel with a button callback.",
+        "solution": "function Panel({ title, children, footer }) {\n  return <section><h2>{title}</h2>{children}<footer>{footer}</footer></section>;\n}\nexport default function App() {\n  return <Panel title=\"Draft\" footer={<small>Saved locally</small>}><p>My notes</p></Panel>;\n}",
+        "question": "What is children?",
+        "options": [
+          "A prop containing nested content",
+          "A global DOM query",
+          "A private state store"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Choose an owner for changing data",
+        "notes": [
+          {
+            "title": "Props versus state",
+            "text": "Props arrive from a parent; state belongs to the component that owns the changing value. A child may derive display values from props without storing another copy."
+          },
+          {
+            "title": "Common mistakes",
+            "text": "Copying a prop into state only initializes it; later prop changes do not automatically synchronize that state. Use a controlled API or a deliberate reset when needed."
+          },
+          {
+            "title": "Data-flow design",
+            "text": "Keep the smallest authoritative state. For a selected product, store its ID and derive the product from the current list; this avoids stale duplicate records."
+          }
+        ],
+        "code": "function Price({ cents, quantity }) {\n  const total = (cents * quantity / 100).toFixed(2);\n  return <output>₹{total}</output>;\n}\nexport default function App() { return <Price cents={12500} quantity={2} />; }",
+        "language": "jsx",
+        "output": "₹250.00",
+        "why": "A single source of truth prevents multiple copies of the same information drifting apart.",
+        "internals": "Derived values recalculate during render. There is no need for an Effect to multiply two props or a second state value for the total.",
+        "mistake": "Incorrect: store total independently and update it in several handlers. Correct: calculate total from price and quantity.",
+        "exercise": "Add a discountPercent prop and derive the final amount. Independently explain which component should own a cart quantity shared by two views.",
+        "solution": "function Price({ cents, quantity, discountPercent = 0 }) {\n  const total = cents * quantity * (1 - discountPercent / 100);\n  return <output>₹{(total / 100).toFixed(2)}</output>;\n}\nexport default function App() { return <Price cents={10000} quantity={2} discountPercent={10} />; }",
+        "question": "Which value usually does not need its own state?",
+        "options": [
+          "A total calculated from current props",
+          "User-entered search text",
+          "The selected tab"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "06",
+    "title": "State and Events",
+    "slug": "06-state-events",
+    "phase": 2,
+    "difficulty": "beginner-plus",
+    "tags": [
+      "react",
+      "state",
+      "events",
+      "rendering"
+    ],
+    "analogy": "Each render is a photograph of state. Event handlers belong to that photograph; setters request the next photograph.",
+    "lessons": [
+      {
+        "title": "Respond to events with state",
+        "notes": [
+          {
+            "title": "useState",
+            "text": "The Hook returns the current value and a setter. Initial state is used on mount. A setter requests another render; it does not mutate the current render snapshot."
+          },
+          {
+            "title": "Event handlers",
+            "text": "Pass a function, such as onClick={increment}. Writing onClick={increment()} runs it during rendering. Events are a good place for user-triggered side effects."
+          },
+          {
+            "title": "Controlled inputs",
+            "text": "A text input with value and onChange follows React state. Initialize it to an empty string rather than switching between undefined and a string."
+          }
+        ],
+        "code": "import { useState } from 'react';\nexport default function App() {\n  const [name, setName] = useState('');\n  return <><label>Name <input value={name} onChange={e => setName(e.target.value)} /></label>\n    <p>Hello, {name || 'learner'}</p></>;\n}",
+        "language": "jsx",
+        "output": "The greeting follows the input as you type.",
+        "why": "State connects user interaction to a recalculated view.",
+        "internals": "React retains state between renders at a component position. Calling setName queues an update; the next call to the component receives the new value.",
+        "mistake": "Do not assign name = ... or manipulate the input DOM directly. Call the setter from onChange.",
+        "exercise": "Add a button that clears the name. Independently reject names over 30 characters using an input constraint.",
+        "solution": "import { useState } from 'react';\nexport default function App() {\n  const [name, setName] = useState('');\n  return <><input aria-label=\"Name\" maxLength={30} value={name} onChange={e => setName(e.target.value)} />\n    <button onClick={() => setName('')}>Clear</button></>;\n}",
+        "question": "What should onClick normally receive?",
+        "options": [
+          "A function reference",
+          "The result of calling a handler during render",
+          "A CSS selector"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Queue immutable updates",
+        "notes": [
+          {
+            "title": "Functional state updates",
+            "text": "Use setCount(previous => previous + 1) when computing from previous state. It composes correctly with other queued updates."
+          },
+          {
+            "title": "Batching",
+            "text": "React groups many state updates before rendering. Reading a variable after its setter still reads the current render snapshot. Do not rely on a synchronous DOM update."
+          },
+          {
+            "title": "Object and array state",
+            "text": "Copy every changed path. Use map to replace one item, filter to remove, and spread to append. Copying only the array does not copy its objects."
+          },
+          {
+            "title": "Avoiding direct state mutation",
+            "text": "Mutation can hide changes and corrupt earlier snapshots. Keep updater functions pure; development checks may call them more than once."
+          }
+        ],
+        "code": "import { useState } from 'react';\nexport default function App() {\n  const [count, setCount] = useState(0);\n  function addTwo() { setCount(n => n + 1); setCount(n => n + 1); }\n  return <button onClick={addTwo}>Count: {count}</button>;\n}",
+        "language": "jsx",
+        "output": "Each click increases the count by 2.",
+        "why": "Updater functions express a change relative to the pending state rather than a stale captured value.",
+        "internals": "React applies queued updater functions in sequence. Each receives the result of the previous updater.",
+        "mistake": "Incorrect: two setCount(count + 1) calls usually replace with the same number. Correct: queue two functional increments.",
+        "exercise": "Add three using three updaters. Independently toggle one todo without modifying its original object.",
+        "solution": "const toggle = (todos, id) => todos.map(todo =>\n  todo.id === id ? { ...todo, done: !todo.done } : todo\n);\nconsole.log(toggle([{ id: 'a', done: false }], 'a'));",
+        "question": "Two functional +1 updates from 0 produce which value?",
+        "options": [
+          "2",
+          "1",
+          "0"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Lift, derive, preserve, and reset",
+        "notes": [
+          {
+            "title": "Lifting state up",
+            "text": "Move shared state to the closest common parent and pass values and callbacks down. Avoid a global store for data used by only two sibling components."
+          },
+          {
+            "title": "Derived state",
+            "text": "Calculate filtered lists, totals, and validation flags during render when inexpensive. Store inputs, not every result."
+          },
+          {
+            "title": "State preservation and reset",
+            "text": "React preserves state for the same component type and key at the same tree position. Changing a key deliberately starts a new component identity."
+          },
+          {
+            "title": "State updates and rendering",
+            "text": "Rendering calculates output; committing applies necessary DOM changes. A render does not imply that every DOM node changed."
+          }
+        ],
+        "code": "import { useState } from 'react';\nfunction Editor() {\n  const [text, setText] = useState('');\n  return <input aria-label=\"Draft\" value={text} onChange={e => setText(e.target.value)} />;\n}\nexport default function App() {\n  const [version, setVersion] = useState(0);\n  return <><Editor key={version} /><button onClick={() => setVersion(v => v + 1)}>Reset draft</button></>;\n}",
+        "language": "jsx",
+        "output": "Typing changes the draft. Reset draft remounts the editor and clears it.",
+        "why": "Correct ownership reduces synchronization code and makes resets intentional.",
+        "internals": "A new key causes React to unmount the old editor and mount a new one, including resetting its Hook state and Effects.",
+        "mistake": "Avoid random keys: they reset state on every render. Use stable identity except when a full reset is intentional.",
+        "exercise": "Build two inputs sharing one value in their parent. Independently reset only one draft using a stable version key.",
+        "solution": "import { useState } from 'react';\nexport default function App() {\n  const [text, setText] = useState('');\n  const props = { value: text, onChange: e => setText(e.target.value) };\n  return <><input aria-label=\"First\" {...props} /><input aria-label=\"Second\" {...props} /></>;\n}",
+        "question": "What can deliberately reset a component subtree?",
+        "options": [
+          "Changing its key",
+          "Changing a label prop alone",
+          "Reusing the same key"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "07",
+    "title": "Lists and Conditional UI",
+    "slug": "07-lists-conditional-ui",
+    "phase": 2,
+    "difficulty": "beginner-plus",
+    "tags": [
+      "react",
+      "rendering",
+      "state",
+      "jsx"
+    ],
+    "analogy": "A key is a student ID, not their seat number. Students can move seats without changing identity.",
+    "lessons": [
+      {
+        "title": "Render stable collections",
+        "notes": [
+          {
+            "title": "map and list rendering",
+            "text": "Transform records into elements with map. Keep data objects separate from presentation and include a useful empty state."
+          },
+          {
+            "title": "Stable keys",
+            "text": "Use a persistent domain ID unique among siblings. Keys help React match items between renders; they are not passed as ordinary props."
+          },
+          {
+            "title": "Filtering and sorting",
+            "text": "Filter then sort a copied array. Never sort source state in place. Stable IDs preserve input state when items are reordered."
+          }
+        ],
+        "code": "const students = [{ id: 's2', name: 'Zoya' }, { id: 's1', name: 'Asha' }];\nexport default function App() {\n  const sorted = [...students].sort((a, b) => a.name.localeCompare(b.name));\n  return <ul>{sorted.map(student => <li key={student.id}>{student.name}</li>)}</ul>;\n}",
+        "language": "jsx",
+        "output": "Asha followed by Zoya.",
+        "why": "Stable identity prevents subtle bugs when a list contains stateful rows.",
+        "internals": "Reconciliation matches siblings by key and type. Index keys represent position, so insertion can associate old state with a different record.",
+        "mistake": "Incorrect: key={Math.random()} or changing array index for editable rows. Correct: use the saved record ID.",
+        "exercise": "Add a filter for names containing a. Independently reorder editable rows and demonstrate why an ID key matters.",
+        "solution": "const students = [{ id: 'a', name: 'Asha' }, { id: 'b', name: 'Zoya' }];\nexport default function App() {\n  return <ul>{students.filter(s => s.name.toLowerCase().includes('a'))\n    .map(s => <li key={s.id}>{s.name}</li>)}</ul>;\n}",
+        "question": "Which key best survives sorting?",
+        "options": [
+          "A persistent record ID",
+          "The current array index",
+          "A fresh random number"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Represent every data state",
+        "notes": [
+          {
+            "title": "Empty states",
+            "text": "Explain why no items appear and offer a next action. Distinguish an empty dataset from a search with no matches."
+          },
+          {
+            "title": "Loading and error states",
+            "text": "Model loading, success, and failure explicitly. Show a retry when a failed read can be repeated safely. Announce changing status without repeatedly interrupting users."
+          },
+          {
+            "title": "Conditional expressions",
+            "text": "Prefer clear early returns for major state branches. Nested ternaries become hard to audit; split meaningful branches into components."
+          }
+        ],
+        "code": "function Results({ status, items }) {\n  if (status === 'loading') return <p role=\"status\">Loading…</p>;\n  if (status === 'error') return <p role=\"alert\">Could not load students.</p>;\n  if (!items.length) return <p>No students match your search.</p>;\n  return <ul>{items.map(item => <li key={item.id}>{item.name}</li>)}</ul>;\n}\nexport default function App() { return <Results status=\"success\" items={[]} />; }",
+        "language": "jsx",
+        "output": "No students match your search.",
+        "why": "Explicit states prevent blank screens and ambiguous failure.",
+        "internals": "Only one branch returns for each state. A status variable makes contradictory combinations less likely than several independent booleans.",
+        "mistake": "Do not display No results while a request is still loading. Check pending and error conditions before empty data.",
+        "exercise": "Render each branch using fixed props. Independently add a retry callback visible only on error.",
+        "solution": "function ErrorNotice({ onRetry }) {\n  return <div><p role=\"alert\">Loading failed.</p><button onClick={onRetry}>Retry</button></div>;\n}\nexport default function App() { return <ErrorNotice onRetry={() => window.location.reload()} />; }",
+        "question": "When should an empty state appear?",
+        "options": [
+          "After a successful read with no matching records",
+          "Before every request",
+          "Instead of every error"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Search and paginate derived views",
+        "notes": [
+          {
+            "title": "Searchable lists",
+            "text": "Store the query and derive matching records. Normalize case for a simple local search; do not silently change the source records."
+          },
+          {
+            "title": "Pagination fundamentals",
+            "text": "Use an offset of (page - 1) * pageSize. Reset or clamp the page when filters reduce the result count. Disable unavailable directions."
+          },
+          {
+            "title": "Reusable list components",
+            "text": "Accept items and a renderItem callback, or children, when visual structure repeats. Avoid abstracting away useful semantics such as table headers."
+          }
+        ],
+        "code": "const students = ['Asha', 'Arun', 'Meera', 'Zoya'];\nconst query = 'a'; const page = 2; const pageSize = 2;\nconst matches = students.filter(name => name.toLowerCase().includes(query));\nconsole.log(matches.slice((page - 1) * pageSize, page * pageSize));",
+        "language": "js",
+        "output": "[\"Meera\", \"Zoya\"]",
+        "why": "Pagination makes large collections manageable without confusing the relationship between filtering and navigation.",
+        "internals": "Filtering happens before slicing. Filtering only the current page would hide matching records on other pages.",
+        "mistake": "Do not leave page=8 when a filter produces one page. Reset page on query changes or clamp it to the available range.",
+        "exercise": "Change pageSize to 3 and predict page two. Independently implement a function returning totalPages and the requested slice.",
+        "solution": "function paginate(items, page, size) {\n  const totalPages = Math.max(1, Math.ceil(items.length / size));\n  const current = Math.min(Math.max(1, page), totalPages);\n  return { totalPages, items: items.slice((current - 1) * size, current * size) };\n}\nconsole.log(paginate(['a', 'b', 'c'], 5, 2));",
+        "question": "What should happen when a new filter makes the current page invalid?",
+        "options": [
+          "Reset or clamp the page",
+          "Keep showing a blank page",
+          "Delete matching records"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "08",
+    "title": "Forms and Validation",
+    "slug": "08-forms-validation",
+    "phase": 2,
+    "difficulty": "beginner-plus",
+    "tags": [
+      "react",
+      "forms",
+      "events",
+      "accessibility"
+    ],
+    "analogy": "A form is a conversation: each field asks a clear question, and validation explains how to repair an answer.",
+    "lessons": [
+      {
+        "title": "Choose controlled or uncontrolled input",
+        "notes": [
+          {
+            "title": "Controlled versus uncontrolled forms",
+            "text": "Controlled inputs use value and onChange; uncontrolled inputs use the DOM as the value source and are read with FormData or refs. Both can be appropriate."
+          },
+          {
+            "title": "Input handling",
+            "text": "Use checked for checkboxes and value for text/select controls. Radio buttons share a name and have distinct values. Convert numeric strings deliberately."
+          },
+          {
+            "title": "Form submission",
+            "text": "Use a real form and submit button. preventDefault keeps a client-only demo from navigating. Read named fields with FormData when live state is unnecessary."
+          }
+        ],
+        "code": "import { useState } from 'react';\nexport default function App() {\n  const [message, setMessage] = useState('');\n  function submit(event) {\n    event.preventDefault();\n    const data = new FormData(event.currentTarget);\n    setMessage(`Hello, ${data.get('name')}`);\n  }\n  return <form onSubmit={submit}><label>Name <input name=\"name\" required /></label>\n    <button>Submit</button><p role=\"status\">{message}</p></form>;\n}",
+        "language": "jsx",
+        "output": "Submitting a nonempty name displays a greeting without navigating.",
+        "why": "The input model should match whether the UI needs every keystroke or only submitted values.",
+        "internals": "FormData reads successful named controls. Disabled controls are omitted; unchecked checkboxes are absent rather than false.",
+        "mistake": "An input without a name is not included in FormData. Do not assume checkbox data is a JavaScript boolean.",
+        "exercise": "Add a select for track and a checkbox for newsletter. Independently print only the submitted values without storing every keystroke.",
+        "solution": "function readForm(form) {\n  const data = new FormData(form);\n  return { track: data.get('track'), newsletter: data.has('newsletter') };\n}\n// Pass the submitted form element to readForm(event.currentTarget).",
+        "question": "Which field attribute is necessary for FormData inclusion?",
+        "options": [
+          "name",
+          "className",
+          "placeholder"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Validate and explain errors",
+        "notes": [
+          {
+            "title": "Required fields",
+            "text": "Native required, minLength, and type=email offer useful baseline checks. Client validation improves feedback but does not replace validation by a trusted server."
+          },
+          {
+            "title": "Validation and error messages",
+            "text": "Validate meaningful domain rules and place specific errors near fields. A user should know both what failed and how to correct it."
+          },
+          {
+            "title": "Accessible forms",
+            "text": "Associate label and input, use aria-describedby for help, and aria-invalid when invalid. Focus the first invalid field after a custom validation failure."
+          },
+          {
+            "title": "Form state",
+            "text": "Keep field values and submitted/touched state separate. Derive validity from values; avoid duplicating each validity result in independent state."
+          }
+        ],
+        "code": "export function validate(values) {\n  const errors = {};\n  if (!values.name.trim()) errors.name = 'Enter your full name.';\n  if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(values.email)) errors.email = 'Enter an email such as name@example.com.';\n  return errors;\n}\nconsole.log(validate({ name: '', email: 'wrong' }));",
+        "language": "js",
+        "output": "An object containing name and email errors. The email pattern is a practical demo check, not a complete email standard parser.",
+        "why": "A pure validation function is easier to test than error logic scattered across event handlers.",
+        "internals": "Validation computes a result from values. The UI decides when to show that result and where to move focus.",
+        "mistake": "Do not communicate errors only through red borders. Include text and a programmatic association with the input.",
+        "exercise": "Test blank, whitespace-only, and valid names. Independently add a minimum age rule using explicit numeric conversion.",
+        "solution": "export function validateAge(raw) {\n  if (raw.trim() === '') return 'Enter your age.';\n  const age = Number(raw);\n  return Number.isInteger(age) && age >= 16 ? '' : 'Enter a whole age of at least 16.';\n}\nconsole.log(validateAge(''), validateAge('18'));",
+        "question": "Does client validation make an API input trustworthy?",
+        "options": [
+          "No; validate on the trusted server too",
+          "Yes, if using React",
+          "Yes, if required is set"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Design a registration workflow",
+        "notes": [
+          {
+            "title": "Select, checkbox, and radio inputs",
+            "text": "Use select for choosing one option from a list, checkbox for independent booleans, and a fieldset of radios for a small exclusive set. Keep labels clickable."
+          },
+          {
+            "title": "Multi-step forms",
+            "text": "Store values above step components so navigation preserves them. Validate each step before advancing and allow back navigation without discarding input."
+          },
+          {
+            "title": "Practical registration form",
+            "text": "Collect name, email, track, and consent. Review the data before final submission. The included registration project stores a local demonstration record and creates no account."
+          }
+        ],
+        "code": "import { useState } from 'react';\nexport default function App() {\n  const [track, setTrack] = useState('react');\n  const [agreed, setAgreed] = useState(false);\n  return <form onSubmit={e => e.preventDefault()}>\n    <label>Track <select value={track} onChange={e => setTrack(e.target.value)}><option value=\"react\">React</option><option value=\"js\">JavaScript</option></select></label>\n    <label><input type=\"checkbox\" checked={agreed} onChange={e => setAgreed(e.target.checked)} />I agree</label>\n    <button disabled={!agreed}>Review {track}</button>\n  </form>;\n}",
+        "language": "jsx",
+        "output": "A track chooser and consent checkbox; the review button is disabled until consent is checked.",
+        "why": "A long form becomes easier when each step has a clear purpose and preserves prior work.",
+        "internals": "Mounting and unmounting a step would reset local state, so shared values must live in a parent that stays mounted.",
+        "mistake": "Do not store a checkbox using event.target.value and expect a boolean. Use event.target.checked.",
+        "exercise": "Add a back button with type=\"button\". Independently build a two-step review that preserves track and consent.",
+        "solution": "const steps = ['Details', 'Review'];\n// In the parent: const [step, setStep] = useState(0);\n// Back button: <button type=\"button\" onClick={() => setStep(s => Math.max(0, s - 1))}>Back</button>\n// Values remain in the parent while step content changes.\nconsole.log(steps.join(' → '));",
+        "question": "Where should values live when step components unmount?",
+        "options": [
+          "In a persistent parent",
+          "Only in the unmounted step",
+          "In a CSS variable"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "09",
+    "title": "React Hooks",
+    "slug": "09-hooks",
+    "phase": 3,
+    "difficulty": "intermediate",
+    "tags": [
+      "react",
+      "hooks",
+      "useeffect",
+      "usecontext",
+      "usereducer",
+      "testing"
+    ],
+    "analogy": "An Effect is a synchronization contract with something outside React, including an agreement for disconnecting.",
+    "lessons": [
+      {
+        "title": "Synchronize with Effects",
+        "notes": [
+          {
+            "title": "Rules of Hooks",
+            "text": "Call ordinary Hooks unconditionally at the top level of a component or custom Hook. Stable call order lets React associate each Hook with its state. The special use API has different placement rules; it is not covered by this rule shorthand."
+          },
+          {
+            "title": "useState and useEffect",
+            "text": "State stores UI memory. Effects synchronize committed UI with external systems such as timers, subscriptions, and browser APIs. Calculations from existing props/state usually belong in render."
+          },
+          {
+            "title": "Dependency arrays",
+            "text": "List all reactive values used by an Effect. React compares dependencies with Object.is. [] does not mean ignore every future value; it means the Effect uses no reactive dependencies."
+          },
+          {
+            "title": "Cleanup functions and Effect lifecycle",
+            "text": "Return cleanup to undo a subscription or timer. React cleans up old synchronization before running it for changed dependencies, and on unmount. Development StrictMode adds a setup-cleanup rehearsal."
+          },
+          {
+            "title": "Beginner explanation",
+            "text": "An Effect connects a component to something React does not own, such as a timer. If all you need is a value calculated from props, calculate it directly."
+          },
+          {
+            "title": "Intermediate explanation",
+            "text": "Treat setup and cleanup as one reversible operation. On a changed dependency, disconnect the old resource before connecting the new one. The dependency list describes the values used; it is not an arbitrary schedule."
+          },
+          {
+            "title": "Advanced explanation",
+            "text": "An Effect belongs to committed UI. Development setup-cleanup repetition tests reversibility. A stale subscription after unmount is a lifetime bug, not a reason to disable development checks."
+          },
+          {
+            "title": "Practical scenario and trade-off",
+            "text": "For a room subscription, connect using roomId and return unsubscribe. The trade-off is explicit lifecycle code, but you gain correct switching and teardown."
+          }
+        ],
+        "code": "import { useEffect, useState } from 'react';\nexport default function App() {\n  const [seconds, setSeconds] = useState(0);\n  useEffect(() => {\n    const id = setInterval(() => setSeconds(n => n + 1), 1000);\n    return () => clearInterval(id);\n  }, []);\n  return <p>{seconds} seconds</p>;\n}",
+        "language": "jsx",
+        "output": "The count rises approximately once per second and the timer stops on unmount.",
+        "why": "External systems do not automatically follow React component lifetimes. Effects establish and release that connection.",
+        "internals": "Effects run after a commit. A functional updater avoids reading seconds inside the Effect, so the timer can stay connected without a seconds dependency.",
+        "mistake": "Do not hide missing dependencies with an empty array. Change the design so the Effect expresses its real inputs.",
+        "exercise": "Add a pause prop and recreate the timer only when it changes. Independently verify cleanup after mounting and unmounting the component.",
+        "solution": "import { useEffect, useState } from 'react';\nexport default function Timer({ paused = false }) {\n  const [seconds, setSeconds] = useState(0);\n  useEffect(() => {\n    if (paused) return;\n    const id = setInterval(() => setSeconds(n => n + 1), 1000);\n    return () => clearInterval(id);\n  }, [paused]);\n  return <p>{seconds}</p>;\n}",
+        "question": "When is Effect cleanup used?",
+        "options": [
+          "Before changed synchronization and on unmount",
+          "Only on a page refresh",
+          "Only when an error occurs"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Choose the appropriate Hook",
+        "notes": [
+          {
+            "title": "useRef",
+            "text": "A ref stores a mutable value that survives renders without causing rendering. Use it for DOM focus or an imperative handle, not a value the UI must display reactively."
+          },
+          {
+            "title": "useContext",
+            "text": "Read the nearest provider value. It avoids passing values through unrelated intermediates, but updates can re-render consumers. Context is not automatically a selector-based store."
+          },
+          {
+            "title": "useReducer",
+            "text": "A reducer groups state transitions into named actions. It must return new state without side effects. It is useful when transitions interact, but overkill for one boolean."
+          },
+          {
+            "title": "useMemo and useCallback",
+            "text": "useMemo caches a calculated value; useCallback caches a function identity. They are performance tools, not correctness requirements. Measure and use them only when identity or expensive work matters."
+          }
+        ],
+        "code": "import { useRef } from 'react';\nexport default function App() {\n  const input = useRef(null);\n  return <><input ref={input} aria-label=\"Search lessons\" />\n    <button onClick={() => input.current?.focus()}>Focus search</button></>;\n}",
+        "language": "jsx",
+        "output": "The button moves keyboard focus into the search input.",
+        "why": "Different Hooks solve different ownership and synchronization problems; using all of them is not a goal.",
+        "internals": "React assigns the DOM node to the ref during commit. Updating ref.current does not enqueue a component render.",
+        "mistake": "Do not use a ref instead of state for a visible score; changes will not refresh the UI. Do not memoize trivial arithmetic by habit.",
+        "exercise": "Add a button that selects the input text. Independently implement a reducer with increment and reset actions.",
+        "solution": "export function reducer(state, action) {\n  switch (action.type) {\n    case 'increment': return { count: state.count + 1 };\n    case 'reset': return { count: 0 };\n    default: return state;\n  }\n}\nconsole.log(reducer({ count: 2 }, { type: 'reset' }));",
+        "question": "Does changing ref.current schedule a render?",
+        "options": [
+          "No",
+          "Yes, always",
+          "Only for numbers"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Extract and test custom Hooks",
+        "notes": [
+          {
+            "title": "Custom Hooks",
+            "text": "A use-prefixed function composes Hooks to share stateful logic. Each invocation gets independent state unless it reads a shared external source or provider."
+          },
+          {
+            "title": "Stale closures",
+            "text": "An Effect captures values from its render. Missing dependencies can preserve an old value. Functional updaters help for previous-state calculations; they do not fix every stale input."
+          },
+          {
+            "title": "Avoiding unnecessary Effects",
+            "text": "Calculate filtered data in render and handle a user action in its event handler. Effects are needed when synchronization must continue independently of one event."
+          },
+          {
+            "title": "Hook testing",
+            "text": "Use renderHook for a logic-focused Hook and act for direct updates. Prefer testing a component when the actual user interaction is what matters."
+          },
+          {
+            "title": "Beginner explanation",
+            "text": "A callback remembers the environment where it was created. It does not automatically receive every later render value."
+          },
+          {
+            "title": "Intermediate explanation",
+            "text": "An empty dependency array can accidentally keep a callback from the first render. Functional state updates solve previous-state calculations, while changing props still need a correct synchronization design."
+          },
+          {
+            "title": "Advanced explanation",
+            "text": "Separate reactive synchronization from nonreactive reading only when the API contract supports it. React 19.2+ useEffectEvent has a narrow Effect-oriented role; it is not a general workaround for dependency analysis."
+          },
+          {
+            "title": "Practical scenario and trade-off",
+            "text": "For an interval increment, use the updater form. For switching a data source, include the source identity and reconnect. These are different problems even if both involve closures."
+          }
+        ],
+        "code": "import { useState } from 'react';\nexport function useCounter(initial = 0) {\n  const [count, setCount] = useState(initial);\n  return { count, increment: () => setCount(n => n + 1), reset: () => setCount(initial) };\n}\nexport default function App() {\n  const counter = useCounter(2);\n  return <button onClick={counter.increment}>{counter.count}</button>;\n}",
+        "language": "jsx",
+        "output": "The button begins at 2 and increments on each click.",
+        "why": "Extraction makes behavior reusable while keeping the same rules and ownership model.",
+        "internals": "Two calls to useCounter create two Hook state sequences. The function shares implementation, not a singleton count.",
+        "mistake": "Do not assume all users of a custom Hook share state. Use a provider or external store when shared identity is required.",
+        "exercise": "Render two counters and prove independence. Independently write a renderHook test verifying reset to the initial value.",
+        "solution": "import { renderHook, act } from '@testing-library/react';\nimport { expect, test } from 'vitest';\nimport { useCounter } from './useCounter';\ntest('resets to initial value', () => {\n  const { result } = renderHook(() => useCounter(2));\n  act(() => result.current.increment());\n  act(() => result.current.reset());\n  expect(result.current.count).toBe(2);\n});",
+        "question": "What do separate calls to a custom Hook normally share?",
+        "options": [
+          "Implementation, not state",
+          "One global state object",
+          "One DOM element"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "title": "Component Architecture",
+    "slug": "10-component-architecture",
+    "phase": 3,
+    "difficulty": "intermediate",
+    "tags": [
+      "react",
+      "components",
+      "props",
+      "industry-practices"
+    ],
+    "analogy": "Good component boundaries resemble departments with clear responsibilities and small, explicit handoffs.",
+    "lessons": [
+      {
+        "title": "Find boundaries and compose",
+        "notes": [
+          {
+            "title": "Component boundaries",
+            "text": "Split by responsibility, repeated behavior, or independently meaningful UI. Do not create a component solely because a file exceeds an arbitrary line count."
+          },
+          {
+            "title": "Composition over duplication",
+            "text": "Extract repeated structure while keeping variable content explicit. Similar-looking components with different behavior do not always need one giant abstraction."
+          },
+          {
+            "title": "Presentational and state-owning components",
+            "text": "A state owner coordinates data and operations; a presentational component receives a useful interface. This is a flexible design lens, not a rule forbidding state in UI components."
+          }
+        ],
+        "code": "function EmptyState({ title, action }) {\n  return <section><h2>{title}</h2>{action}</section>;\n}\nexport default function App() {\n  return <EmptyState title=\"No notes yet\" action={<a href=\"#new\">Create your first note</a>} />;\n}",
+        "language": "jsx",
+        "output": "A meaningful empty state with caller-provided action.",
+        "why": "A focused boundary reduces the number of reasons a component needs to change.",
+        "internals": "Props describe a contract between components. Composition can keep state near its owner and avoid making a generic wrapper depend on domain-specific stores.",
+        "mistake": "Do not build a UniversalCard with dozens of unrelated flags. Prefer composition when content varies independently.",
+        "exercise": "Design an error panel accepting title, message, and action. Independently identify one boundary in the notes project that owns persistence.",
+        "solution": "function Notice({ title, children, action }) {\n  return <section><h2>{title}</h2><div>{children}</div>{action}</section>;\n}\nexport default function App() { return <Notice title=\"Offline\" action={<button onClick={() => location.reload()}>Retry</button>}>Check your connection.</Notice>; }",
+        "question": "What is a useful reason to extract a component?",
+        "options": [
+          "A cohesive responsibility",
+          "Every three JSX lines",
+          "To hide all data flow"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Design controlled component APIs",
+        "notes": [
+          {
+            "title": "Reusable UI patterns",
+            "text": "Provide semantic defaults, support a caller label, and forward only intentional DOM props. Document disabled and error behavior."
+          },
+          {
+            "title": "Controlled component APIs",
+            "text": "A controlled widget receives its value and emits changes through onChange. The parent remains authoritative; the child should not silently maintain a conflicting copy."
+          },
+          {
+            "title": "Compound component concepts",
+            "text": "A group such as Tabs, TabList, and TabPanel can coordinate through Context. This improves composition but requires careful IDs, keyboard behavior, and state ownership."
+          }
+        ],
+        "code": "function Toggle({ checked, onChange, label }) {\n  return <label><input type=\"checkbox\" checked={checked}\n    onChange={event => onChange(event.target.checked)} />{label}</label>;\n}\nimport { useState } from 'react';\nexport default function App() {\n  const [enabled, setEnabled] = useState(false);\n  return <Toggle checked={enabled} onChange={setEnabled} label=\"Email updates\" />;\n}",
+        "language": "jsx",
+        "output": "A checkbox controlled by its parent state.",
+        "why": "An explicit API allows the same widget to participate in forms, settings panels, and tests.",
+        "internals": "The input emits an intent, the parent updates state, and the new prop completes the loop. This keeps programmatic resets and user changes consistent.",
+        "mistake": "Avoid a child state initialized from checked unless the API intentionally supports an uncontrolled defaultChecked mode.",
+        "exercise": "Add disabled support without breaking the label. Independently sketch a tabs API and explain why click-only tabs are incomplete.",
+        "solution": "function Toggle({ checked, onChange, label, disabled = false }) {\n  return <label><input type=\"checkbox\" disabled={disabled} checked={checked}\n    onChange={event => onChange(event.target.checked)} />{label}</label>;\n}\nexport default function App() { return <Toggle checked={false} onChange={() => {}} label=\"Unavailable setting\" disabled />; }",
+        "question": "Who owns a controlled component value?",
+        "options": [
+          "Its parent",
+          "A hidden child copy",
+          "The stylesheet"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Contain errors and refactor safely",
+        "notes": [
+          {
+            "title": "Error boundaries",
+            "text": "A boundary catches descendant render/lifecycle errors and renders fallback UI. It does not automatically catch event-handler errors or arbitrary async rejection. Catch those at their operation boundary."
+          },
+          {
+            "title": "Feature-based folder structures",
+            "text": "Group related UI, data logic, and tests by feature when a project grows. Shared folders should contain actual cross-feature contracts rather than every utility."
+          },
+          {
+            "title": "Refactoring large components",
+            "text": "Preserve behavior with tests, extract pure calculations first, then split UI and ownership. Change one boundary at a time."
+          }
+        ],
+        "code": "import { Component } from 'react';\nexport class Boundary extends Component {\n  state = { failed: false };\n  static getDerivedStateFromError() { return { failed: true }; }\n  render() {\n    return this.state.failed ? <p role=\"alert\">This panel could not render.</p> : this.props.children;\n  }\n}\nexport default function App() { return <Boundary><p>Healthy panel</p></Boundary>; }",
+        "language": "jsx",
+        "output": "Healthy panel; a throwing descendant would instead show the fallback.",
+        "why": "An isolated failure should not necessarily erase the whole application.",
+        "internals": "An error boundary participates in React render recovery. A Promise callback outside rendering has a different execution path and needs explicit rejection handling.",
+        "mistake": "Do not promise that a boundary catches every error. Use try/catch in async operations and explicit validation at external boundaries.",
+        "exercise": "Wrap a component that throws to test the fallback. Independently add a reset mechanism by remounting the boundary with a new key.",
+        "solution": "function BrokenPanel() { throw new Error('Demonstration failure'); }\n// Render <Boundary><BrokenPanel /></Boundary> to inspect fallback.\n// A parent can change <Boundary key={retryVersion}> to reset its state.",
+        "question": "Which failure is not automatically caught by a React error boundary?",
+        "options": [
+          "An event-handler exception",
+          "A descendant render exception",
+          "A descendant constructor exception"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "title": "Routing with React Router",
+    "slug": "11-routing",
+    "phase": 3,
+    "difficulty": "intermediate",
+    "tags": [
+      "react",
+      "react-router",
+      "routing",
+      "state"
+    ],
+    "analogy": "The URL is a shareable address for application state; nested routes are rooms inside a common building.",
+    "lessons": [
+      {
+        "title": "Create routes and shared layouts",
+        "notes": [
+          {
+            "title": "Client-side routing",
+            "text": "A router maps a URL to UI without a full document navigation for each internal link. A static host still needs a fallback for browser-history URLs."
+          },
+          {
+            "title": "BrowserRouter and route definitions",
+            "text": "Wrap declarative Routes in BrowserRouter for pathname navigation. This repository defaults to HashRouter for portable static hosting; examples explain both."
+          },
+          {
+            "title": "Navigation links",
+            "text": "Link navigates internally; NavLink can expose active styling and aria-current. Use ordinary anchors for external sites."
+          },
+          {
+            "title": "Nested layouts",
+            "text": "A parent route renders Outlet where child content belongs. Shared navigation can remain mounted as the child route changes."
+          }
+        ],
+        "code": "import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router';\nfunction Layout() { return <><nav><Link to=\"/\">Home</Link> <Link to=\"/about\">About</Link></nav><Outlet /></>; }\nexport default function App() {\n  return <BrowserRouter><Routes><Route element={<Layout />}>\n    <Route index element={<h1>Home</h1>} />\n    <Route path=\"about\" element={<h1>About</h1>} />\n  </Route></Routes></BrowserRouter>;\n}",
+        "language": "jsx",
+        "output": "Home and About share navigation; clicking a Link changes the rendered page.",
+        "why": "Routing makes views addressable, reloadable, and understandable through browser history.",
+        "internals": "The router observes history changes, matches route definitions, and renders the selected branch. Outlet marks the insertion point for nested routes.",
+        "mistake": "Do not mount another BrowserRouter inside a component already under a router. A standalone example may own one; an embedded panel should use the existing router.",
+        "exercise": "Add a Contact child route. Independently configure a server fallback and reload /about directly.",
+        "solution": "// Inside the existing parent route:\n// <Route path=\"contact\" element={<h1>Contact</h1>} />\n// Inside navigation:\n// <Link to=\"/contact\">Contact</Link>",
+        "question": "What renders a nested route inside its parent layout?",
+        "options": [
+          "Outlet",
+          "Fragment",
+          "useState"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Keep navigable state in the URL",
+        "notes": [
+          {
+            "title": "Route parameters",
+            "text": "A segment such as lessons/:lessonId supplies a string via useParams. Validate it and show a useful not-found state when the record does not exist."
+          },
+          {
+            "title": "Search parameters",
+            "text": "useSearchParams reads and updates query values. Store shareable filters and page numbers here, while transient input focus belongs locally."
+          },
+          {
+            "title": "Not-found pages",
+            "text": "A wildcard route handles unmatched paths. A matched route with a missing record still needs its own missing-record branch."
+          },
+          {
+            "title": "URL-driven application state",
+            "text": "Use one source of truth. Derive filters from search params and update those params rather than maintaining a second divergent state."
+          }
+        ],
+        "code": "import { useSearchParams } from 'react-router';\nexport default function SearchPage() {\n  const [params, setParams] = useSearchParams();\n  const query = params.get('q') ?? '';\n  return <label>Search <input value={query} onChange={e => {\n    const next = new URLSearchParams(params);\n    next.set('q', e.target.value); next.delete('page');\n    setParams(next, { replace: true });\n  }} /></label>;\n}",
+        "language": "jsx",
+        "output": "Within a router, typing updates the q parameter and removes a stale page parameter.",
+        "why": "A copied URL should reproduce the same meaningful filtered view.",
+        "internals": "Search params are strings. Parse numeric values defensively and clamp invalid pages instead of trusting arbitrary query text.",
+        "mistake": "Do not replace all parameters when editing one filter unless intentionally clearing the others. Clone and update the current URLSearchParams.",
+        "exercise": "Add a technology parameter while retaining q. Independently handle a non-numeric page parameter as page 1.",
+        "solution": "const params = new URLSearchParams('?q=hooks&page=wrong');\nconst parsed = Number(params.get('page') ?? 1);\nconst page = Number.isInteger(parsed) && parsed > 0 ? parsed : 1;\nparams.set('technology', 'react');\nconsole.log(page, params.toString());",
+        "question": "Which state belongs naturally in a shareable URL?",
+        "options": [
+          "Search filters and page number",
+          "A secret access token",
+          "The currently focused DOM node"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Split routes and handle boundaries",
+        "notes": [
+          {
+            "title": "Protected-route concepts",
+            "text": "A client guard can redirect or hide UI for convenience, but it cannot enforce server authorization. A static demo must not pretend a local flag is secure authentication."
+          },
+          {
+            "title": "Lazy-loaded routes",
+            "text": "React.lazy and Suspense defer downloading a page module until needed. Declare lazy components at module scope. The imported module must expose the expected default component."
+          },
+          {
+            "title": "Route-level error handling",
+            "text": "Data routers support route error boundaries for loader/action failures. Declarative routers can wrap page elements in a React boundary; handle fetch failures explicitly in page state."
+          },
+          {
+            "title": "Routing trade-offs",
+            "text": "Hash routing avoids static-host rewrite requirements; BrowserRouter provides clean paths with appropriate hosting support. Neither is universally better."
+          }
+        ],
+        "code": "import { lazy, Suspense } from 'react';\nconst Reports = lazy(() => import('./Reports.jsx'));\nexport default function ReportsPage() {\n  return <Suspense fallback={<p role=\"status\">Loading reports…</p>}><Reports /></Suspense>;\n}",
+        "language": "jsx",
+        "output": "After creating Reports.jsx with a default export, the fallback appears until its module is available.",
+        "why": "Route splitting reduces initial work for visitors who never open every page.",
+        "internals": "lazy caches its import Promise and result. A rejected module import needs an error boundary; Suspense handles waiting, not all failures.",
+        "mistake": "Do not claim a protected route secures an API. Verify permissions in a trusted service before returning protected data.",
+        "exercise": "Create Reports.jsx and observe its separate network request. Independently add an error boundary around the Suspense region.",
+        "solution": "// Reports.jsx\nexport default function Reports() { return <h1>Learning report</h1>; }\n// Import it with lazy(() => import('./Reports.jsx')) in the parent module.",
+        "question": "Does hiding an admin route prevent unauthorized API calls?",
+        "options": [
+          "No; the server must enforce authorization",
+          "Yes, if the link is hidden",
+          "Yes, if the route is lazy"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "title": "Context and State Management",
+    "slug": "12-context-state-management",
+    "phase": 3,
+    "difficulty": "intermediate",
+    "tags": [
+      "react",
+      "state",
+      "usecontext",
+      "usereducer",
+      "industry-practices"
+    ],
+    "analogy": "Local state is a personal notebook; Context is a shared noticeboard; cached server data is a copy of an external record.",
+    "lessons": [
+      {
+        "title": "Place state deliberately",
+        "notes": [
+          {
+            "title": "Prop drilling",
+            "text": "Passing a value through many unrelated components can obscure intent. Before adding Context, consider composition that passes the needed content directly."
+          },
+          {
+            "title": "Context API",
+            "text": "createContext defines a channel; a provider supplies a value and useContext reads the closest provider. Default values apply when no provider exists."
+          },
+          {
+            "title": "When Context is appropriate",
+            "text": "Use it for a theme, locale, or shared feature state needed across a subtree. High-frequency broad updates may benefit from finer subscriptions."
+          },
+          {
+            "title": "Local versus shared state",
+            "text": "Keep a field draft local unless another view must coordinate with it. Lifting everything globally increases coupling."
+          }
+        ],
+        "code": "import { createContext, useContext } from 'react';\nconst ThemeContext = createContext('light');\nfunction Badge() { return <p>Theme: {useContext(ThemeContext)}</p>; }\nexport default function App() {\n  return <ThemeContext.Provider value=\"dark\"><Badge /></ThemeContext.Provider>;\n}",
+        "language": "jsx",
+        "output": "Theme: dark",
+        "why": "Context solves distribution, while careful ownership still determines how values change.",
+        "internals": "React finds the nearest matching provider. When its value changes, consumers reading that context can render again even if unrelated props are memoized.",
+        "mistake": "Do not create a Context inside render; that creates a different channel each time. Define it at module scope.",
+        "exercise": "Add a nested light provider and compare two badges. Independently keep a search draft outside the theme context.",
+        "solution": "// Using ThemeContext and Badge from the example:\n// <ThemeContext.Provider value=\"dark\">\n//   <Badge />\n//   <ThemeContext.Provider value=\"light\"><Badge /></ThemeContext.Provider>\n// </ThemeContext.Provider>",
+        "question": "Which provider value does a consumer read?",
+        "options": [
+          "The nearest matching provider",
+          "Always the outermost",
+          "A random provider"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Combine reducers and normalized state",
+        "notes": [
+          {
+            "title": "useReducer with Context",
+            "text": "A provider can own a reducer and expose state plus dispatch. Separate contexts for state and dispatch can avoid forcing dispatch-only consumers to subscribe to state."
+          },
+          {
+            "title": "State normalization",
+            "text": "Store entities by ID and reference them by ID from lists. Updating one record then changes one canonical object instead of several inconsistent copies."
+          },
+          {
+            "title": "Reducer design",
+            "text": "Actions describe domain events such as task/completed. A reducer returns the next value from state and action and performs no network or storage side effects."
+          }
+        ],
+        "code": "export function reducer(state, action) {\n  if (action.type !== 'task/completed') return state;\n  const task = state.byId[action.id];\n  if (!task) return state;\n  return { ...state, byId: { ...state.byId,\n    [action.id]: { ...task, done: true } } };\n}\nconst state = { ids: ['a'], byId: { a: { id: 'a', done: false } } };\nconsole.log(reducer(state, { type: 'task/completed', id: 'a' }).byId.a.done);",
+        "language": "js",
+        "output": "true; the original task remains unchanged.",
+        "why": "Named transitions make a growing workflow inspectable and testable.",
+        "internals": "A reducer computes new references along changed paths and preserves unaffected references. Normalization makes the location of a record unambiguous.",
+        "mistake": "Do not call fetch or localStorage.setItem inside the reducer. Perform effects outside and dispatch their outcomes.",
+        "exercise": "Add task/renamed with a title payload. Independently reject an empty title without changing the original state.",
+        "solution": "export function rename(state, id, title) {\n  if (!state.byId[id] || !title.trim()) return state;\n  return { ...state, byId: { ...state.byId, [id]: { ...state.byId[id], title: title.trim() } } };\n}",
+        "question": "Which operation belongs outside a reducer?",
+        "options": [
+          "Sending an HTTP request",
+          "Calculating a new array",
+          "Returning unchanged state"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Choose tools without overengineering",
+        "notes": [
+          {
+            "title": "Server state versus client state",
+            "text": "Remote data has freshness, retries, invalidation, and shared ownership concerns. A selected tab is client state. Treating both identically can create unnecessary cache logic."
+          },
+          {
+            "title": "Redux Toolkit concepts",
+            "text": "A store contains shared state; slices define reducers and actions. Redux Toolkit uses Immer for mutation-like reducer syntax, which is not permission to mutate ordinary React state. It is discussed here, not installed."
+          },
+          {
+            "title": "Lightweight state-management alternatives",
+            "text": "Context plus useReducer, useSyncExternalStore-based stores, and libraries such as Zustand offer different subscription and tooling trade-offs. Evaluate requirements before adding dependencies."
+          },
+          {
+            "title": "Choosing the right approach",
+            "text": "Begin local, lift when needed, add Context for distribution, and use a server-state library for real caching requirements. Team debugging needs and update frequency matter."
+          },
+          {
+            "title": "Beginner explanation",
+            "text": "Start by keeping state where it is used. Share it only when more than one part of the UI needs coordinated access."
+          },
+          {
+            "title": "Intermediate explanation",
+            "text": "Context distributes a value; it does not supply request caching or automatically select a tiny part of a large state object. Server data also has freshness and invalidation needs."
+          },
+          {
+            "title": "Advanced explanation",
+            "text": "Subscription granularity, write frequency, debugging tools, and team conventions influence store choice. Normalized entity state and a query cache may coexist, but define which is authoritative."
+          },
+          {
+            "title": "Practical scenario and trade-off",
+            "text": "A theme fits Context; an input draft usually stays local; a remote paginated catalog fits a cache keyed by filters. Extra libraries are useful only when their policy replaces real complexity."
+          }
+        ],
+        "code": "const statePlan = {\n  draftTitle: 'local component state',\n  selectedTaskId: 'URL or nearest shared parent',\n  theme: 'context and local preference storage',\n  remoteCourses: 'query cache with freshness policy',\n};\nconsole.table(statePlan);",
+        "language": "js",
+        "output": "A table mapping each kind of value to a suitable owner.",
+        "why": "Tools should solve observed coordination problems rather than add layers for their own sake.",
+        "internals": "Context distributes a value; Redux-style stores coordinate transitions and subscriptions; query libraries also model asynchronous cache lifecycles. These are overlapping, not identical, responsibilities.",
+        "mistake": "Do not store the same remote record in several independent client stores without a clear synchronization policy.",
+        "exercise": "Classify five values in your capstone by ownership. Independently explain when introducing a global store would reduce complexity.",
+        "solution": "const cart = { owner: 'shared reducer', persistence: 'browser-local demo' };\nconst catalog = { owner: 'query cache', invalidation: 'after server mutation' };\nconsole.log(cart, catalog);",
+        "question": "Which concern is characteristic of server state?",
+        "options": [
+          "Freshness and cache invalidation",
+          "Which tooltip is open",
+          "The current input focus"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "title": "API Integration and Asynchronous UI",
+    "slug": "13-api-async",
+    "phase": 3,
+    "difficulty": "intermediate",
+    "tags": [
+      "react",
+      "api-integration",
+      "hooks",
+      "useeffect"
+    ],
+    "analogy": "A request is a parcel in transit: it can arrive late, fail, or become irrelevant because you requested something else.",
+    "lessons": [
+      {
+        "title": "Build a reliable fetch boundary",
+        "notes": [
+          {
+            "title": "Fetch API and HTTP methods/status codes",
+            "text": "GET reads, POST commonly creates, PATCH partially updates, and DELETE removes according to the API contract. Check response.ok and understand 204 before parsing JSON."
+          },
+          {
+            "title": "Loading, success, empty, and error states",
+            "text": "Represent request state explicitly. Preserve enough context for a meaningful retry. Empty successful data is not a failure."
+          },
+          {
+            "title": "Async operations",
+            "text": "await suspends the async function, not the browser. Catch rejections where you can choose a user-facing recovery."
+          },
+          {
+            "title": "API configuration using Vite environment variables",
+            "text": "Use a public base URL and encode dynamic path/query values. The default course fixture works locally with no service or API key."
+          }
+        ],
+        "code": "export async function getCourses(signal) {\n  const response = await fetch(`${import.meta.env.BASE_URL}data/courses.json`, { signal });\n  if (!response.ok) throw new Error(`Request failed: ${response.status}`);\n  const rows = await response.json();\n  if (!Array.isArray(rows)) throw new Error('Expected a course array');\n  return rows;\n}",
+        "language": "jsx",
+        "output": "Resolves to the bundled course records, or rejects with an explanatory error.",
+        "why": "A small API client keeps transport details separate from presentation.",
+        "internals": "fetch returns a Response first. JSON parsing is another asynchronous operation and can fail even after an HTTP success.",
+        "mistake": "Do not blindly call response.json() for a 204 response or treat every resolved fetch as successful.",
+        "exercise": "Load the local course fixture and show its title list. Independently test a malformed payload and a non-OK response.",
+        "solution": "export async function readJson(response) {\n  if (!response.ok) throw new Error(`HTTP ${response.status}`);\n  if (response.status === 204) return null;\n  return response.json();\n}",
+        "question": "What should you check before interpreting an HTTP response as success?",
+        "options": [
+          "response.ok or the expected status",
+          "Only whether fetch resolved",
+          "Only the content length"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Cancel obsolete work and avoid races",
+        "notes": [
+          {
+            "title": "AbortController and request cancellation",
+            "text": "Create a controller for each synchronization and pass its signal to fetch. Cleanup aborts work that no longer belongs to the current view."
+          },
+          {
+            "title": "Race conditions",
+            "text": "An earlier request can finish after a later one and overwrite fresh data. Cancellation plus an active/request-identity guard prevents stale results from committing."
+          },
+          {
+            "title": "Pagination and filtering",
+            "text": "Include page and filters in the request identity. Reset page when query changes. Mock APIs should exercise the same visible states as remote calls."
+          },
+          {
+            "title": "Mock API examples that work locally",
+            "text": "This repository ships fixture JSON and a Promise-based simulator with success, empty, and error modes. Simulation is clearly labeled and never presented as live data."
+          },
+          {
+            "title": "Beginner explanation",
+            "text": "A response can arrive after you have moved on. Do not let yesterday’s question overwrite today’s answer."
+          },
+          {
+            "title": "Intermediate explanation",
+            "text": "Associate each request with its URL or query identity. Cleanup aborts the previous request; an active flag prevents noncancelable follow-up work from publishing an obsolete result."
+          },
+          {
+            "title": "Advanced explanation",
+            "text": "Cancellation saves resources when honored. Identity guards protect correctness even when completion cannot be prevented. For mutations, cancellation does not prove a server-side action was undone."
+          },
+          {
+            "title": "Practical scenario and trade-off",
+            "text": "Search quickly from A to B and resolve A last in a test. The visible data must still belong to B. This is more useful than adding an arbitrary delay and hoping ordering stays favorable."
+          }
+        ],
+        "code": "import { useEffect, useState } from 'react';\nexport function useJson(url) {\n  const [result, setResult] = useState({ status: 'loading', data: [] });\n  useEffect(() => {\n    let active = true;\n    const controller = new AbortController();\n    setResult({ status: 'loading', data: [] });\n    fetch(url, { signal: controller.signal }).then(r => {\n      if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json();\n    }).then(data => { if (active) setResult({ status: 'success', data }); })\n      .catch(error => { if (active && error.name !== 'AbortError') setResult({ status: 'error', data: [] }); });\n    return () => { active = false; controller.abort(); };\n  }, [url]);\n  return result;\n}",
+        "language": "jsx",
+        "output": "The Hook returns loading, then success or error; obsolete requests cannot update its state.",
+        "why": "A user can change intent faster than a network response arrives.",
+        "internals": "The cleanup closes over the old active flag and controller. The next Effect creates its own pair, so only its current result is allowed to commit.",
+        "mistake": "Ignoring cancellation can show the wrong record after quick navigation. Do not show an abort as a user-facing failure.",
+        "exercise": "Test two requests that resolve in reverse order. Independently add an error message while keeping aborts silent.",
+        "solution": "// In the catch branch, store a message only for the active request:\n// setResult({ status: 'error', data: [], message: error.message });\n// Keep cleanup setting active=false before controller.abort().",
+        "question": "Why can a request-identity guard still be useful with cancellation?",
+        "options": [
+          "Some async work may not honor abort",
+          "Abort always sorts responses",
+          "It makes requests synchronous"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Cache and update with TanStack Query",
+        "notes": [
+          {
+            "title": "Data caching concepts",
+            "text": "A cache key identifies the data, including relevant filters. Freshness is a policy, not proof that remote data cannot change. Distinguish pending from background refetching."
+          },
+          {
+            "title": "TanStack Query concepts and practical examples",
+            "text": "A QueryClientProvider supplies the cache. useQuery accepts queryKey and queryFn; the query function must reject on failure. staleTime controls freshness expectations."
+          },
+          {
+            "title": "Optimistic updates",
+            "text": "Show a likely change before confirmation, snapshot previous cache data, and roll back on failure. Cancel conflicting reads and invalidate afterward. Use this only when reconciliation is well defined."
+          },
+          {
+            "title": "Trade-offs",
+            "text": "Caching libraries remove repetitive async state code but introduce policies to understand. A single static fixture does not require a cache; the runnable query example exists to teach the behavior."
+          }
+        ],
+        "code": "import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';\nconst client = new QueryClient();\nfunction Courses() {\n  const query = useQuery({ queryKey: ['courses'], staleTime: 60000,\n    queryFn: async ({ signal }) => {\n      const r = await fetch(`${import.meta.env.BASE_URL}data/courses.json`, { signal });\n      if (!r.ok) throw new Error('Course request failed'); return r.json();\n    } });\n  if (query.isPending) return <p>Loading…</p>;\n  if (query.isError) return <button onClick={() => query.refetch()}>Retry</button>;\n  return <p>{query.data.length} courses</p>;\n}\nexport default function App() { return <QueryClientProvider client={client}><Courses /></QueryClientProvider>; }",
+        "language": "jsx",
+        "output": "A loading message followed by the local course count; repeated mounts can use the cache.",
+        "why": "Caching coordinates repeated reads across views and provides explicit invalidation after writes.",
+        "internals": "Query keys address cached results. The query function receives an AbortSignal; forwarding it allows the library to cancel its underlying fetch.",
+        "mistake": "Do not create a new QueryClient inside every render or omit a filter from the query key.",
+        "exercise": "Add a category to the query key. Independently sketch optimistic rollback for a renamed course and explain conflicting updates.",
+        "solution": "// A filter is part of identity:\n// useQuery({ queryKey: ['courses', category], queryFn: ({ signal }) => loadCourses(category, signal) });\n// After a confirmed mutation:\n// queryClient.invalidateQueries({ queryKey: ['courses'] });",
+        "question": "What must be included in a query key when it changes the returned data?",
+        "options": [
+          "The relevant filter",
+          "A random number on each render",
+          "The JSX component tree"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "title": "Styling and UI Systems",
+    "slug": "14-styling-ui",
+    "phase": 4,
+    "difficulty": "intermediate",
+    "tags": [
+      "css",
+      "react",
+      "accessibility",
+      "components"
+    ],
+    "analogy": "Design tokens are a shared vocabulary for spacing, color, and type, so every component speaks the same visual language.",
+    "lessons": [
+      {
+        "title": "Build responsive layouts",
+        "notes": [
+          {
+            "title": "Plain CSS and CSS Modules",
+            "text": "Plain CSS is useful for resets and tokens. CSS Modules transform class names for local scope; import styles from a .module.css file and use styles.card."
+          },
+          {
+            "title": "Responsive design and mobile-first design",
+            "text": "Start with a usable narrow layout, then add columns when space permits. Breakpoints should follow content needs rather than device brand names."
+          },
+          {
+            "title": "Flexbox and Grid",
+            "text": "Flexbox aligns items along one main axis. Grid describes rows and columns. Use minmax and min-width:0 to prevent long content from forcing overflow."
+          }
+        ],
+        "code": ".cards { display: grid; gap: 1rem; grid-template-columns: 1fr; }\n.card { min-width: 0; padding: 1.25rem; border: 1px solid #cbd5e1; }\n@media (min-width: 48rem) {\n  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n}",
+        "language": "css",
+        "output": "Cards use one column on narrow screens and two at 48rem or wider.",
+        "why": "A layout should accommodate content and user zoom instead of assuming one screen size.",
+        "internals": "Grid distributes available space between tracks; minmax(0,1fr) lets tracks shrink below the intrinsic width of long content.",
+        "mistake": "Avoid a fixed desktop width on the page. Test long code, long titles, and 200% zoom as well as a typical phone width.",
+        "exercise": "Build a three-card layout. Independently add a third column only when the content remains readable.",
+        "solution": ".cards { display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr)); }\n.card { min-width:0; overflow-wrap:anywhere; }",
+        "question": "Which tool naturally describes both rows and columns?",
+        "options": [
+          "CSS Grid",
+          "Only floats",
+          "Inline text decoration"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Define themes and tokens",
+        "notes": [
+          {
+            "title": "Design tokens",
+            "text": "Name colors by role, such as surface and text, and spacing by a consistent scale. Components should use roles rather than scattered literal colors."
+          },
+          {
+            "title": "Reusable themes and dark mode",
+            "text": "Override token values at a root data attribute. Respect system preference initially, allow a user override, and persist only the preference."
+          },
+          {
+            "title": "Layout and typography",
+            "text": "Set a readable line-height and a bounded prose measure. Distinguish headings, metadata, and body text with a restrained scale rather than many font families."
+          }
+        ],
+        "code": ":root { --surface:#ffffff; --text:#15231f; --accent:#14634e; }\n[data-theme='dark'] { --surface:#10231c; --text:#edf5ef; --accent:#8ae6b9; }\nbody { background:var(--surface); color:var(--text); line-height:1.65; }\narticle { max-width:70ch; }\na { color:var(--accent); }",
+        "language": "css",
+        "output": "The same components inherit a light or dark token palette.",
+        "why": "Central theme values keep contrast and visual consistency manageable as a project grows.",
+        "internals": "Custom properties cascade and inherit. Changing the root theme updates dependent properties without re-rendering each React component.",
+        "mistake": "Do not invert every color blindly. Test text, borders, focus outlines, and disabled states in both themes.",
+        "exercise": "Add a spacing token and use it on a panel. Independently persist the theme while handling unavailable storage.",
+        "solution": "try { localStorage.setItem('theme', 'dark'); } catch { /* preference remains usable in memory */ }\ndocument.documentElement.dataset.theme = 'dark';",
+        "question": "Why use semantic color tokens?",
+        "options": [
+          "To change a role consistently across components",
+          "To eliminate all CSS",
+          "To guarantee contrast without checking"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Choose a UI system and navigation",
+        "notes": [
+          {
+            "title": "Component libraries",
+            "text": "A library can accelerate common controls, but inspect keyboard behavior, theming, bundle cost, and maintenance. A library label alone does not guarantee accessibility."
+          },
+          {
+            "title": "Utility-first CSS concepts",
+            "text": "Utilities compose styles through small classes. They can improve consistency with a defined scale but need conventions to avoid unreadable duplication. This repository uses plain CSS."
+          },
+          {
+            "title": "Responsive navigation",
+            "text": "Use a real button to toggle narrow-screen navigation, connect aria-expanded and aria-controls, and retain logical keyboard order. Avoid inaccessible hover-only menus."
+          },
+          {
+            "title": "Reduced decoration",
+            "text": "Animations should serve feedback, respect reduced motion, and avoid shifting content during loading."
+          }
+        ],
+        "code": "import { useState } from 'react';\nexport default function Navigation() {\n  const [open, setOpen] = useState(false);\n  return <><button aria-expanded={open} aria-controls=\"menu\" onClick={() => setOpen(v => !v)}>Menu</button>\n    <nav id=\"menu\" hidden={!open} aria-label=\"Example\"><a href=\"#lessons\">Lessons</a><a href=\"#projects\">Projects</a></nav></>;\n}",
+        "language": "jsx",
+        "output": "Menu toggles the visibility and announced expanded state of the navigation.",
+        "why": "A design system is behavior and conventions as well as visual styling.",
+        "internals": "hidden removes the collapsed navigation from layout and normal accessibility exposure. The trigger remains available to reopen it.",
+        "mistake": "Do not use an unlabeled icon as the only menu control. Do not visually hide a drawer while leaving its links unexpectedly focusable.",
+        "exercise": "Close the menu after selecting a link. Independently test it using Tab, Enter, and Space only.",
+        "solution": "// Add onClick={() => setOpen(false)} to each navigation link.\n// Keep the button label and aria-expanded linked to the same open state.",
+        "question": "Which attribute communicates whether a menu is open?",
+        "options": [
+          "aria-expanded",
+          "aria-hidden on the button",
+          "title alone"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "title": "Testing and Debugging",
+    "slug": "15-testing",
+    "phase": 4,
+    "difficulty": "intermediate",
+    "tags": [
+      "vitest",
+      "react-testing-library",
+      "testing",
+      "debugging",
+      "accessibility"
+    ],
+    "analogy": "A good test is a rehearsal of an observable promise to a user, not a photograph of private implementation details.",
+    "lessons": [
+      {
+        "title": "Debug and test pure behavior",
+        "notes": [
+          {
+            "title": "Browser debugging and React DevTools",
+            "text": "Use breakpoints and inspect state/props at the failure. DevTools can reveal unexpected owners and renders. Record the reproduction before changing code."
+          },
+          {
+            "title": "Unit testing",
+            "text": "Test pure calculations with boundary inputs. Avoid reimplementing the same algorithm inside the expected value."
+          },
+          {
+            "title": "Vitest",
+            "text": "Tests use test/expect and can share Vite transforms. npm test in this repo runs once; test:watch provides an interactive development loop."
+          },
+          {
+            "title": "Continuous integration",
+            "text": "CI installs the lockfile, checks content, lints, tests, typechecks, and builds. A passing local run is evidence for the tested cases, not universal correctness."
+          }
+        ],
+        "code": "import { expect, test } from 'vitest';\nfunction total(cents, quantity) { return cents * quantity; }\ntest('zero quantity has no cost', () => { expect(total(1299, 0)).toBe(0); });\ntest('three items preserve integer cents', () => { expect(total(1299, 3)).toBe(3897); });",
+        "language": "js",
+        "output": "Two tests pass when run in a *.test.js file.",
+        "why": "Fast targeted tests expose regressions before manual browser testing becomes expensive.",
+        "internals": "Vitest executes test modules and records assertion failures. Isolated pure functions need no DOM; interaction tests use a DOM environment.",
+        "mistake": "Do not assert total(...) equals a second copy of the same implementation. Choose independently reasoned expected values.",
+        "exercise": "Test negative quantities according to a documented validation rule. Independently reproduce and fix one failure using a breakpoint.",
+        "solution": "import { expect, test } from 'vitest';\nfunction checkedTotal(cents, quantity) {\n  if (!Number.isInteger(quantity) || quantity < 0) throw new Error('Invalid quantity');\n  return cents * quantity;\n}\ntest('rejects negative quantities', () => expect(() => checkedTotal(100, -1)).toThrow('Invalid quantity'));",
+        "question": "Which assertion is most meaningful?",
+        "options": [
+          "A boundary input with an independently known result",
+          "The same formula copied into expected",
+          "Only that a function exists"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Test components through their UI",
+        "notes": [
+          {
+            "title": "Component testing and React Testing Library",
+            "text": "Render a component, find controls by role and accessible name, and interact with userEvent. Assert visible outcomes instead of internal Hook state."
+          },
+          {
+            "title": "User-centric assertions",
+            "text": "Prefer getByRole for present elements, queryByRole for absence, and findByRole for eventual appearance. Do not add test IDs when a meaningful label exists."
+          },
+          {
+            "title": "Forms and accessible interaction",
+            "text": "A test locating a field by label also verifies that a usable label association exists. Test invalid submission and recovery, not just the happy path."
+          },
+          {
+            "title": "Integration testing",
+            "text": "Render a small working route/provider tree to verify collaborating components and state ownership."
+          }
+        ],
+        "code": "import { render, screen } from '@testing-library/react';\nimport userEvent from '@testing-library/user-event';\nimport { expect, test } from 'vitest';\nimport Counter from './Counter';\ntest('increments through the button', async () => {\n  const user = userEvent.setup();\n  render(<Counter />);\n  await user.click(screen.getByRole('button', { name: 'Count: 0' }));\n  expect(screen.getByRole('button', { name: 'Count: 1' })).toBeVisible();\n});",
+        "language": "jsx",
+        "output": "The test passes with the matching Counter implementation and jest-dom setup.",
+        "why": "The test remains valid if component internals are refactored while the user behavior stays the same.",
+        "internals": "userEvent schedules realistic input sequences. Await its asynchronous operations so assertions observe the completed interaction.",
+        "mistake": "Do not query a CSS class just because it is convenient. A role and name make both intent and accessibility clearer.",
+        "exercise": "Write a form test for an empty email. Independently use keyboard interaction to complete the same valid submission.",
+        "solution": "// With a rendered labeled email form:\n// await user.type(screen.getByRole('textbox', { name: 'Email' }), 'a@example.com');\n// await user.click(screen.getByRole('button', { name: 'Submit' }));\n// expect(await screen.findByRole('status')).toHaveTextContent('Saved');",
+        "question": "Which query waits for an element to appear?",
+        "options": [
+          "findByRole",
+          "getByRole",
+          "queryByRole"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Cover async states and real-browser limits",
+        "notes": [
+          {
+            "title": "Mocking network requests",
+            "text": "Stub the API boundary or use a request interceptor so tests control success, empty, failure, and delayed responses. Restore mocks between tests."
+          },
+          {
+            "title": "Accessibility testing",
+            "text": "Automated checks catch some defects. Keyboard traversal, focus visibility, zoom, and screen-reader review still require manual evaluation."
+          },
+          {
+            "title": "End-to-end testing concepts",
+            "text": "A real browser checks routing, assets, and integrated workflows. DOM emulators do not reproduce layout or all platform APIs."
+          },
+          {
+            "title": "Testing trade-offs",
+            "text": "Use many focused tests and a few critical cross-feature flows. Avoid fragile snapshots of enormous DOM trees and arbitrary sleeps."
+          }
+        ],
+        "code": "import { expect, test, vi } from 'vitest';\ntest('checks the response status', async () => {\n  const fetcher = vi.fn().mockResolvedValue({ ok: false, status: 503 });\n  async function load() {\n    const response = await fetcher('/courses');\n    if (!response.ok) throw new Error(`HTTP ${response.status}`);\n  }\n  await expect(load()).rejects.toThrow('HTTP 503');\n});",
+        "language": "js",
+        "output": "The controlled failure test passes without network access.",
+        "why": "Deterministic failure cases reveal recovery bugs that a reliable local network would rarely expose.",
+        "internals": "A mocked boundary supplies specific outcomes. It proves handling of those outcomes, not compatibility with every real service or browser.",
+        "mistake": "Do not claim an app is fully accessible because role queries pass. Do not claim visual responsiveness from jsdom tests alone.",
+        "exercise": "Test an empty successful response. Independently write a manual keyboard checklist for the quiz retry workflow.",
+        "solution": "const checklist = ['Tab reaches each answer', 'Focus is visible', 'Enter selects an answer', 'Feedback is announced', 'Retry clears score'];\nconsole.log(checklist.join('\n'));",
+        "question": "What needs a real browser or manual review?",
+        "options": [
+          "Responsive layout and practical keyboard flow",
+          "A pure arithmetic assertion",
+          "JSON parsing alone"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "title": "TypeScript with React",
+    "slug": "16-typescript",
+    "phase": 4,
+    "difficulty": "advanced",
+    "tags": [
+      "typescript",
+      "react",
+      "forms",
+      "state",
+      "testing"
+    ],
+    "analogy": "Types are a design-time contract; runtime data must still show identification at the door.",
+    "lessons": [
+      {
+        "title": "Type props and events",
+        "notes": [
+          {
+            "title": "TypeScript prerequisites",
+            "text": "Understand JavaScript before adding static types. Type annotations disappear from the generated JavaScript. Use .tsx for files containing JSX."
+          },
+          {
+            "title": "Typing component props, interfaces, and type aliases",
+            "text": "Both interface and type can describe object props. Use a union when alternatives differ. Prefer a focused public contract over any."
+          },
+          {
+            "title": "Event types",
+            "text": "React.ChangeEvent<HTMLInputElement> describes a change event; FormEvent<HTMLFormElement> describes submission. Inline handlers often infer the correct event type."
+          },
+          {
+            "title": "Children and composition",
+            "text": "ReactNode is appropriate for arbitrary renderable children. A single required element may use ReactElement when that stronger constraint is intended."
+          }
+        ],
+        "code": "import type { ReactNode, ChangeEvent } from 'react';\ntype FieldProps = { value: string; onChange: (value: string) => void; children: ReactNode };\nexport function Field({ value, onChange, children }: FieldProps) {\n  function change(event: ChangeEvent<HTMLInputElement>) { onChange(event.target.value); }\n  return <label>{children}<input value={value} onChange={change} /></label>;\n}",
+        "language": "tsx",
+        "output": "A typed reusable labeled field; passing a number as value is a compile-time error.",
+        "why": "Types make component contracts visible to both teammates and tooling before a user reaches the broken path.",
+        "internals": "Vite strips TypeScript syntax, but stripping alone is not a full typecheck. This repository runs tsc --noEmit before its build.",
+        "mistake": "Do not use any to silence a misunderstood event type. Narrow or infer the value you actually need.",
+        "exercise": "Add optional disabled support. Independently type an onSubmit callback receiving validated form values.",
+        "solution": "type Values = { email: string; track: 'react' | 'javascript' };\ntype FormProps = { onSubmit: (values: Values) => void; disabled?: boolean };\nexport type { Values, FormProps };",
+        "question": "Does a TypeScript type validate downloaded JSON at runtime?",
+        "options": [
+          "No",
+          "Yes, always",
+          "Only in production"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Model state and generic collections",
+        "notes": [
+          {
+            "title": "Typed Hooks",
+            "text": "useState often infers from its initial value. Provide an explicit union or array element type when null or [] is insufficient. Type reducer actions as discriminated unions."
+          },
+          {
+            "title": "Generic components",
+            "text": "A type parameter lets a list preserve the relationship between items, keys, and renderItem. Do not use generics when a concrete domain type is simpler."
+          },
+          {
+            "title": "Discriminated unions",
+            "text": "Represent mutually exclusive states with a literal status field. Narrowing by status exposes only valid fields and avoids impossible combinations."
+          },
+          {
+            "title": "API response types",
+            "text": "Treat external JSON as unknown until runtime checks establish its shape; a type assertion alone does not inspect data."
+          },
+          {
+            "title": "Beginner explanation",
+            "text": "A union says a value can have one of several known shapes. A status field tells you which shape is present."
+          },
+          {
+            "title": "Intermediate explanation",
+            "text": "Narrow status before reading fields that exist only on one branch. A loading state should not have to invent data just to satisfy a broad object type."
+          },
+          {
+            "title": "Advanced explanation",
+            "text": "Static types model code assumptions. At a network boundary, data is unknown until validated; a discriminated union only becomes trustworthy after runtime checks produce it."
+          },
+          {
+            "title": "Practical scenario and trade-off",
+            "text": "Model a request as loading, error with message, or success with data. More explicit types add initial typing work but reduce impossible combinations throughout the UI."
+          }
+        ],
+        "code": "type Result<T> =\n  | { status: 'loading' }\n  | { status: 'error'; message: string }\n  | { status: 'success'; data: T };\nexport function ResultLabel({ result }: { result: Result<string[]> }) {\n  if (result.status === 'loading') return <p>Loading…</p>;\n  if (result.status === 'error') return <p>{result.message}</p>;\n  return <p>{result.data.length} items</p>;\n}",
+        "language": "tsx",
+        "output": "The success branch can safely read data; the error branch can safely read message.",
+        "why": "A state model should prevent invalid combinations instead of asking every component to remember which booleans agree.",
+        "internals": "TypeScript narrows the union after a literal equality check. This is static reasoning about control flow, not runtime validation.",
+        "mistake": "Avoid { loading: boolean, error?: string, data?: T } when a union can express exactly one state.",
+        "exercise": "Add an empty state to the union. Independently write a generic keyed list with getKey and renderItem props.",
+        "solution": "import type { ReactNode, Key } from 'react';\nexport function List<T>({ items, getKey, renderItem }: {\n  items: T[]; getKey: (item: T) => Key; renderItem: (item: T) => ReactNode;\n}) { return <ul>{items.map(item => <li key={getKey(item)}>{renderItem(item)}</li>)}</ul>; }",
+        "question": "What enables narrowing in a discriminated union?",
+        "options": [
+          "A shared literal-valued discriminator",
+          "A CSS class",
+          "Using any"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Migrate with strict checking",
+        "notes": [
+          {
+            "title": "Form types",
+            "text": "Define raw form values separately from validated domain values. An HTML number input supplies a string until you parse it."
+          },
+          {
+            "title": "Strict mode",
+            "text": "TypeScript strict enables stronger checks such as strictNullChecks. It is unrelated to React StrictMode, which performs development runtime checks."
+          },
+          {
+            "title": "Gradual migration from JavaScript",
+            "text": "Convert a small pure module, then its callers, then one feature. Keep behavior tests while adding types. allowJs can support a temporary mixed tree."
+          },
+          {
+            "title": "TypeScript variant",
+            "text": "The StudyFlow capstone includes a strict TypeScript implementation alongside JavaScript. Both consume the same local API contract and support the same main workflow."
+          }
+        ],
+        "code": "type RawValues = { seats: string };\ntype Booking = { seats: number };\nexport function parseBooking(raw: RawValues): Booking {\n  const seats = Number(raw.seats);\n  if (!raw.seats.trim() || !Number.isInteger(seats) || seats < 1) throw new Error('Seats must be a positive whole number');\n  return { seats };\n}",
+        "language": "tsx",
+        "output": "\"2\" becomes { seats: 2 }; blank, fractional, or negative values throw.",
+        "why": "Migration works best when each type addition clarifies a boundary and keeps the application runnable.",
+        "internals": "A runtime guard rejects bad values. The return type communicates the valid shape to downstream code after the check.",
+        "mistake": "Do not confuse as Booking with conversion or validation. Assertions instruct the checker; they do not transform or inspect input.",
+        "exercise": "Test blank and fractional seat values. Independently migrate a reducer action union without changing behavior.",
+        "solution": "type Action = { type: 'add'; title: string } | { type: 'remove'; id: string };\nexport function describe(action: Action): string {\n  return action.type === 'add' ? `Add ${action.title}` : `Remove ${action.id}`;\n}",
+        "question": "Are TypeScript strict and React StrictMode the same feature?",
+        "options": [
+          "No, one is static checking and one is runtime development checking",
+          "Yes",
+          "Only in TSX"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "title": "Performance Optimization",
+    "slug": "17-performance",
+    "phase": 4,
+    "difficulty": "advanced",
+    "tags": [
+      "react",
+      "performance",
+      "rendering",
+      "hooks"
+    ],
+    "analogy": "Optimization is a measured repair: find the slow queue before adding an express lane.",
+    "lessons": [
+      {
+        "title": "Measure rendering and place state",
+        "notes": [
+          {
+            "title": "How React rendering works",
+            "text": "A state update can cause React to call components to calculate output. A parent render normally visits its children unless a valid optimization lets React skip work."
+          },
+          {
+            "title": "Render versus commit",
+            "text": "Rendering computes a possible tree and must stay pure. Commit applies changes and assigns refs. Concurrent rendering may restart or discard render work."
+          },
+          {
+            "title": "State placement and avoiding unnecessary re-renders",
+            "text": "Move frequently changing state near the components that need it. Passing stable children through a stateful wrapper can also isolate updates."
+          },
+          {
+            "title": "React Profiler and measuring before optimizing",
+            "text": "Record a real slow interaction, identify expensive commits, and repeat under comparable conditions after one change. Development timings differ from production."
+          },
+          {
+            "title": "Beginner explanation",
+            "text": "Calling a component calculates a view. Updating the browser is a separate step. A render does not mean the whole page was redrawn."
+          },
+          {
+            "title": "Intermediate explanation",
+            "text": "State placement determines how far a normal update travels through the component tree. Profiling identifies which work is expensive for an actual interaction."
+          },
+          {
+            "title": "Advanced explanation",
+            "text": "Concurrent rendering can restart or discard calculations before a commit. Pure rendering makes these attempts safe. Measure comparable production behavior before claiming a performance improvement."
+          },
+          {
+            "title": "Practical scenario and trade-off",
+            "text": "Profile typing into a large list and then move unrelated state closer to its owner. Compare the same input and dataset; do not optimize every function on principle."
+          }
+        ],
+        "code": "import { Profiler, useState } from 'react';\nfunction Counter() {\n  const [n, setN] = useState(0);\n  return <button onClick={() => setN(x => x + 1)}>{n}</button>;\n}\nexport default function App() {\n  return <Profiler id=\"counter\" onRender={(id, phase, duration) => console.log(id, phase, duration)}><Counter /></Profiler>;\n}",
+        "language": "jsx",
+        "output": "Clicking logs a measured render duration for this environment; no universal benchmark is implied.",
+        "why": "Measuring the user interaction prevents spending complexity on work that is already fast.",
+        "internals": "A render can be interrupted without committing. Side effects performed during render would still have occurred, which is why purity matters.",
+        "mistake": "Do not use a console.log count as a production performance benchmark. Compare measured interactions and verify perceived responsiveness.",
+        "exercise": "Profile typing into a filtered list. Independently move the input state closer to that list and compare the same interaction.",
+        "solution": "// Before: a page-level query state re-renders unrelated panels.\n// After: SearchPanel owns query; expensive independent siblings keep their inputs unchanged.\n// Record both designs with the same dataset and interaction before deciding.",
+        "question": "Which phase actually applies DOM changes?",
+        "options": [
+          "Commit",
+          "Every function call",
+          "Import resolution"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Understand memoization trade-offs",
+        "notes": [
+          {
+            "title": "React.memo",
+            "text": "memo may skip a component render when its props compare equal. It does not prevent renders from that component state or consumed Context."
+          },
+          {
+            "title": "useMemo and useCallback trade-offs",
+            "text": "Memoization costs comparisons, retained memory, and dependency complexity. Fresh object/function props can defeat a memoized child. Use caching only for a measured need."
+          },
+          {
+            "title": "React Compiler concepts",
+            "text": "The compiler can automate some memoization when configured in a supported build. It is not enabled in this repository, and pure component rules still matter."
+          },
+          {
+            "title": "Avoiding unnecessary re-renders",
+            "text": "A stable reference is useful only when some downstream comparison uses it. It does not make an inherently expensive algorithm cheap."
+          },
+          {
+            "title": "Beginner explanation",
+            "text": "Memoization remembers work when inputs have not changed. Remembering a value also has a cost."
+          },
+          {
+            "title": "Intermediate explanation",
+            "text": "A freshly constructed array or callback is a new reference, even if it looks identical. Memoization helps only where a comparison or expensive calculation benefits from stable inputs."
+          },
+          {
+            "title": "Advanced explanation",
+            "text": "A cache may be discarded, so logic must remain correct without it. Memoized components still respond to their own state and Context. Compiler-assisted caching changes the amount of manual work, not the need for pure code."
+          },
+          {
+            "title": "Practical scenario and trade-off",
+            "text": "Cache a measured expensive selector and compare its cost with dependency checking. For simple multiplication, recomputing is generally clearer. Avoid custom comparison functions unless you can prove correctness and benefit."
+          }
+        ],
+        "code": "import { memo, useMemo } from 'react';\nconst Results = memo(function Results({ items }) {\n  return <ul>{items.map(item => <li key={item.id}>{item.title}</li>)}</ul>;\n});\nexport default function SearchResults({ items = [], query = '' }) {\n  const filtered = useMemo(() => items.filter(item => item.title.includes(query)), [items, query]);\n  return <Results items={filtered} />;\n}",
+        "language": "jsx",
+        "output": "Results can reuse its render when the memoized filtered array and other props are unchanged.",
+        "why": "A cache trades repeated computation for retained work and invalidation rules.",
+        "internals": "useMemo compares dependencies with Object.is. If the parent recreates items on every render, the calculation still runs. React may discard caches, so correctness must not depend on them.",
+        "mistake": "Do not omit dependencies to preserve a cache. That makes output stale rather than fast.",
+        "exercise": "Remove useMemo and verify identical behavior. Independently measure whether caching helps for 10 versus 10,000 records.",
+        "solution": "// Correctness baseline:\nconst filtered = items => items.filter(item => item.title.includes('React'));\nconsole.log(filtered([{ id: 'a', title: 'React state' }]));",
+        "question": "Should application correctness depend on useMemo retaining a value forever?",
+        "options": [
+          "No",
+          "Yes",
+          "Only for objects"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Reduce bundle, list, and network work",
+        "notes": [
+          {
+            "title": "Code splitting, lazy loading, and Suspense",
+            "text": "Split infrequently visited features with dynamic imports. Suspense provides a waiting boundary for supported resources such as lazy components; it does not automatically observe a fetch in an Effect."
+          },
+          {
+            "title": "Large-list virtualization",
+            "text": "Render only the visible window plus overscan when DOM volume is measured as a bottleneck. Account for item heights, focus, scroll position, and screen-reader access."
+          },
+          {
+            "title": "Bundle analysis",
+            "text": "Inspect emitted chunks and their dependency graph. Large libraries should be justified by use. A bundle size is not equivalent to load time on every device."
+          },
+          {
+            "title": "Network performance",
+            "text": "Compress assets at hosting, size images appropriately, cache immutable assets, and avoid sequential independent requests. Measure under representative latency."
+          }
+        ],
+        "code": "export function visibleRange(scrollTop, rowHeight, viewportHeight, count, overscan = 3) {\n  const start = Math.max(0, Math.floor(scrollTop / rowHeight) - overscan);\n  const end = Math.min(count, Math.ceil((scrollTop + viewportHeight) / rowHeight) + overscan);\n  return { start, end, offset: start * rowHeight };\n}\nconsole.log(visibleRange(400, 40, 200, 100));",
+        "language": "js",
+        "output": "{ start: 7, end: 18, offset: 280 }; end is exclusive. This is range math, not a complete accessible virtual list.",
+        "why": "Reducing unnecessary downloaded and rendered work can outperform micro-optimizing one callback.",
+        "internals": "A virtual list preserves total scroll geometry while mounting a subset. Removing a focused row requires deliberate focus handling.",
+        "mistake": "Do not virtualize a small list by default or claim Suspense handles every asynchronous operation automatically.",
+        "exercise": "Calculate the range at scrollTop=0. Independently design a keyboard policy before building a virtualized interactive list.",
+        "solution": "const totalHeight = 100 * 40;\nconst start = 0; const end = 8;\nconsole.log({ totalHeight, visibleRows: end - start });",
+        "question": "What does virtualization primarily reduce?",
+        "options": [
+          "Mounted DOM elements",
+          "The total dataset automatically",
+          "All network requests"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "title": "Accessibility and Inclusive Design",
+    "slug": "18-accessibility",
+    "phase": 4,
+    "difficulty": "intermediate",
+    "tags": [
+      "react",
+      "html",
+      "accessibility",
+      "forms",
+      "testing"
+    ],
+    "analogy": "Accessible UI provides more than one way to perceive information and operate the same controls.",
+    "lessons": [
+      {
+        "title": "Start with semantics and keyboard",
+        "notes": [
+          {
+            "title": "Semantic elements",
+            "text": "Use buttons for actions, anchors for navigation, and headings/landmarks for document structure. Native elements include behaviors that custom div controls must recreate."
+          },
+          {
+            "title": "Keyboard navigation",
+            "text": "Every action must be reachable and usable without a pointer. Preserve logical DOM order, visible focus, and expected Enter/Space behavior."
+          },
+          {
+            "title": "Focus management",
+            "text": "Move focus intentionally after navigation or a dialog transition. Avoid stealing focus on every render. The user should understand where they are."
+          },
+          {
+            "title": "Screen-reader considerations",
+            "text": "A visible label and a programmatic accessible name should agree. Use live regions for meaningful changing status, not every keystroke."
+          }
+        ],
+        "code": "export default function App() {\n  return <><a href=\"#content\">Skip to content</a>\n    <nav aria-label=\"Lesson navigation\"><a href=\"#intro\">Introduction</a></nav>\n    <main id=\"content\" tabIndex={-1}><h1>Accessible learning</h1><button onClick={() => window.print()}>Print lesson</button></main></>;\n}",
+        "language": "jsx",
+        "output": "Keyboard users can reach a skip link, navigation, and a native print button.",
+        "why": "Keyboard and semantic support improve usability across assistive technologies and input methods.",
+        "internals": "The DOM order informs sequential focus navigation and the accessibility tree. CSS visual rearrangement does not automatically change that order.",
+        "mistake": "Avoid positive tabIndex values that impose a separate confusing order. Prefer native order and tabIndex=0 only where necessary.",
+        "exercise": "Navigate the page without a mouse. Independently add a visible :focus-visible outline and verify it on every action.",
+        "solution": ":focus-visible { outline: 3px solid #14634e; outline-offset: 4px; }\n/* Keep sufficient contrast against both adjacent colors. */",
+        "question": "Which is normally best for an action?",
+        "options": [
+          "A native button",
+          "A clickable span without keyboard support",
+          "An image with only onClick"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Make forms and dialogs understandable",
+        "notes": [
+          {
+            "title": "Accessible forms, labels, and descriptions",
+            "text": "A label identifies the field; a description adds instructions or errors. Use fieldset and legend for related controls. Never rely on placeholder text as the sole label."
+          },
+          {
+            "title": "Dialog accessibility",
+            "text": "A modal needs a name, focus placement, containment, Escape handling, background inertness, and focus restoration. Native dialog.showModal provides much of the platform behavior; test it in browsers."
+          },
+          {
+            "title": "ARIA fundamentals",
+            "text": "ARIA changes accessibility semantics, not native interaction behavior. Prefer native elements; add ARIA only when it expresses missing state or relationships."
+          }
+        ],
+        "code": "export default function EmailField({ error = '' }) {\n  return <div><label htmlFor=\"email\">Email</label>\n    <input id=\"email\" type=\"email\" aria-invalid={Boolean(error)} aria-describedby=\"email-help\" />\n    <p id=\"email-help\">{error || 'Use an address you can access.'}</p></div>;\n}",
+        "language": "jsx",
+        "output": "A labeled email field whose helper text is programmatically associated with it.",
+        "why": "Users need to identify both a control and the instruction needed to use it correctly.",
+        "internals": "aria-describedby references another element by ID. An error can replace its text while preserving the relationship.",
+        "mistake": "Do not add role=\"button\" to a div and assume keyboard behavior is solved. Do not implement a visual modal without focus handling.",
+        "exercise": "Add a password helper without asking users to submit real credentials. Independently test a native dialog for Escape and restored trigger focus.",
+        "solution": "// With a <dialog ref={dialogRef} aria-labelledby=\"dialog-title\">:\n// Open via dialogRef.current.showModal().\n// Close via dialogRef.current.close().\n// Remember the trigger, focus a useful control, and restore the trigger on close.",
+        "question": "What does aria-describedby provide?",
+        "options": [
+          "A relationship to explanatory text",
+          "Automatic input validation",
+          "Automatic keyboard handlers"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Verify contrast, motion, and usability",
+        "notes": [
+          {
+            "title": "Color contrast",
+            "text": "Normal text generally needs at least 4.5:1 under WCAG AA; large text has a 3:1 threshold. Focus indicators and controls also need careful contrast. Do not use color alone to signal state."
+          },
+          {
+            "title": "Reduced motion",
+            "text": "Honor prefers-reduced-motion and avoid essential information conveyed only by animation. Keep transitions restrained and disable nonessential movement when requested."
+          },
+          {
+            "title": "Automated and manual accessibility testing",
+            "text": "Use semantic queries and automated audits, then test keyboard, zoom, screen readers, error recovery, and real devices. Automated results are a subset of accessibility evidence."
+          },
+          {
+            "title": "Inclusive design trade-offs",
+            "text": "A technically valid widget can still be hard to understand. Plain labels, short forms, and predictable navigation reduce cognitive burden."
+          }
+        ],
+        "code": ".status { border: 1px solid currentColor; padding: .5rem; }\n@media (prefers-reduced-motion: reduce) {\n  *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition: none !important; }\n}",
+        "language": "css",
+        "output": "Nonessential CSS animation and transitions are disabled when reduced motion is requested.",
+        "why": "Accessibility must be verified in the actual experience rather than inferred from a component checklist.",
+        "internals": "Media queries respond to user preferences. CSS changes motion, while labels and interaction semantics still need appropriate HTML and behavior.",
+        "mistake": "Do not claim compliance from a color palette alone. Evaluate complete pages, focus order, error messages, and content at zoom.",
+        "exercise": "Check the quiz at 200% zoom and with keyboard only. Independently record one manual finding and its reproducible fix.",
+        "solution": "const audit = ['Text zoom does not hide actions', 'Errors are described in text', 'Focus is visible', 'Status uses text plus color', 'Motion respects preference'];\nconsole.table(audit);",
+        "question": "Can an automated audit prove all accessibility requirements are satisfied?",
+        "options": [
+          "No",
+          "Yes",
+          "Only for React apps"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "title": "Security and Reliability",
+    "slug": "19-security",
+    "phase": 4,
+    "difficulty": "advanced",
+    "tags": [
+      "react",
+      "security",
+      "api-integration",
+      "production-ready"
+    ],
+    "analogy": "A browser is a public display case: anything shipped to it can be inspected and changed by its visitor.",
+    "lessons": [
+      {
+        "title": "Render untrusted content safely",
+        "notes": [
+          {
+            "title": "XSS fundamentals",
+            "text": "Cross-site scripting runs attacker-controlled script in another user context. It can arise from unsafe HTML, unsafe URLs, or compromised dependencies."
+          },
+          {
+            "title": "Safe rendering",
+            "text": "React escapes ordinary text children. Rendering a user string inside JSX text does not interpret it as markup. Context still matters: URLs and raw HTML need their own validation."
+          },
+          {
+            "title": "Avoiding unsafe HTML injection",
+            "text": "dangerouslySetInnerHTML bypasses text escaping. If rich HTML is unavoidable, use a maintained sanitizer with a clear policy and test dangerous cases. This site disables raw Markdown HTML."
+          }
+        ],
+        "code": "export default function App() {\n  const comment = '<img src=x onerror=alert(1)>';\n  return <p>{comment}</p>;\n}",
+        "language": "jsx",
+        "output": "The suspicious markup is displayed as text; it is not executed as an image event handler.",
+        "why": "Content must remain data unless a deliberate, validated feature requires interpreting it.",
+        "internals": "React DOM creates text nodes for ordinary string children. Bypassing that path with raw HTML changes the trust boundary.",
+        "mistake": "Incorrect: inject an arbitrary comment with dangerouslySetInnerHTML. Correct: render it as text, or sanitize a constrained rich-text format.",
+        "exercise": "Render a comment containing angle brackets. Independently restrict a link to approved http/https protocols.",
+        "solution": "export function safeLink(value) {\n  try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) ? url.href : null; }\n  catch { return null; }\n}\nconsole.log(safeLink('javascript:alert(1)'));",
+        "question": "How should ordinary user comments be rendered?",
+        "options": [
+          "As escaped text",
+          "As raw injected HTML by default",
+          "Using eval"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Understand identity and secret boundaries",
+        "notes": [
+          {
+            "title": "Secure authentication concepts",
+            "text": "Authentication establishes identity through a trusted service; authorization decides allowed operations. A frontend can present the result but cannot be the sole authority."
+          },
+          {
+            "title": "Token storage trade-offs",
+            "text": "JavaScript-accessible storage is exposed to XSS. HttpOnly cookies reduce script access but require careful CSRF, same-site, and deployment design. No one storage choice solves every threat."
+          },
+          {
+            "title": "Environment-variable limitations and why VITE_ variables are public",
+            "text": "Vite substitutes values into client code at build time. An .env filename does not encrypt anything. Private keys belong in trusted infrastructure."
+          },
+          {
+            "title": "Client-side authorization limitations",
+            "text": "Hiding a button or editing a route guard changes UX only. A server must check permissions on every protected request. This static course intentionally has no real login."
+          }
+        ],
+        "code": "const publicConfig = {\n  appName: import.meta.env.VITE_APP_TITLE ?? 'ReactVerse Academy',\n  // Only publish information safe for every visitor to inspect.\n};\nexport default function App() { return <h1>{publicConfig.appName}</h1>; }",
+        "language": "jsx",
+        "output": "A public title is displayed; no authentication or secret is implied.",
+        "why": "Understanding trust boundaries prevents a polished interface from being mistaken for a secure service.",
+        "internals": "Users control their browser, localStorage, and network requests. Code shipped to that browser cannot prevent them from editing client state.",
+        "mistake": "Do not store real credentials in demo forms or place a private service token in a VITE_ variable.",
+        "exercise": "Inspect the built bundle for a public config value. Independently draw the trusted boundary for a hypothetical authenticated API.",
+        "solution": "const classification = {\n  publicTitle: 'client bundle',\n  privateServiceKey: 'trusted server secret store',\n  authorizationDecision: 'trusted service on every request',\n};\nconsole.table(classification);",
+        "question": "Where must access to protected server data be enforced?",
+        "options": [
+          "On the trusted server",
+          "Only in a React route guard",
+          "Only by hiding a button"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Maintain dependencies and recover from failure",
+        "notes": [
+          {
+            "title": "Dependency hygiene",
+            "text": "Pin direct versions and retain the lockfile, inspect install changes, audit dependencies, and update deliberately. Audit output is advisory evidence, not proof of safety."
+          },
+          {
+            "title": "Error handling",
+            "text": "Catch errors at meaningful boundaries and present recovery actions. Avoid swallowing failures silently or logging sensitive request payloads."
+          },
+          {
+            "title": "Avoiding secret exposure",
+            "text": "Ignore private .env files, review diffs, and rotate exposed credentials. Removing a key from the latest commit does not erase prior exposure."
+          },
+          {
+            "title": "Reliability",
+            "text": "Handle unavailable storage, malformed persisted data, failed requests, and missing records. Keep user work when a recoverable operation fails."
+          }
+        ],
+        "code": "export function readSaved(key, fallback) {\n  try {\n    const raw = localStorage.getItem(key);\n    return raw === null ? fallback : JSON.parse(raw);\n  } catch { return fallback; }\n}",
+        "language": "js",
+        "output": "Returns saved JSON when readable, otherwise a safe fallback. Validate the parsed shape before trusting it.",
+        "why": "Failures are routine conditions, so recovery needs to be part of the design.",
+        "internals": "Storage access can throw because of browser policy or capacity. JSON parsing can fail independently; a successful parse can still have the wrong schema.",
+        "mistake": "Do not assume try/catch plus JSON.parse validates the content. Check expected types and allowed IDs after reading.",
+        "exercise": "Corrupt a saved progress value and verify recovery. Independently show an in-memory-only notice when writes fail.",
+        "solution": "export function validIds(value, allowed) {\n  return Array.isArray(value) ? [...new Set(value.filter(id => typeof id === 'string' && allowed.has(id)))] : [];\n}",
+        "question": "Does a clean dependency audit guarantee an application is secure?",
+        "options": [
+          "No",
+          "Yes",
+          "Only for static sites"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "20",
+    "title": "Advanced React Concepts",
+    "slug": "20-advanced-react",
+    "phase": 4,
+    "difficulty": "expert-concepts",
+    "tags": [
+      "react",
+      "reconciliation",
+      "performance",
+      "hooks",
+      "rendering"
+    ],
+    "analogy": "Concurrent rendering is interruptible planning before committing a result; it is not two threads editing the same DOM at once.",
+    "lessons": [
+      {
+        "title": "Understand identity and concurrent work",
+        "notes": [
+          {
+            "title": "Reconciliation",
+            "text": "React compares element descriptions and determines which mounted components and DOM nodes can be retained. Stable type, position, and keys guide identity."
+          },
+          {
+            "title": "Keys and component identity",
+            "text": "A changed key starts a new component identity and resets its state. Keys need uniqueness among siblings, not across the entire application."
+          },
+          {
+            "title": "Concurrent rendering concepts",
+            "text": "React can prioritize updates and interrupt work before commit. Rendering must be pure because an attempt may never be committed."
+          },
+          {
+            "title": "Transitions and useTransition",
+            "text": "Mark a nonurgent update as a transition while keeping urgent controlled input state immediate. isPending can indicate background work. Transitions do not make expensive JavaScript run off-thread."
+          },
+          {
+            "title": "Beginner explanation",
+            "text": "Urgent typing should not wait behind a less urgent result view. A transition marks that distinction for React."
+          },
+          {
+            "title": "Intermediate explanation",
+            "text": "Keep controlled input state immediate and transition the dependent result state. The update may be interrupted by another urgent interaction before it commits."
+          },
+          {
+            "title": "Advanced explanation",
+            "text": "Transition callbacks still execute on the JavaScript thread. Expensive non-React computation may need a worker or chunking; scheduling priority is not parallel execution."
+          },
+          {
+            "title": "Practical scenario and trade-off",
+            "text": "Use a large results panel as the demonstration. A tiny label may finish too quickly for isPending to be visible. Report measured responsiveness rather than promising speed from one Hook."
+          }
+        ],
+        "code": "import { useState, useTransition } from 'react';\nexport default function App() {\n  const [text, setText] = useState('');\n  const [query, setQuery] = useState('');\n  const [pending, startTransition] = useTransition();\n  return <><input aria-label=\"Search\" value={text} onChange={e => {\n    const next = e.target.value; setText(next);\n    startTransition(() => setQuery(next));\n  }} /><p>{pending ? 'Updating…' : `Results for ${query}`}</p></>;\n}",
+        "language": "jsx",
+        "output": "Input updates urgently; the results state is marked nonurgent. A tiny example may not visibly remain pending.",
+        "why": "Priority lets React keep urgent interactions responsive while less urgent rendering catches up.",
+        "internals": "startTransition marks updates scheduled within its scope. It does not move a synchronous filtering loop into a worker or delay the callback itself.",
+        "mistake": "Do not put the controlled input value update inside a transition. Keep the input immediate and transition the dependent view.",
+        "exercise": "Add a measured expensive result component. Independently explain why a heavy loop inside the handler still blocks input.",
+        "solution": "// Urgent:\n// setText(next);\n// Nonurgent rendering:\n// startTransition(() => setQuery(next));\n// CPU-heavy non-React work may need chunking or a Worker instead.",
+        "question": "Does startTransition move arbitrary JavaScript to another thread?",
+        "options": [
+          "No",
+          "Yes",
+          "Only array filtering"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Defer values and locate Suspense boundaries",
+        "notes": [
+          {
+            "title": "useDeferredValue",
+            "text": "Let a derived view lag behind an urgent value. It is not a debounce timer and does not by itself reduce network requests. A memoized slow subtree may be necessary to benefit."
+          },
+          {
+            "title": "Suspense boundaries",
+            "text": "A boundary displays fallback when descendants suspend through supported mechanisms. Place boundaries around meaningful loading regions rather than hiding an entire page for one small panel."
+          },
+          {
+            "title": "Server rendering concepts and hydration",
+            "text": "SSR generates initial HTML on a server. Hydration attaches React behavior to matching server markup. A plain Vite client root uses createRoot, not hydration, unless you build SSR infrastructure."
+          },
+          {
+            "title": "Mismatch prevention",
+            "text": "Server and client initial output must agree. Random values, locale differences, and current time can create mismatches when rendered independently."
+          },
+          {
+            "title": "Beginner explanation",
+            "text": "Deferral lets a result view temporarily use an older value while an input stays current. Hydration is a different concept: it attaches behavior to server-produced HTML."
+          },
+          {
+            "title": "Intermediate explanation",
+            "text": "Suspense waits for supported suspending resources, such as a lazy component. An ordinary Effect fetch with explicit loading state does not automatically become a Suspense resource."
+          },
+          {
+            "title": "Advanced explanation",
+            "text": "Server and client initial trees must match for hydration. Time, random values, and differing locale defaults can violate that contract. A client-only Vite build uses createRoot and has no server markup to hydrate."
+          },
+          {
+            "title": "Practical scenario and trade-off",
+            "text": "Choose boundaries around independently useful panels. Too broad a fallback can hide working content; too many tiny boundaries can make the experience visually fragmented."
+          }
+        ],
+        "code": "import { useDeferredValue, useState } from 'react';\nexport default function App() {\n  const [query, setQuery] = useState('');\n  const deferred = useDeferredValue(query);\n  return <><input aria-label=\"Query\" value={query} onChange={e => setQuery(e.target.value)} />\n    <p aria-busy={query !== deferred}>Results for {deferred}</p></>;\n}",
+        "language": "jsx",
+        "output": "The results value may briefly lag behind input; no fixed delay or request cancellation is implied.",
+        "why": "Different parts of a view can have different urgency and loading boundaries.",
+        "internals": "Deferred rendering allows React to retry lower-priority work. Hydration is a separate process that expects preexisting compatible server-rendered markup.",
+        "mistake": "Do not use hydrateRoot on an empty root because the word sounds faster. Use createRoot for this client-only application.",
+        "exercise": "Explain the distinction between deferral and debouncing. Independently identify a sensible Suspense boundary for a dashboard chart.",
+        "solution": "// Client-only entry point:\n// createRoot(document.getElementById('root')).render(<App />);\n// SSR infrastructure may instead use hydrateRoot(container, <App />)\n// only when the container already has matching server-rendered HTML.",
+        "question": "Does useDeferredValue guarantee a fixed millisecond delay?",
+        "options": [
+          "No",
+          "Yes, 300ms",
+          "Yes, 1000ms"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Separate core APIs from infrastructure",
+        "notes": [
+          {
+            "title": "Server Components versus client components",
+            "text": "Server Components execute in a server-capable build/runtime and may access server resources. Client components support interactive state. A plain Vite SPA does not become an RSC app by adding a directive."
+          },
+          {
+            "title": "Framework integration",
+            "text": "Frameworks can supply routing, server rendering, data loading, and RSC infrastructure. These capabilities require a compatible integration and deployment model, not just React imports."
+          },
+          {
+            "title": "React Compiler concepts",
+            "text": "Compiler-assisted memoization requires build configuration and compatible code. This course leaves it off so the basic rendering model remains explicit."
+          },
+          {
+            "title": "Current React APIs and limitations",
+            "text": "The installed React 19.3 line includes stable ViewTransition and Fragment refs. Their browser/platform constraints still matter. useEffectEvent from 19.2 is for nonreactive Effect logic, not a dependency-lint escape hatch. useActionState/useOptimistic support action-oriented UI; a trusted server is still required for real server mutations."
+          },
+          {
+            "title": "Beginner explanation",
+            "text": "React APIs and a complete deployment framework are different layers. Installing React does not create a server runtime."
+          },
+          {
+            "title": "Intermediate explanation",
+            "text": "A compatible framework can coordinate server modules, client bundles, requests, and hydration. A directive has meaning only when the build/runtime integration interprets it."
+          },
+          {
+            "title": "Advanced explanation",
+            "text": "React 19.3 stabilizes ViewTransition and Fragment refs, but each still has platform constraints. The compiler needs configuration. Server Components need server-aware tooling and operational boundaries."
+          },
+          {
+            "title": "Practical scenario and trade-off",
+            "text": "Use the included client-side ViewTransition example on a supported browser, and document SSR/RSC as a separate architecture decision. Do not silently add a backend just to demonstrate a conceptual distinction."
+          }
+        ],
+        "code": "import { ViewTransition, startTransition, useState } from 'react';\nexport default function App() {\n  const [open, setOpen] = useState(false);\n  return <><button onClick={() => startTransition(() => setOpen(v => !v))}>Toggle details</button>\n    {open && <ViewTransition><p>React 19.3 details</p></ViewTransition>}</>;\n}",
+        "language": "jsx",
+        "output": "The details toggle works; supported browsers can animate the transition. Respect reduced-motion preferences.",
+        "why": "Version and infrastructure boundaries keep learners from expecting unavailable behavior in a client-only starter.",
+        "internals": "React 19.3 coordinates ViewTransition with browser capabilities. Server rendering and RSC need a separate server-aware module and execution model.",
+        "mistake": "Do not teach ViewTransition as experimental for the pinned 19.3 release, or claim that this Vite SPA supports Server Components out of the box.",
+        "exercise": "Run the toggle and inspect reduced-motion behavior. Independently document which proposed feature needs a framework and which runs in the current SPA.",
+        "solution": "const featureMatrix = {\n  useState: 'client React',\n  ViewTransition: 'React 19.3 plus browser support',\n  serverComponents: 'compatible server/framework integration',\n  compiler: 'additional build configuration',\n};\nconsole.table(featureMatrix);",
+        "question": "Does adding a server-component directive make a plain Vite SPA an RSC application?",
+        "options": [
+          "No, compatible infrastructure is required",
+          "Yes",
+          "Only after changing the file extension"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "21",
+    "title": "Production-Ready Applications",
+    "slug": "21-production-deployment",
+    "phase": 5,
+    "difficulty": "advanced",
+    "tags": [
+      "vite",
+      "deployment",
+      "security",
+      "production-ready"
+    ],
+    "analogy": "A release is a reproducible package plus instructions for where requests and failures should go.",
+    "lessons": [
+      {
+        "title": "Build and validate the release",
+        "notes": [
+          {
+            "title": "Environment configuration",
+            "text": "Separate public deployment configuration from private runtime secrets. Rebuild when public Vite configuration changes. Use a documented BASE_URL for subpath assets."
+          },
+          {
+            "title": "Production builds and build validation",
+            "text": "Build from a clean lockfile install, serve dist, and exercise direct navigation and core workflows. Development success alone does not prove production asset resolution."
+          },
+          {
+            "title": "Asset optimization and lazy loading",
+            "text": "Keep assets local where feasible, use appropriate formats/sizes, and split infrequent routes. Verify the emitted files rather than assuming a tool removed all unused code."
+          },
+          {
+            "title": "Error handling and logging concepts",
+            "text": "Use boundaries and recoverable error states. Real telemetry requires a destination and a privacy policy; this local course logs no remote user analytics."
+          }
+        ],
+        "code": "npm ci\nnpm run content:check\nnpm run lint\nnpm test\nnpm run build\nnpm run preview",
+        "language": "bash",
+        "output": "Each command must exit successfully before treating the candidate as verified. Build writes dist.",
+        "why": "The release process needs repeatable evidence that the delivered files match the source and documentation.",
+        "internals": "Build resolves imports and emits chunks. Preview serves the result; missing lazy assets may only be noticed when a specific route is opened.",
+        "mistake": "Do not claim success from a build log while ignoring failing tests or broken deep links. Record the exact checks executed.",
+        "exercise": "Open a lesson and a project in preview. Independently reload a nested route under your selected router mode.",
+        "solution": "# Hash mode requires no route rewrite for the fragment.\n# Browser mode needs the host to serve index.html for application paths.\n# Keep real asset/file paths exempt from an overly broad fallback.",
+        "question": "What should be served by a static production host?",
+        "options": [
+          "The built dist directory",
+          "The raw node_modules folder",
+          "The dev server source graph"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Deploy to static hosts",
+        "notes": [
+          {
+            "title": "Deployment to static hosting",
+            "text": "Upload dist to a static host and use the documented base path. This repository includes Netlify and Vercel configuration files and an opt-in GitHub Pages workflow."
+          },
+          {
+            "title": "SPA route fallback configuration",
+            "text": "BrowserRouter requires unknown application paths to return index.html. HashRouter keeps routing after #, so the host receives only the actual document path."
+          },
+          {
+            "title": "GitHub Pages deployment considerations",
+            "text": "Repository Pages often use /repo-name/. Set VITE_BASE_PATH during build, retain hash routing, and enable Pages with GitHub Actions. GitHub Pages does not provide arbitrary SPA rewrites."
+          },
+          {
+            "title": "Netlify and Vercel deployment",
+            "text": "Use npm ci as install, npm run build as build, and dist as output. Included rewrite rules support browser routing. Select project root correctly."
+          }
+        ],
+        "code": "// vite.config.js concept:\n// export default defineConfig({ base: process.env.VITE_BASE_PATH || '/', plugins: [react()] });\n// .env.production for an optional browser-history build:\n// VITE_ROUTER_MODE=browser\n// Default portable URL: /#/lessons/06-01-respond-to-events-with-state",
+        "language": "js",
+        "output": "The base path governs asset URLs; the router mode governs navigation URLs. They solve different problems.",
+        "why": "A route working after clicking can still fail on direct reload if hosting cannot resolve its pathname.",
+        "internals": "The URL fragment is not sent to the server. Pathnames are, so browser-history routes depend on server fallback behavior.",
+        "mistake": "Do not set a repository base path on a root-domain deployment by habit, or forget it for repository Pages assets.",
+        "exercise": "Build once with a /course/ base path. Independently explain which network requests should include that prefix.",
+        "solution": "# PowerShell, repository Pages example:\n$env:VITE_BASE_PATH='/react-vite-complete-course/'\nnpm.cmd run build\n# Afterward remove the override when no longer needed:\nRemove-Item Env:VITE_BASE_PATH",
+        "question": "Is the URL fragment after # sent in an HTTP request?",
+        "options": [
+          "No",
+          "Yes",
+          "Only on refresh"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Prepare a maintainable release",
+        "notes": [
+          {
+            "title": "CI workflows",
+            "text": "The included workflow checks source on pull requests and pushes. Permissions are minimal; Pages deployment is a separate opt-in manual workflow."
+          },
+          {
+            "title": "Dependency auditing",
+            "text": "Inspect npm audit output and assess actual exposure before upgrading. Avoid blind force-upgrades across major versions; rerun validation after updates."
+          },
+          {
+            "title": "Release preparation",
+            "text": "Update the changelog, review the license, record versions and verification results, and exclude generated secrets, node_modules, and local user data from source archives."
+          },
+          {
+            "title": "README and documentation quality",
+            "text": "Commands, paths, counts, and status must match reality. Content checks verify chapter metadata and local links; humans still review teaching accuracy."
+          }
+        ],
+        "code": "npm audit\nnpm ls --depth=0\nnpm run verify\nnpm run format:check",
+        "language": "bash",
+        "output": "Audit and version output provide review evidence; verify and formatting checks report actual pass/fail status.",
+        "why": "An open-source release needs reproducible setup and honest status as much as working UI.",
+        "internals": "A lockfile records resolved transitive dependencies. CI uses npm ci to reproduce that dependency graph for its operating system.",
+        "mistake": "Do not add an invented passing badge or claim full coverage without measured results. Keep limits in the implementation report.",
+        "exercise": "Review the release checklist in docs. Independently propose one small dependency update with its observed validation results.",
+        "solution": "# Review dependency changes before committing:\ngit diff -- package.json package-lock.json\n# Then run the repository verification gates:\nnpm run verify",
+        "question": "What should a project status claim be based on?",
+        "options": [
+          "Executed checks and disclosed limits",
+          "An attractive badge",
+          "An unrun test file"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "22",
+    "title": "Architecture and Industry Practices",
+    "slug": "22-industry-architecture",
+    "phase": 5,
+    "difficulty": "advanced",
+    "tags": [
+      "react",
+      "industry-practices",
+      "production-ready",
+      "portfolio-project"
+    ],
+    "analogy": "Architecture is a set of reversible decisions that keeps the next change understandable.",
+    "lessons": [
+      {
+        "title": "Organize by features and boundaries",
+        "notes": [
+          {
+            "title": "Feature-based architecture",
+            "text": "Group a feature UI, state, API adapter, and tests where ownership is clear. Promote modules to shared only when multiple features need the same stable contract."
+          },
+          {
+            "title": "Separation of concerns",
+            "text": "Keep rendering, transport, domain validation, and persistence distinguishable. Small apps can use simple files; separation does not require many layers."
+          },
+          {
+            "title": "Reusable abstractions",
+            "text": "Extract repeated knowledge, not merely similar syntax. A useful abstraction removes inconsistency without hiding essential behavior."
+          },
+          {
+            "title": "API client organization",
+            "text": "Centralize transport checks, base URLs, cancellation, and response parsing. Feature adapters translate transport data into domain shapes."
+          }
+        ],
+        "code": "export async function getJson(url, { signal } = {}) {\n  const response = await fetch(url, { signal });\n  if (!response.ok) throw new Error(`HTTP ${response.status}`);\n  return response.json();\n}\nexport async function loadTitles(url, options) {\n  const rows = await getJson(url, options);\n  if (!Array.isArray(rows)) throw new Error('Expected records');\n  return rows.map(row => String(row.title));\n}",
+        "language": "js",
+        "output": "The transport helper and feature adapter have distinct responsibilities.",
+        "why": "A clear boundary limits how far a transport or UI change needs to spread.",
+        "internals": "The call graph separates a generic HTTP policy from domain interpretation. Dependency direction is explicit and easy to replace in tests.",
+        "mistake": "Do not create generic helpers that silently swallow all errors or know every feature shape.",
+        "exercise": "Extract one API adapter from a component. Independently test it with an injected fetcher or mocked boundary.",
+        "solution": "export const createTitlesApi = fetcher => async url => {\n  const response = await fetcher(url);\n  if (!response.ok) throw new Error('Could not load titles');\n  return response.json();\n};",
+        "question": "What should a shared transport helper avoid owning?",
+        "options": [
+          "Every feature-specific UI decision",
+          "HTTP status checking",
+          "Cancellation forwarding"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Review forms, design systems, and changes",
+        "notes": [
+          {
+            "title": "Form and validation architecture",
+            "text": "Keep raw values, validation, submission state, and UI feedback clear. Reuse domain validators across forms with the same rules, not one massive validator for unrelated domains."
+          },
+          {
+            "title": "Design systems",
+            "text": "Define tokens, semantic primitives, interaction states, and examples. Document keyboard behavior and error cases alongside visual variants."
+          },
+          {
+            "title": "Maintainable naming conventions",
+            "text": "Use names that reveal domain meaning and units, such as priceCents and selectedCourseId. Avoid vague data2 or magic flags."
+          },
+          {
+            "title": "Code reviews, Git branching, and pull requests",
+            "text": "A focused branch and PR should explain the user problem, behavior change, and evidence. Review correctness, clarity, accessibility, and recovery paths."
+          }
+        ],
+        "code": "export function validateTask({ title, estimateMinutes }) {\n  const errors = {};\n  if (!title.trim()) errors.title = 'Enter a title.';\n  if (!Number.isInteger(estimateMinutes) || estimateMinutes < 1) errors.estimateMinutes = 'Use positive whole minutes.';\n  return errors;\n}",
+        "language": "js",
+        "output": "A validation error object keyed by fields with explicit units.",
+        "why": "Names and review evidence help another developer reason without reconstructing every hidden assumption.",
+        "internals": "Pure validation separates domain rules from when a UI chooses to reveal errors. Tests can exercise boundary values without mounting a page.",
+        "mistake": "Do not mix a refactor, dependency overhaul, and unrelated visual redesign into one hard-to-review change.",
+        "exercise": "Write a PR description for one form improvement. Independently include a failing case, corrected behavior, and actual test command.",
+        "solution": "const review = {\n  problem: 'Blank task titles were accepted',\n  change: 'Trim and validate before adding a task',\n  evidence: 'Test empty and whitespace titles; manually verify focus on the error',\n};\nconsole.table(review);",
+        "question": "Which variable name communicates its unit?",
+        "options": [
+          "estimateMinutes",
+          "value2",
+          "thing"
+        ],
+        "correct": 0
+      },
+      {
+        "title": "Refactor and reason about systems",
+        "notes": [
+          {
+            "title": "Refactoring legacy components",
+            "text": "Characterize behavior with tests, isolate side effects, and replace one boundary at a time. Preserve working behavior before adding new features."
+          },
+          {
+            "title": "Frontend system design",
+            "text": "Discuss routes, state ownership, cache freshness, network failure, access boundaries, accessibility, loading performance, and observability. Draw a data-flow model before choosing libraries."
+          },
+          {
+            "title": "Trade-offs and architectural decisions",
+            "text": "Record the problem, constraints, chosen option, alternatives, and consequences. Revisit decisions when evidence or requirements change."
+          },
+          {
+            "title": "Capstone preparation",
+            "text": "StudyFlow combines routing, forms, a reducer, a local API, persistence, tests, and a TypeScript variant. Its scope is a complete local learning planner, not a hosted multi-tenant LMS."
+          }
+        ],
+        "code": "const decision = {\n  problem: 'Host a course without a server',\n  choice: 'Static Vite build with hash routing',\n  alternative: 'Browser history plus host rewrites',\n  consequence: 'Portable deep links contain a fragment',\n  revisitWhen: 'A deployment requires clean paths or server rendering',\n};\nconsole.table(decision);",
+        "language": "js",
+        "output": "A compact decision record with a concrete reason and revisit condition.",
+        "why": "Good engineering explains why a choice fits the current constraints and what would change it.",
+        "internals": "A dependency graph and state-ownership map expose coupling. Replacing one well-defined boundary is safer than rewriting an entire app at once.",
+        "mistake": "Do not describe a stack as universally best. Explain its trade-offs against actual use cases and team constraints.",
+        "exercise": "Write an architecture decision for local progress storage. Independently design a future sync boundary without implementing fake authentication.",
+        "solution": "const syncPlan = ['Keep local progress schema versioned', 'Add a trusted identity service', 'Define conflict resolution', 'Make sync optional', 'Test offline recovery'];\nconsole.log(syncPlan.join('\n'));",
+        "question": "When should an architecture decision be revisited?",
+        "options": [
+          "When constraints or evidence change",
+          "Never",
+          "After every keystroke"
+        ],
+        "correct": 0
+      }
+    ]
+  }
+]

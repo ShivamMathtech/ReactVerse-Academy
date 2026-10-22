@@ -1,0 +1,519 @@
+[
+  {
+    "id": "counter",
+    "level": "beginner",
+    "title": "Counter application",
+    "summary": "Control a counter with a configurable step and explicit reset.",
+    "features": ["Increment and decrement", "Step validation", "Reset"],
+    "tags": ["state", "events"],
+    "path": "projects/beginner/counter",
+    "entry": "projects/beginner/counter/index.html",
+    "chapterId": "23",
+    "quiz": {
+      "question": "Why is a functional updater useful for incrementing this counter?",
+      "options": [
+        "It calculates from the pending previous count",
+        "It modifies the DOM directly",
+        "It disables batching"
+      ],
+      "correct": 0,
+      "explanation": "Queued updates compose instead of reading an older snapshot."
+    }
+  },
+  {
+    "id": "profile-card",
+    "level": "beginner",
+    "title": "Interactive profile card",
+    "summary": "Edit a profile preview through controlled inputs.",
+    "features": ["Live name and biography", "Availability toggle", "Reset profile"],
+    "tags": ["props", "state", "forms"],
+    "path": "projects/beginner/profile-card",
+    "entry": "projects/beginner/profile-card/index.html",
+    "chapterId": "23",
+    "quiz": {
+      "question": "Which value is the source of truth for the profile preview?",
+      "options": [
+        "The parent profile state",
+        "The CSS color",
+        "A second hidden copy in the preview"
+      ],
+      "correct": 0,
+      "explanation": "Controlled fields and the preview derive from the same object state."
+    }
+  },
+  {
+    "id": "digital-clock",
+    "level": "beginner",
+    "title": "Digital clock",
+    "summary": "Display real browser time with timezone and clock-format controls.",
+    "features": ["Live clock with cleanup", "Timezone selection", "12/24-hour format"],
+    "tags": ["hooks", "useeffect"],
+    "path": "projects/beginner/digital-clock",
+    "entry": "projects/beginner/digital-clock/index.html",
+    "chapterId": "23",
+    "quiz": {
+      "question": "What must happen when the clock unmounts?",
+      "options": [
+        "Clear its interval",
+        "Create another interval",
+        "Write the time into a global variable"
+      ],
+      "correct": 0,
+      "explanation": "The Effect cleanup releases the timer so it does not keep updating an absent component."
+    }
+  },
+  {
+    "id": "todo-app",
+    "level": "beginner",
+    "title": "Todo application",
+    "summary": "Create, complete, filter, and remove browser-local tasks.",
+    "features": ["Validated task creation", "Completion filters", "Persistent tasks"],
+    "tags": ["state", "forms", "rendering"],
+    "path": "projects/beginner/todo-app",
+    "entry": "projects/beginner/todo-app/index.html",
+    "chapterId": "23",
+    "quiz": {
+      "question": "Which key preserves a task identity after filtering?",
+      "options": [
+        "The task\u2019s saved ID",
+        "Its filtered index",
+        "A new random number on each render"
+      ],
+      "correct": 0,
+      "explanation": "An ID belongs to the task, while an index belongs to its current position."
+    }
+  },
+  {
+    "id": "quiz-app",
+    "level": "beginner",
+    "title": "Quiz application",
+    "summary": "Practice state and JavaScript with immediate explanations.",
+    "features": ["Answer feedback", "Score calculation", "Retry"],
+    "tags": ["state", "quiz"],
+    "path": "projects/beginner/quiz-app",
+    "entry": "projects/beginner/quiz-app/index.html",
+    "chapterId": "23",
+    "quiz": {
+      "question": "Why lock the selected answer until moving to the next question?",
+      "options": [
+        "To keep feedback and scoring consistent for that attempt",
+        "To make the page reload",
+        "To hide the correct explanation"
+      ],
+      "correct": 0,
+      "explanation": "Each question has one recorded selection; retry deliberately clears the attempt."
+    }
+  },
+  {
+    "id": "expense-tracker",
+    "level": "beginner",
+    "title": "Expense tracker",
+    "summary": "Track expenses in integer cents and inspect category totals.",
+    "features": ["Validated amount entry", "Category totals", "Remove entries and persist"],
+    "tags": ["forms", "state"],
+    "path": "projects/beginner/expense-tracker",
+    "entry": "projects/beginner/expense-tracker/index.html",
+    "chapterId": "23",
+    "quiz": {
+      "question": "Why does this tracker store integer cents?",
+      "options": [
+        "To keep ordinary currency arithmetic in integer units",
+        "To convert every amount to dollars",
+        "To hide amounts from the browser"
+      ],
+      "correct": 0,
+      "explanation": "Parsing validates decimal input once, then totals use integer cents before display formatting."
+    }
+  },
+  {
+    "id": "student-directory",
+    "level": "beginner",
+    "title": "Searchable student directory",
+    "summary": "Search, filter, and sort a local student dataset.",
+    "features": ["Case-insensitive search", "Track filter", "Name and score sorting"],
+    "tags": ["rendering", "state"],
+    "path": "projects/beginner/student-directory",
+    "entry": "projects/beginner/student-directory/index.html",
+    "chapterId": "23",
+    "quiz": {
+      "question": "When should the directory filter its dataset?",
+      "options": [
+        "Before rendering the matching view",
+        "By mutating each source name",
+        "Only after deleting unmatched records"
+      ],
+      "correct": 0,
+      "explanation": "Filtering derives a view while preserving the source dataset."
+    }
+  },
+  {
+    "id": "weather-dashboard",
+    "level": "intermediate",
+    "title": "Weather dashboard",
+    "summary": "Explore deterministic weather fixtures with realistic async states.",
+    "features": ["City selection", "Loading, empty, error and retry", "Unit conversion"],
+    "tags": ["api-integration", "useeffect", "state"],
+    "path": "projects/intermediate/weather-dashboard",
+    "entry": "projects/intermediate/weather-dashboard/index.html",
+    "chapterId": "24",
+    "quiz": {
+      "question": "What should a canceled weather request do to the visible error state?",
+      "options": [
+        "It should not report a user-facing request failure",
+        "It must show a red error",
+        "It must clear all city options"
+      ],
+      "correct": 0,
+      "explanation": "Cleanup aborts obsolete requests; cancellation is a change of intent, not a failed observation."
+    }
+  },
+  {
+    "id": "movie-discovery",
+    "level": "intermediate",
+    "title": "Movie discovery interface",
+    "summary": "Discover a fictional local movie catalog and keep a watchlist.",
+    "features": ["Search and genre filter", "Rating sort", "Persistent watchlist"],
+    "tags": ["rendering", "state"],
+    "path": "projects/intermediate/movie-discovery",
+    "entry": "projects/intermediate/movie-discovery/index.html",
+    "chapterId": "24",
+    "quiz": {
+      "question": "What should the watchlist persist?",
+      "options": [
+        "Stable movie IDs",
+        "The current filtered array indices",
+        "DOM element references"
+      ],
+      "correct": 0,
+      "explanation": "IDs identify movies across sorting and filtering without duplicating the whole catalog."
+    }
+  },
+  {
+    "id": "notes-app",
+    "level": "intermediate",
+    "title": "Notes application",
+    "summary": "Create, edit, search, and delete browser-local notes.",
+    "features": ["Create and edit notes", "Search title and body", "Persistence and empty states"],
+    "tags": ["forms", "state", "hooks"],
+    "path": "projects/intermediate/notes-app",
+    "entry": "projects/intermediate/notes-app/index.html",
+    "chapterId": "24",
+    "quiz": {
+      "question": "What happens when an existing note is saved?",
+      "options": [
+        "Replace the matching ID with a new object",
+        "Append a duplicate every time",
+        "Mutate a DOM paragraph only"
+      ],
+      "correct": 0,
+      "explanation": "Editing retains identity while replacing the stored record immutably."
+    }
+  },
+  {
+    "id": "shopping-cart",
+    "level": "intermediate",
+    "title": "Shopping cart",
+    "summary": "Manage quantities and derived totals for a local product catalog.",
+    "features": ["Add products", "Update quantity and remove", "Integer-cent totals"],
+    "tags": ["usereducer", "state"],
+    "path": "projects/intermediate/shopping-cart",
+    "entry": "projects/intermediate/shopping-cart/index.html",
+    "chapterId": "24",
+    "quiz": {
+      "question": "Where should the cart subtotal come from?",
+      "options": [
+        "Product prices multiplied by current quantities",
+        "An independently incremented display number",
+        "The number of DOM rows"
+      ],
+      "correct": 0,
+      "explanation": "A derived total stays consistent after add, quantity change, remove, and clear."
+    }
+  },
+  {
+    "id": "router-dashboard",
+    "level": "intermediate",
+    "title": "React Router dashboard",
+    "summary": "Navigate nested dashboard views with shareable search parameters.",
+    "features": [
+      "Nested routes and layout",
+      "Student detail URLs",
+      "URL-driven filters and not-found"
+    ],
+    "tags": ["react-router", "routing"],
+    "path": "projects/intermediate/router-dashboard",
+    "entry": "projects/intermediate/router-dashboard/index.html",
+    "chapterId": "24",
+    "quiz": {
+      "question": "Why use the URL for the directory query?",
+      "options": [
+        "A bookmark can reproduce the filtered view",
+        "It makes the filter a secret",
+        "It replaces validation of route IDs"
+      ],
+      "correct": 0,
+      "explanation": "URL-driven state supports history and sharing; missing records still need a not-found branch."
+    }
+  },
+  {
+    "id": "crud-manager",
+    "level": "intermediate",
+    "title": "CRUD management interface",
+    "summary": "Maintain a small local inventory with validated create and edit workflows.",
+    "features": ["Create, read, update and delete", "Quantity validation", "Local persistence"],
+    "tags": ["forms", "state"],
+    "path": "projects/intermediate/crud-manager",
+    "entry": "projects/intermediate/crud-manager/index.html",
+    "chapterId": "24",
+    "quiz": {
+      "question": "What distinguishes an update from a create?",
+      "options": [
+        "A stable existing record ID",
+        "A random CSS class",
+        "Whether the save button is green"
+      ],
+      "correct": 0,
+      "explanation": "Existing IDs select a record to replace; new records receive a new ID."
+    }
+  },
+  {
+    "id": "data-explorer",
+    "level": "intermediate",
+    "title": "Paginated data explorer",
+    "summary": "Explore mock async data with search, pagination, and explicit failure controls.",
+    "features": ["Cancelable mock reads", "Search and page-size controls", "Loading, empty, retry"],
+    "tags": ["api-integration", "rendering"],
+    "path": "projects/intermediate/data-explorer",
+    "entry": "projects/intermediate/data-explorer/index.html",
+    "chapterId": "24",
+    "quiz": {
+      "question": "What happens to the current page when the search changes?",
+      "options": [
+        "Reset or clamp it to a valid page",
+        "Keep an invalid page forever",
+        "Delete records from other pages"
+      ],
+      "correct": 0,
+      "explanation": "Filtering precedes pagination, so the number of pages can shrink."
+    }
+  },
+  {
+    "id": "registration-form",
+    "level": "intermediate",
+    "title": "Registration system",
+    "summary": "Complete a two-step locally simulated enrollment with accessible validation.",
+    "features": [
+      "Field-level validation and focus",
+      "Review and back navigation",
+      "Local submission confirmation"
+    ],
+    "tags": ["forms", "accessibility", "state"],
+    "path": "projects/intermediate/registration-form",
+    "entry": "projects/intermediate/registration-form/index.html",
+    "chapterId": "24",
+    "quiz": {
+      "question": "Where should form values live across review and back navigation?",
+      "options": [
+        "In the persistent parent state",
+        "Only in the unmounted field DOM",
+        "In the button text"
+      ],
+      "correct": 0,
+      "explanation": "The state owner remains mounted while the visible step changes."
+    }
+  },
+  {
+    "id": "analytics-dashboard",
+    "level": "advanced",
+    "title": "Admin analytics dashboard",
+    "summary": "Filter sample learning activity, calculate metrics, and export the visible data.",
+    "features": ["Period filtering", "Accessible chart and table", "CSV export"],
+    "tags": ["performance", "state", "production-ready"],
+    "path": "projects/advanced/analytics-dashboard",
+    "entry": "projects/advanced/analytics-dashboard/index.html",
+    "chapterId": "25",
+    "quiz": {
+      "question": "What data should an exported CSV contain?",
+      "options": [
+        "The same filtered records as the visible report",
+        "Unrelated hidden records",
+        "Only chart colors"
+      ],
+      "correct": 0,
+      "explanation": "Export and rendering share the same derived dataset so the report is reproducible."
+    }
+  },
+  {
+    "id": "ecommerce-ui",
+    "level": "advanced",
+    "title": "E-commerce frontend",
+    "summary": "Browse products and complete a validated simulated checkout.",
+    "features": [
+      "Search and category filters",
+      "Cart quantities and subtotal",
+      "Shipping form and order confirmation"
+    ],
+    "tags": ["forms", "usereducer", "state"],
+    "path": "projects/advanced/ecommerce-ui",
+    "entry": "projects/advanced/ecommerce-ui/index.html",
+    "chapterId": "25",
+    "quiz": {
+      "question": "Does the checkout in this project process a real payment?",
+      "options": [
+        "No, it confirms a labeled local simulation",
+        "Yes, without a payment service",
+        "Yes, because it uses React"
+      ],
+      "correct": 0,
+      "explanation": "A real payment requires a trusted service and a documented transaction flow."
+    }
+  },
+  {
+    "id": "lms-interface",
+    "level": "advanced",
+    "title": "Learning management interface",
+    "summary": "Enroll in sample courses and track individual lesson completion.",
+    "features": [
+      "Course selection and enrollment",
+      "Lesson reader",
+      "Per-course progress persistence"
+    ],
+    "tags": ["state", "hooks", "accessibility"],
+    "path": "projects/advanced/lms-interface",
+    "entry": "projects/advanced/lms-interface/index.html",
+    "chapterId": "25",
+    "quiz": {
+      "question": "What identifies one completed sample lesson?",
+      "options": [
+        "The course ID and lesson position within that fixed sample",
+        "Only its visible heading color",
+        "A global completed boolean"
+      ],
+      "correct": 0,
+      "explanation": "Completion must identify which lesson within which course it belongs to."
+    }
+  },
+  {
+    "id": "project-board",
+    "level": "advanced",
+    "title": "Project management board",
+    "summary": "Manage tasks through a keyboard-friendly three-column workflow.",
+    "features": [
+      "Create and delete tasks",
+      "Move using labeled selects",
+      "Filter by text and persist"
+    ],
+    "tags": ["usereducer", "state", "forms"],
+    "path": "projects/advanced/project-board",
+    "entry": "projects/advanced/project-board/index.html",
+    "chapterId": "25",
+    "quiz": {
+      "question": "Why are native selects used to move tasks?",
+      "options": [
+        "They provide a keyboard-operable move action",
+        "They create a server connection",
+        "They eliminate the need for state"
+      ],
+      "correct": 0,
+      "explanation": "A board need not depend on pointer-only drag-and-drop to implement its workflow."
+    }
+  },
+  {
+    "id": "realtime-simulation",
+    "level": "advanced",
+    "title": "Real-time UI simulation",
+    "summary": "Inspect a local event stream with pause, filtering, and cleanup.",
+    "features": [
+      "Timed event generation",
+      "Pause/resume and clear",
+      "Stream filter and bounded history"
+    ],
+    "tags": ["useeffect", "hooks", "state"],
+    "path": "projects/advanced/realtime-simulation",
+    "entry": "projects/advanced/realtime-simulation/index.html",
+    "chapterId": "25",
+    "quiz": {
+      "question": "What produces events in this project?",
+      "options": [
+        "A local timer explicitly labeled as simulation",
+        "A live WebSocket server",
+        "Real learner activity"
+      ],
+      "correct": 0,
+      "explanation": "The effect starts/stops a local timer and keeps a bounded event history."
+    }
+  },
+  {
+    "id": "component-library",
+    "level": "advanced",
+    "title": "Accessible component library",
+    "summary": "Explore keyboard-operated tabs, a native modal, and disclosure patterns.",
+    "features": [
+      "Arrow-key tabs with roving focus",
+      "Native dialog and focus restoration",
+      "Disclosure and labeled switch"
+    ],
+    "tags": ["accessibility", "components", "testing"],
+    "path": "projects/advanced/component-library",
+    "entry": "projects/advanced/component-library/index.html",
+    "chapterId": "25",
+    "quiz": {
+      "question": "After closing a dialog, where should focus usually return?",
+      "options": ["To the control that opened it", "To an arbitrary hidden field", "Nowhere"],
+      "correct": 0,
+      "explanation": "Restoring trigger focus preserves a predictable keyboard workflow."
+    }
+  },
+  {
+    "id": "saas-dashboard",
+    "level": "advanced",
+    "title": "Production-style SaaS dashboard",
+    "summary": "Manage a fictional workspace, seats, and sample invoices locally.",
+    "features": [
+      "Workspace preferences",
+      "Team seat management",
+      "Invoice filtering and CSV download"
+    ],
+    "tags": ["forms", "state", "production-ready"],
+    "path": "projects/advanced/saas-dashboard",
+    "entry": "projects/advanced/saas-dashboard/index.html",
+    "chapterId": "25",
+    "quiz": {
+      "question": "Does changing a local team role enforce real authorization?",
+      "options": [
+        "No, this is a local demonstration",
+        "Yes, localStorage is authoritative",
+        "Yes, hiding a button is sufficient"
+      ],
+      "correct": 0,
+      "explanation": "Trusted services must enforce real access; this frontend does not send invitations or change permissions."
+    }
+  },
+  {
+    "id": "studyflow",
+    "level": "advanced",
+    "title": "StudyFlow capstone",
+    "summary": "A complete local study planner with routing, validated tasks, a real fixture fetch, persistent reducer state, and a strict TypeScript edition.",
+    "features": [
+      "Nested routing and deep links",
+      "Validated task CRUD and filtering",
+      "Fetch API, cancellation, loading, empty and error states",
+      "Local reducer persistence and JSON export",
+      "JavaScript and strict TypeScript variants"
+    ],
+    "tags": ["capstone", "routing", "forms", "api-integration", "typescript", "testing"],
+    "path": "projects/advanced/studyflow",
+    "entry": "projects/advanced/studyflow/index.html",
+    "chapterId": "26",
+    "quiz": {
+      "question": "Why validate a course response at runtime even in TypeScript?",
+      "options": [
+        "Types do not validate unknown JSON after compilation",
+        "TypeScript encrypts responses",
+        "Fetch always returns a valid Course array"
+      ],
+      "correct": 0,
+      "explanation": "The API adapter checks the external shape before returning data to typed code."
+    }
+  }
+]
