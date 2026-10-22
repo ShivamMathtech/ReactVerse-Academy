@@ -1,0 +1,50 @@
+[
+  {
+    "id": "hello-react",
+    "title": "hello react",
+    "description": "React creates a view from a function",
+    "entry": "examples/hello-react/index.html"
+  },
+  {
+    "id": "props-demo",
+    "title": "props demo",
+    "description": "Pass data and compose children",
+    "entry": "examples/props-demo/index.html"
+  },
+  {
+    "id": "state-counter",
+    "title": "state counter",
+    "description": "Functional state updates",
+    "entry": "examples/state-counter/index.html"
+  },
+  {
+    "id": "todo-app",
+    "title": "todo app",
+    "description": "Immutable task operations",
+    "entry": "examples/todo-app/index.html"
+  },
+  {
+    "id": "weather-dashboard",
+    "title": "weather dashboard",
+    "description": "Cancelable mock asynchronous UI",
+    "entry": "examples/weather-dashboard/index.html"
+  },
+  {
+    "id": "ecommerce-ui",
+    "title": "ecommerce ui",
+    "description": "A validated simulated checkout",
+    "entry": "examples/ecommerce-ui/index.html"
+  },
+  {
+    "id": "query-cache",
+    "title": "TanStack Query cache",
+    "description": "Fetch, cache, and refetch the local course fixture.",
+    "entry": "examples/query-cache/index.html"
+  },
+  {
+    "id": "typescript-patterns",
+    "title": "TypeScript patterns",
+    "description": "Strict typed unions and a generic list.",
+    "entry": "examples/typescript-patterns/index.html"
+  }
+]

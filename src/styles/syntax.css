@@ -1,0 +1,32 @@
+.hljs {
+  color: #d8e8d5;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal {
+  color: #e8b783;
+}
+.hljs-title,
+.hljs-name,
+.hljs-attr {
+  color: #d7ee9b;
+}
+.hljs-string,
+.hljs-regexp {
+  color: #a9d6b0;
+}
+.hljs-comment {
+  color: #91aa99;
+  font-style: italic;
+}
+.hljs-number,
+.hljs-built_in {
+  color: #b5c9f3;
+}
+.hljs-variable,
+.hljs-params {
+  color: #dce7ce;
+}
+.hljs-tag {
+  color: #a0b7a6;
+}

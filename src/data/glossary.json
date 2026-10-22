@@ -1,0 +1,428 @@
+[
+  {
+    "term": "React",
+    "definition": "A library for describing a user interface as components driven by data.",
+    "example": "A Profile component returns UI for one learner.",
+    "chapterId": "00"
+  },
+  {
+    "term": "Vite",
+    "definition": "A development server and production build tool.",
+    "example": "npm run dev serves source; npm run build emits dist.",
+    "chapterId": "03"
+  },
+  {
+    "term": "DOM",
+    "definition": "The browser object tree representing a document.",
+    "example": "document.querySelector selects an element node.",
+    "chapterId": "01"
+  },
+  {
+    "term": "Semantic HTML",
+    "definition": "Elements chosen for meaning and behavior, not appearance alone.",
+    "example": "Use button for an action and nav for navigation.",
+    "chapterId": "01"
+  },
+  {
+    "term": "HTTP",
+    "definition": "A request/response protocol used to exchange resources.",
+    "example": "A GET request can receive a 200 response with JSON.",
+    "chapterId": "01"
+  },
+  {
+    "term": "ES module",
+    "definition": "A file with an explicit import/export boundary.",
+    "example": "export function sum(a,b) { return a+b; }",
+    "chapterId": "02"
+  },
+  {
+    "term": "Closure",
+    "definition": "A function retaining access to bindings from its lexical environment.",
+    "example": "An event handler sees values from the render that created it.",
+    "chapterId": "02"
+  },
+  {
+    "term": "Immutability",
+    "definition": "Updating data by producing new values instead of changing an existing snapshot.",
+    "example": "setItems(items => [...items, nextItem])",
+    "chapterId": "02"
+  },
+  {
+    "term": "Destructuring",
+    "definition": "Extracting fields or elements into named bindings.",
+    "example": "const { title } = lesson;",
+    "chapterId": "02"
+  },
+  {
+    "term": "Spread syntax",
+    "definition": "Expanding iterable values or copying enumerable object properties.",
+    "example": "{ ...task, done: true } copies one object level.",
+    "chapterId": "02"
+  },
+  {
+    "term": "Promise",
+    "definition": "An object representing eventual fulfillment or rejection.",
+    "example": "fetch(url).then(response => response.json())",
+    "chapterId": "02"
+  },
+  {
+    "term": "async/await",
+    "definition": "Syntax for composing Promise-based operations.",
+    "example": "const response = await fetch(url);",
+    "chapterId": "02"
+  },
+  {
+    "term": "Nullish coalescing",
+    "definition": "A default only for null or undefined.",
+    "example": "0 ?? 10 evaluates to 0.",
+    "chapterId": "02"
+  },
+  {
+    "term": "Reference equality",
+    "definition": "Comparing whether two values refer to the same object.",
+    "example": "{} === {} is false.",
+    "chapterId": "02"
+  },
+  {
+    "term": "JSX",
+    "definition": "JavaScript syntax that describes UI elements and expressions.",
+    "example": "<h1>{name}</h1>",
+    "chapterId": "04"
+  },
+  {
+    "term": "Component",
+    "definition": "A reusable unit of UI, commonly a function returning JSX.",
+    "example": "function Badge() { return <span>New</span>; }",
+    "chapterId": "04"
+  },
+  {
+    "term": "Fragment",
+    "definition": "A way to group children without adding a wrapper DOM node.",
+    "example": "<> <Header /> <Main /> </>",
+    "chapterId": "04"
+  },
+  {
+    "term": "Props",
+    "definition": "Read-only inputs passed from a parent to a component.",
+    "example": "<Score points={8} />",
+    "chapterId": "05"
+  },
+  {
+    "term": "Children",
+    "definition": "A prop containing nested renderable content.",
+    "example": "<Panel><p>Hello</p></Panel>",
+    "chapterId": "05"
+  },
+  {
+    "term": "Composition",
+    "definition": "Building a larger interface by combining smaller components.",
+    "example": "A page combines a header, lesson reader, and quiz.",
+    "chapterId": "05"
+  },
+  {
+    "term": "State",
+    "definition": "Values React remembers for a component between renders.",
+    "example": "const [count, setCount] = useState(0);",
+    "chapterId": "06"
+  },
+  {
+    "term": "Functional updater",
+    "definition": "A setter callback that calculates from the pending previous state.",
+    "example": "setCount(n => n + 1)",
+    "chapterId": "06"
+  },
+  {
+    "term": "Derived state",
+    "definition": "A value calculated from existing source data, often without another state variable.",
+    "example": "const total = price * quantity;",
+    "chapterId": "06"
+  },
+  {
+    "term": "Batching",
+    "definition": "Grouping queued state updates before React renders the result.",
+    "example": "Two functional increments can produce one committed +2 update.",
+    "chapterId": "06"
+  },
+  {
+    "term": "Key",
+    "definition": "A sibling identity hint used when matching element trees.",
+    "example": "<li key={task.id}>",
+    "chapterId": "07"
+  },
+  {
+    "term": "Controlled input",
+    "definition": "An input whose displayed value is supplied by React state.",
+    "example": "<input value={name} onChange={...} />",
+    "chapterId": "08"
+  },
+  {
+    "term": "Uncontrolled input",
+    "definition": "An input whose current value is managed by the DOM.",
+    "example": "Read a named field through FormData on submission.",
+    "chapterId": "08"
+  },
+  {
+    "term": "Validation",
+    "definition": "Checking data against explicit constraints.",
+    "example": "Reject a whitespace-only task title.",
+    "chapterId": "08"
+  },
+  {
+    "term": "Hook",
+    "definition": "An API that lets a component use React capabilities such as state or Effects.",
+    "example": "useState, useEffect, useRef.",
+    "chapterId": "09"
+  },
+  {
+    "term": "Effect",
+    "definition": "Synchronization between committed UI and an external system.",
+    "example": "Subscribe to a timer and clear it in cleanup.",
+    "chapterId": "09"
+  },
+  {
+    "term": "Dependency array",
+    "definition": "Reactive values that determine when synchronization or a cache is revisited.",
+    "example": "useEffect(sync, [roomId])",
+    "chapterId": "09"
+  },
+  {
+    "term": "Cleanup",
+    "definition": "The function releasing an Effect resource before resynchronization or unmount.",
+    "example": "return () => clearInterval(id);",
+    "chapterId": "09"
+  },
+  {
+    "term": "Ref",
+    "definition": "A persistent mutable container whose changes do not trigger rendering.",
+    "example": "inputRef.current.focus()",
+    "chapterId": "09"
+  },
+  {
+    "term": "Stale closure",
+    "definition": "A callback using an older captured value than the author intended.",
+    "example": "An interval reads the first render\u2019s count because a dependency is missing.",
+    "chapterId": "09"
+  },
+  {
+    "term": "Custom Hook",
+    "definition": "A use-prefixed function sharing stateful implementation, not automatically shared state.",
+    "example": "useCounter can create two independent counters.",
+    "chapterId": "09"
+  },
+  {
+    "term": "Error boundary",
+    "definition": "A component that renders fallback UI for descendant rendering errors.",
+    "example": "It does not automatically catch an event-handler exception.",
+    "chapterId": "10"
+  },
+  {
+    "term": "Routing",
+    "definition": "Mapping an application URL to a rendered view.",
+    "example": "/courses/:id selects a course detail page.",
+    "chapterId": "11"
+  },
+  {
+    "term": "Outlet",
+    "definition": "A React Router insertion point for nested route content.",
+    "example": "A dashboard layout renders its active child in Outlet.",
+    "chapterId": "11"
+  },
+  {
+    "term": "Search parameters",
+    "definition": "The URL query values used for shareable state.",
+    "example": "?q=hooks&page=2",
+    "chapterId": "11"
+  },
+  {
+    "term": "Context",
+    "definition": "A channel for providing a value to consumers in a subtree.",
+    "example": "A theme provider supplies the selected palette.",
+    "chapterId": "12"
+  },
+  {
+    "term": "Reducer",
+    "definition": "A pure calculation of next state from current state and an action.",
+    "example": "reducer(tasks, { type: \"remove\", id })",
+    "chapterId": "12"
+  },
+  {
+    "term": "Normalization",
+    "definition": "Organizing records by ID to reduce duplicated entities.",
+    "example": "{ ids: [\"a\"], byId: { a: task } }",
+    "chapterId": "12"
+  },
+  {
+    "term": "Server state",
+    "definition": "A local representation of externally owned data with freshness concerns.",
+    "example": "A cached course catalog returned by an API.",
+    "chapterId": "12"
+  },
+  {
+    "term": "AbortController",
+    "definition": "A controller that signals cancellation to supported asynchronous work.",
+    "example": "fetch(url, { signal: controller.signal })",
+    "chapterId": "13"
+  },
+  {
+    "term": "Race condition",
+    "definition": "An outcome that depends on unpredictable operation ordering.",
+    "example": "An old search response overwrites a newer query result.",
+    "chapterId": "13"
+  },
+  {
+    "term": "Query key",
+    "definition": "An identity for cached asynchronous data, including its relevant parameters.",
+    "example": "[\"courses\", category, page]",
+    "chapterId": "13"
+  },
+  {
+    "term": "Optimistic update",
+    "definition": "A provisional UI change before server confirmation, with a recovery plan.",
+    "example": "Rename a task immediately and restore it if the request fails.",
+    "chapterId": "13"
+  },
+  {
+    "term": "CSS Module",
+    "definition": "A stylesheet whose imported class names are scoped by the build tool.",
+    "example": "import styles from \"Card.module.css\";",
+    "chapterId": "14"
+  },
+  {
+    "term": "Design token",
+    "definition": "A named reusable design value such as a semantic color or spacing unit.",
+    "example": "--surface, --text, --space-4",
+    "chapterId": "14"
+  },
+  {
+    "term": "Unit test",
+    "definition": "A focused test of a small behavior boundary.",
+    "example": "Verify a pure total calculation for zero items.",
+    "chapterId": "15"
+  },
+  {
+    "term": "Integration test",
+    "definition": "A test of multiple collaborating units through a workflow.",
+    "example": "Submit a form and verify its saved item in the list.",
+    "chapterId": "15"
+  },
+  {
+    "term": "Accessible name",
+    "definition": "The programmatic name used to identify an interactive control.",
+    "example": "getByRole(\"button\", { name: \"Save task\" })",
+    "chapterId": "15"
+  },
+  {
+    "term": "TypeScript",
+    "definition": "JavaScript with static type checking that is removed from emitted code.",
+    "example": "type Task = { id: string; done: boolean };",
+    "chapterId": "16"
+  },
+  {
+    "term": "Discriminated union",
+    "definition": "A union distinguished by a shared field with literal values.",
+    "example": "{ status: \"loading\" } | { status: \"success\", data: T }",
+    "chapterId": "16"
+  },
+  {
+    "term": "Generic",
+    "definition": "A type parameter preserving relationships across different concrete types.",
+    "example": "List<T> relates items to renderItem.",
+    "chapterId": "16"
+  },
+  {
+    "term": "Memoization",
+    "definition": "Caching a calculation or identity based on its inputs.",
+    "example": "useMemo caches an expensive filtered result when dependencies match.",
+    "chapterId": "17"
+  },
+  {
+    "term": "Commit",
+    "definition": "The React phase that applies changes to the host environment.",
+    "example": "DOM updates and ref assignment happen during commit.",
+    "chapterId": "17"
+  },
+  {
+    "term": "Virtualization",
+    "definition": "Rendering a window of a large list instead of every row at once.",
+    "example": "Mount visible rows plus overscan, preserving scroll geometry.",
+    "chapterId": "17"
+  },
+  {
+    "term": "ARIA",
+    "definition": "Attributes that express accessibility semantics and relationships.",
+    "example": "aria-describedby associates helper text with an input.",
+    "chapterId": "18"
+  },
+  {
+    "term": "Focus management",
+    "definition": "Intentionally keeping keyboard location meaningful during UI changes.",
+    "example": "Return focus to the trigger after closing a dialog.",
+    "chapterId": "18"
+  },
+  {
+    "term": "XSS",
+    "definition": "Injection of attacker-controlled script into another user context.",
+    "example": "Unsafe HTML insertion can interpret content as executable markup.",
+    "chapterId": "19"
+  },
+  {
+    "term": "Authorization",
+    "definition": "A trusted decision about which operation an identity may perform.",
+    "example": "A server checks access before returning protected records.",
+    "chapterId": "19"
+  },
+  {
+    "term": "Reconciliation",
+    "definition": "Matching new element descriptions with the mounted tree to preserve identity and update output.",
+    "example": "Stable task IDs preserve row state across sorting.",
+    "chapterId": "20"
+  },
+  {
+    "term": "Transition",
+    "definition": "A nonurgent React update that can yield to more urgent interactions.",
+    "example": "Keep input state urgent and transition a slow result view.",
+    "chapterId": "20"
+  },
+  {
+    "term": "Suspense",
+    "definition": "A boundary that displays fallback while supported descendants suspend.",
+    "example": "A lazy-loaded page waits for its JavaScript module.",
+    "chapterId": "20"
+  },
+  {
+    "term": "Hydration",
+    "definition": "Attaching React behavior to matching server-rendered HTML.",
+    "example": "hydrateRoot is for existing SSR markup, not an empty Vite root.",
+    "chapterId": "20"
+  },
+  {
+    "term": "Server Component",
+    "definition": "A component executed in a compatible server-side React environment.",
+    "example": "It needs server-aware infrastructure beyond this plain Vite SPA.",
+    "chapterId": "20"
+  },
+  {
+    "term": "React Compiler",
+    "definition": "A build-time compiler that can automate some memoization.",
+    "example": "It requires configuration and is not enabled in this repository.",
+    "chapterId": "20"
+  },
+  {
+    "term": "SPA fallback",
+    "definition": "A host rule serving the application document for valid client-side paths.",
+    "example": "Rewrite /courses/123 to index.html in BrowserRouter mode.",
+    "chapterId": "21"
+  },
+  {
+    "term": "Lockfile",
+    "definition": "A file recording resolved dependency versions and integrity information.",
+    "example": "npm ci installs the graph described in package-lock.json.",
+    "chapterId": "21"
+  },
+  {
+    "term": "Architecture decision record",
+    "definition": "A short record of a decision, alternatives, consequences, and revisit conditions.",
+    "example": "Choose hash routing for portable static deployment.",
+    "chapterId": "22"
+  }
+]
