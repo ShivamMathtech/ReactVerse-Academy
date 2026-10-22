@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-01-01",
+    "question": "Which element describes the primary page content?",
+    "options": [
+      "b",
+      "main",
+      "span"
+    ],
+    "correct": 1,
+    "explanation": "main. The browser parses nested elements into nodes and exposes their semantics through its accessibility tree. CSS changes appearance without changing meaning."
+  },
+  {
+    "id": "quiz-01-02",
+    "question": "Does fetch reject solely because a server responds 404?",
+    "options": [
+      "Yes, always",
+      "Only with GET",
+      "No; inspect response.ok"
+    ],
+    "correct": 2,
+    "explanation": "No; inspect response.ok. await yields control while the Promise is pending. fetch resolves on HTTP error statuses, so response.ok must be checked separately."
+  },
+  {
+    "id": "quiz-01-03",
+    "question": "What does git add prepare?",
+    "options": [
+      "A snapshot for the next commit",
+      "A remote deployment",
+      "A dependency installation"
+    ],
+    "correct": 0,
+    "explanation": "A snapshot for the next commit. The working tree, staging area, and commit history are separate. git add stages the current file content; later edits need staging again."
+  }
+]

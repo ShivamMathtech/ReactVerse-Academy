@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-06-01",
+    "question": "What should onClick normally receive?",
+    "options": [
+      "A function reference",
+      "The result of calling a handler during render",
+      "A CSS selector"
+    ],
+    "correct": 0,
+    "explanation": "A function reference. React retains state between renders at a component position. Calling setName queues an update; the next call to the component receives the new value."
+  },
+  {
+    "id": "quiz-06-02",
+    "question": "Two functional +1 updates from 0 produce which value?",
+    "options": [
+      "0",
+      "2",
+      "1"
+    ],
+    "correct": 1,
+    "explanation": "2. React applies queued updater functions in sequence. Each receives the result of the previous updater."
+  },
+  {
+    "id": "quiz-06-03",
+    "question": "What can deliberately reset a component subtree?",
+    "options": [
+      "Changing a label prop alone",
+      "Reusing the same key",
+      "Changing its key"
+    ],
+    "correct": 2,
+    "explanation": "Changing its key. A new key causes React to unmount the old editor and mount a new one, including resetting its Hook state and Effects."
+  }
+]

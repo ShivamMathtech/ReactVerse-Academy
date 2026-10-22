@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-17-01",
+    "question": "Which phase actually applies DOM changes?",
+    "options": [
+      "Every function call",
+      "Import resolution",
+      "Commit"
+    ],
+    "correct": 2,
+    "explanation": "Commit. A render can be interrupted without committing. Side effects performed during render would still have occurred, which is why purity matters."
+  },
+  {
+    "id": "quiz-17-02",
+    "question": "Should application correctness depend on useMemo retaining a value forever?",
+    "options": [
+      "No",
+      "Yes",
+      "Only for objects"
+    ],
+    "correct": 0,
+    "explanation": "No. useMemo compares dependencies with Object.is. If the parent recreates items on every render, the calculation still runs. React may discard caches, so correctness must not depend on them."
+  },
+  {
+    "id": "quiz-17-03",
+    "question": "What does virtualization primarily reduce?",
+    "options": [
+      "All network requests",
+      "Mounted DOM elements",
+      "The total dataset automatically"
+    ],
+    "correct": 1,
+    "explanation": "Mounted DOM elements. A virtual list preserves total scroll geometry while mounting a subset. Removing a focused row requires deliberate focus handling."
+  }
+]

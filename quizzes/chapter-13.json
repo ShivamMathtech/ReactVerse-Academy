@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-13-01",
+    "question": "What should you check before interpreting an HTTP response as success?",
+    "options": [
+      "Only the content length",
+      "response.ok or the expected status",
+      "Only whether fetch resolved"
+    ],
+    "correct": 1,
+    "explanation": "response.ok or the expected status. fetch returns a Response first. JSON parsing is another asynchronous operation and can fail even after an HTTP success."
+  },
+  {
+    "id": "quiz-13-02",
+    "question": "Why can a request-identity guard still be useful with cancellation?",
+    "options": [
+      "Abort always sorts responses",
+      "It makes requests synchronous",
+      "Some async work may not honor abort"
+    ],
+    "correct": 2,
+    "explanation": "Some async work may not honor abort. The cleanup closes over the old active flag and controller. The next Effect creates its own pair, so only its current result is allowed to commit."
+  },
+  {
+    "id": "quiz-13-03",
+    "question": "What must be included in a query key when it changes the returned data?",
+    "options": [
+      "The relevant filter",
+      "A random number on each render",
+      "The JSX component tree"
+    ],
+    "correct": 0,
+    "explanation": "The relevant filter. Query keys address cached results. The query function receives an AbortSignal; forwarding it allows the library to cancel its underlying fetch."
+  }
+]

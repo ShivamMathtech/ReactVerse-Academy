@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-00-01",
+    "question": "What does React primarily help you describe?",
+    "options": [
+      "A user interface from data",
+      "A database schema",
+      "A native operating system"
+    ],
+    "correct": 0,
+    "explanation": "A user interface from data. React calls App to calculate an element description. React DOM creates or updates the matching browser nodes. Rendering is not the same as changing every DOM node."
+  },
+  {
+    "id": "quiz-00-02",
+    "question": "Which directory is the default deployment output?",
+    "options": [
+      "node_modules",
+      "dist",
+      "src"
+    ],
+    "correct": 1,
+    "explanation": "dist. The dev server transforms source on demand. The production build resolves the module graph and emits browser assets; preview serves those emitted files."
+  },
+  {
+    "id": "quiz-00-03",
+    "question": "Which practice best checks transfer of understanding?",
+    "options": [
+      "Only reread the solution",
+      "Mark every lesson complete",
+      "Rebuild with a changed requirement"
+    ],
+    "correct": 2,
+    "explanation": "Rebuild with a changed requirement. reduce visits array elements in order. The initial 0 establishes the accumulator; the callback returns the next value each time."
+  }
+]

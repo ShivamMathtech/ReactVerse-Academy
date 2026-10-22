@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-16-01",
+    "question": "Does a TypeScript type validate downloaded JSON at runtime?",
+    "options": [
+      "Only in production",
+      "No",
+      "Yes, always"
+    ],
+    "correct": 1,
+    "explanation": "No. Vite strips TypeScript syntax, but stripping alone is not a full typecheck. This repository runs tsc --noEmit before its build."
+  },
+  {
+    "id": "quiz-16-02",
+    "question": "What enables narrowing in a discriminated union?",
+    "options": [
+      "A CSS class",
+      "Using any",
+      "A shared literal-valued discriminator"
+    ],
+    "correct": 2,
+    "explanation": "A shared literal-valued discriminator. TypeScript narrows the union after a literal equality check. This is static reasoning about control flow, not runtime validation."
+  },
+  {
+    "id": "quiz-16-03",
+    "question": "Are TypeScript strict and React StrictMode the same feature?",
+    "options": [
+      "No, one is static checking and one is runtime development checking",
+      "Yes",
+      "Only in TSX"
+    ],
+    "correct": 0,
+    "explanation": "No, one is static checking and one is runtime development checking. A runtime guard rejects bad values. The return type communicates the valid shape to downstream code after the check."
+  }
+]

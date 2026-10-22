@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-11-01",
+    "question": "What renders a nested route inside its parent layout?",
+    "options": [
+      "Fragment",
+      "useState",
+      "Outlet"
+    ],
+    "correct": 2,
+    "explanation": "Outlet. The router observes history changes, matches route definitions, and renders the selected branch. Outlet marks the insertion point for nested routes."
+  },
+  {
+    "id": "quiz-11-02",
+    "question": "Which state belongs naturally in a shareable URL?",
+    "options": [
+      "Search filters and page number",
+      "A secret access token",
+      "The currently focused DOM node"
+    ],
+    "correct": 0,
+    "explanation": "Search filters and page number. Search params are strings. Parse numeric values defensively and clamp invalid pages instead of trusting arbitrary query text."
+  },
+  {
+    "id": "quiz-11-03",
+    "question": "Does hiding an admin route prevent unauthorized API calls?",
+    "options": [
+      "Yes, if the route is lazy",
+      "No; the server must enforce authorization",
+      "Yes, if the link is hidden"
+    ],
+    "correct": 1,
+    "explanation": "No; the server must enforce authorization. lazy caches its import Promise and result. A rejected module import needs an error boundary; Suspense handles waiting, not all failures."
+  }
+]

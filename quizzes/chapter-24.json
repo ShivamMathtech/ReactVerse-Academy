@@ -1,0 +1,90 @@
+[
+  {
+    "id": "quiz-24-01",
+    "question": "What should a canceled weather request do to the visible error state?",
+    "options": [
+      "It should not report a user-facing request failure",
+      "It must show a red error",
+      "It must clear all city options"
+    ],
+    "correct": 0,
+    "explanation": "It should not report a user-facing request failure. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-24-02",
+    "question": "What should the watchlist persist?",
+    "options": [
+      "DOM element references",
+      "Stable movie IDs",
+      "The current filtered array indices"
+    ],
+    "correct": 1,
+    "explanation": "Stable movie IDs. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-24-03",
+    "question": "What happens when an existing note is saved?",
+    "options": [
+      "Append a duplicate every time",
+      "Mutate a DOM paragraph only",
+      "Replace the matching ID with a new object"
+    ],
+    "correct": 2,
+    "explanation": "Replace the matching ID with a new object. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-24-04",
+    "question": "Where should the cart subtotal come from?",
+    "options": [
+      "Product prices multiplied by current quantities",
+      "An independently incremented display number",
+      "The number of DOM rows"
+    ],
+    "correct": 0,
+    "explanation": "Product prices multiplied by current quantities. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-24-05",
+    "question": "Why use the URL for the directory query?",
+    "options": [
+      "It replaces validation of route IDs",
+      "A bookmark can reproduce the filtered view",
+      "It makes the filter a secret"
+    ],
+    "correct": 1,
+    "explanation": "A bookmark can reproduce the filtered view. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-24-06",
+    "question": "What distinguishes an update from a create?",
+    "options": [
+      "A random CSS class",
+      "Whether the save button is green",
+      "A stable existing record ID"
+    ],
+    "correct": 2,
+    "explanation": "A stable existing record ID. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-24-07",
+    "question": "What happens to the current page when the search changes?",
+    "options": [
+      "Reset or clamp it to a valid page",
+      "Keep an invalid page forever",
+      "Delete records from other pages"
+    ],
+    "correct": 0,
+    "explanation": "Reset or clamp it to a valid page. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-24-08",
+    "question": "Where should form values live across review and back navigation?",
+    "options": [
+      "In the button text",
+      "In the persistent parent state",
+      "Only in the unmounted field DOM"
+    ],
+    "correct": 1,
+    "explanation": "In the persistent parent state. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  }
+]

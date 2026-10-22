@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-09-01",
+    "question": "When is Effect cleanup used?",
+    "options": [
+      "Before changed synchronization and on unmount",
+      "Only on a page refresh",
+      "Only when an error occurs"
+    ],
+    "correct": 0,
+    "explanation": "Before changed synchronization and on unmount. Effects run after a commit. A functional updater avoids reading seconds inside the Effect, so the timer can stay connected without a seconds dependency."
+  },
+  {
+    "id": "quiz-09-02",
+    "question": "Does changing ref.current schedule a render?",
+    "options": [
+      "Only for numbers",
+      "No",
+      "Yes, always"
+    ],
+    "correct": 1,
+    "explanation": "No. React assigns the DOM node to the ref during commit. Updating ref.current does not enqueue a component render."
+  },
+  {
+    "id": "quiz-09-03",
+    "question": "What do separate calls to a custom Hook normally share?",
+    "options": [
+      "One global state object",
+      "One DOM element",
+      "Implementation, not state"
+    ],
+    "correct": 2,
+    "explanation": "Implementation, not state. Two calls to useCounter create two Hook state sequences. The function shares implementation, not a singleton count."
+  }
+]

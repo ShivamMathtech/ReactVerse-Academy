@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-04-01",
+    "question": "What fits inside JSX curly braces?",
+    "options": [
+      "A raw for statement",
+      "A JavaScript expression",
+      "Any import statement"
+    ],
+    "correct": 1,
+    "explanation": "A JavaScript expression. The transform creates React element descriptions. Strings and numbers become text; objects cannot be rendered as ordinary text children."
+  },
+  {
+    "id": "quiz-04-02",
+    "question": "Which JSX name refers to a custom component?",
+    "options": [
+      "lessoncard",
+      "article",
+      "LessonCard"
+    ],
+    "correct": 2,
+    "explanation": "LessonCard. React uses element type and position to identify components. Defining a component inside another creates a new function identity on each render."
+  },
+  {
+    "id": "quiz-04-03",
+    "question": "What can appear from 0 && <p>Items</p>?",
+    "options": [
+      "0",
+      "Nothing, always",
+      "The paragraph"
+    ],
+    "correct": 0,
+    "explanation": "0. false, null, and undefined render no text. The number 0 is a valid text value, so 0 && <Panel /> leaves a visible zero."
+  }
+]

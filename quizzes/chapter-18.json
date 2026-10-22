@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-18-01",
+    "question": "Which is normally best for an action?",
+    "options": [
+      "A native button",
+      "A clickable span without keyboard support",
+      "An image with only onClick"
+    ],
+    "correct": 0,
+    "explanation": "A native button. The DOM order informs sequential focus navigation and the accessibility tree. CSS visual rearrangement does not automatically change that order."
+  },
+  {
+    "id": "quiz-18-02",
+    "question": "What does aria-describedby provide?",
+    "options": [
+      "Automatic keyboard handlers",
+      "A relationship to explanatory text",
+      "Automatic input validation"
+    ],
+    "correct": 1,
+    "explanation": "A relationship to explanatory text. aria-describedby references another element by ID. An error can replace its text while preserving the relationship."
+  },
+  {
+    "id": "quiz-18-03",
+    "question": "Can an automated audit prove all accessibility requirements are satisfied?",
+    "options": [
+      "Yes",
+      "Only for React apps",
+      "No"
+    ],
+    "correct": 2,
+    "explanation": "No. Media queries respond to user preferences. CSS changes motion, while labels and interaction semantics still need appropriate HTML and behavior."
+  }
+]

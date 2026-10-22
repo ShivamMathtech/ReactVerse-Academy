@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-07-01",
+    "question": "Which key best survives sorting?",
+    "options": [
+      "A fresh random number",
+      "A persistent record ID",
+      "The current array index"
+    ],
+    "correct": 1,
+    "explanation": "A persistent record ID. Reconciliation matches siblings by key and type. Index keys represent position, so insertion can associate old state with a different record."
+  },
+  {
+    "id": "quiz-07-02",
+    "question": "When should an empty state appear?",
+    "options": [
+      "Before every request",
+      "Instead of every error",
+      "After a successful read with no matching records"
+    ],
+    "correct": 2,
+    "explanation": "After a successful read with no matching records. Only one branch returns for each state. A status variable makes contradictory combinations less likely than several independent booleans."
+  },
+  {
+    "id": "quiz-07-03",
+    "question": "What should happen when a new filter makes the current page invalid?",
+    "options": [
+      "Reset or clamp the page",
+      "Keep showing a blank page",
+      "Delete matching records"
+    ],
+    "correct": 0,
+    "explanation": "Reset or clamp the page. Filtering happens before slicing. Filtering only the current page would hide matching records on other pages."
+  }
+]

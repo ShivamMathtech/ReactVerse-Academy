@@ -1,0 +1,79 @@
+[
+  {
+    "id": "quiz-23-01",
+    "question": "Why is a functional updater useful for incrementing this counter?",
+    "options": [
+      "It modifies the DOM directly",
+      "It disables batching",
+      "It calculates from the pending previous count"
+    ],
+    "correct": 2,
+    "explanation": "It calculates from the pending previous count. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-23-02",
+    "question": "Which value is the source of truth for the profile preview?",
+    "options": [
+      "The parent profile state",
+      "The CSS color",
+      "A second hidden copy in the preview"
+    ],
+    "correct": 0,
+    "explanation": "The parent profile state. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-23-03",
+    "question": "What must happen when the clock unmounts?",
+    "options": [
+      "Write the time into a global variable",
+      "Clear its interval",
+      "Create another interval"
+    ],
+    "correct": 1,
+    "explanation": "Clear its interval. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-23-04",
+    "question": "Which key preserves a task identity after filtering?",
+    "options": [
+      "Its filtered index",
+      "A new random number on each render",
+      "The task’s saved ID"
+    ],
+    "correct": 2,
+    "explanation": "The task’s saved ID. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-23-05",
+    "question": "Why lock the selected answer until moving to the next question?",
+    "options": [
+      "To keep feedback and scoring consistent for that attempt",
+      "To make the page reload",
+      "To hide the correct explanation"
+    ],
+    "correct": 0,
+    "explanation": "To keep feedback and scoring consistent for that attempt. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-23-06",
+    "question": "Why does this tracker store integer cents?",
+    "options": [
+      "To hide amounts from the browser",
+      "To keep ordinary currency arithmetic in integer units",
+      "To convert every amount to dollars"
+    ],
+    "correct": 1,
+    "explanation": "To keep ordinary currency arithmetic in integer units. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-23-07",
+    "question": "When should the directory filter its dataset?",
+    "options": [
+      "By mutating each source name",
+      "Only after deleting unmatched records",
+      "Before rendering the matching view"
+    ],
+    "correct": 2,
+    "explanation": "Before rendering the matching view. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-14-01",
+    "question": "Which tool naturally describes both rows and columns?",
+    "options": [
+      "Only floats",
+      "Inline text decoration",
+      "CSS Grid"
+    ],
+    "correct": 2,
+    "explanation": "CSS Grid. Grid distributes available space between tracks; minmax(0,1fr) lets tracks shrink below the intrinsic width of long content."
+  },
+  {
+    "id": "quiz-14-02",
+    "question": "Why use semantic color tokens?",
+    "options": [
+      "To change a role consistently across components",
+      "To eliminate all CSS",
+      "To guarantee contrast without checking"
+    ],
+    "correct": 0,
+    "explanation": "To change a role consistently across components. Custom properties cascade and inherit. Changing the root theme updates dependent properties without re-rendering each React component."
+  },
+  {
+    "id": "quiz-14-03",
+    "question": "Which attribute communicates whether a menu is open?",
+    "options": [
+      "title alone",
+      "aria-expanded",
+      "aria-hidden on the button"
+    ],
+    "correct": 1,
+    "explanation": "aria-expanded. hidden removes the collapsed navigation from layout and normal accessibility exposure. The trigger remains available to reopen it."
+  }
+]

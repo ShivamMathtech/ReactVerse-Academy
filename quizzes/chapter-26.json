@@ -1,0 +1,13 @@
+[
+  {
+    "id": "quiz-26-01",
+    "question": "Why validate a course response at runtime even in TypeScript?",
+    "options": [
+      "TypeScript encrypts responses",
+      "Fetch always returns a valid Course array",
+      "Types do not validate unknown JSON after compilation"
+    ],
+    "correct": 2,
+    "explanation": "Types do not validate unknown JSON after compilation. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  }
+]

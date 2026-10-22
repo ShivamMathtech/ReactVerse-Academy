@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-20-01",
+    "question": "Does startTransition move arbitrary JavaScript to another thread?",
+    "options": [
+      "Yes",
+      "Only array filtering",
+      "No"
+    ],
+    "correct": 2,
+    "explanation": "No. startTransition marks updates scheduled within its scope. It does not move a synchronous filtering loop into a worker or delay the callback itself."
+  },
+  {
+    "id": "quiz-20-02",
+    "question": "Does useDeferredValue guarantee a fixed millisecond delay?",
+    "options": [
+      "No",
+      "Yes, 300ms",
+      "Yes, 1000ms"
+    ],
+    "correct": 0,
+    "explanation": "No. Deferred rendering allows React to retry lower-priority work. Hydration is a separate process that expects preexisting compatible server-rendered markup."
+  },
+  {
+    "id": "quiz-20-03",
+    "question": "Does adding a server-component directive make a plain Vite SPA an RSC application?",
+    "options": [
+      "Only after changing the file extension",
+      "No, compatible infrastructure is required",
+      "Yes"
+    ],
+    "correct": 1,
+    "explanation": "No, compatible infrastructure is required. React 19.3 coordinates ViewTransition with browser capabilities. Server rendering and RSC need a separate server-aware module and execution model."
+  }
+]

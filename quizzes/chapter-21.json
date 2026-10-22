@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-21-01",
+    "question": "What should be served by a static production host?",
+    "options": [
+      "The built dist directory",
+      "The raw node_modules folder",
+      "The dev server source graph"
+    ],
+    "correct": 0,
+    "explanation": "The built dist directory. Build resolves imports and emits chunks. Preview serves the result; missing lazy assets may only be noticed when a specific route is opened."
+  },
+  {
+    "id": "quiz-21-02",
+    "question": "Is the URL fragment after # sent in an HTTP request?",
+    "options": [
+      "Only on refresh",
+      "No",
+      "Yes"
+    ],
+    "correct": 1,
+    "explanation": "No. The URL fragment is not sent to the server. Pathnames are, so browser-history routes depend on server fallback behavior."
+  },
+  {
+    "id": "quiz-21-03",
+    "question": "What should a project status claim be based on?",
+    "options": [
+      "An attractive badge",
+      "An unrun test file",
+      "Executed checks and disclosed limits"
+    ],
+    "correct": 2,
+    "explanation": "Executed checks and disclosed limits. A lockfile records resolved transitive dependencies. CI uses npm ci to reproduce that dependency graph for its operating system."
+  }
+]

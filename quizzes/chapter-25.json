@@ -1,0 +1,79 @@
+[
+  {
+    "id": "quiz-25-01",
+    "question": "What data should an exported CSV contain?",
+    "options": [
+      "Only chart colors",
+      "The same filtered records as the visible report",
+      "Unrelated hidden records"
+    ],
+    "correct": 1,
+    "explanation": "The same filtered records as the visible report. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-25-02",
+    "question": "Does the checkout in this project process a real payment?",
+    "options": [
+      "Yes, without a payment service",
+      "Yes, because it uses React",
+      "No, it confirms a labeled local simulation"
+    ],
+    "correct": 2,
+    "explanation": "No, it confirms a labeled local simulation. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-25-03",
+    "question": "What identifies one completed sample lesson?",
+    "options": [
+      "The course ID and lesson position within that fixed sample",
+      "Only its visible heading color",
+      "A global completed boolean"
+    ],
+    "correct": 0,
+    "explanation": "The course ID and lesson position within that fixed sample. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-25-04",
+    "question": "Why are native selects used to move tasks?",
+    "options": [
+      "They eliminate the need for state",
+      "They provide a keyboard-operable move action",
+      "They create a server connection"
+    ],
+    "correct": 1,
+    "explanation": "They provide a keyboard-operable move action. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-25-05",
+    "question": "What produces events in this project?",
+    "options": [
+      "A live WebSocket server",
+      "Real learner activity",
+      "A local timer explicitly labeled as simulation"
+    ],
+    "correct": 2,
+    "explanation": "A local timer explicitly labeled as simulation. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-25-06",
+    "question": "After closing a dialog, where should focus usually return?",
+    "options": [
+      "To the control that opened it",
+      "To an arbitrary hidden field",
+      "Nowhere"
+    ],
+    "correct": 0,
+    "explanation": "To the control that opened it. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  },
+  {
+    "id": "quiz-25-07",
+    "question": "Does changing a local team role enforce real authorization?",
+    "options": [
+      "Yes, hiding a button is sufficient",
+      "No, this is a local demonstration",
+      "Yes, localStorage is authoritative"
+    ],
+    "correct": 1,
+    "explanation": "No, this is a local demonstration. Follow the owning state through event handlers and derived rendering. External timers, requests, and storage are kept at explicit boundaries so they can be canceled, validated, or replaced in tests."
+  }
+]

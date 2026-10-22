@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-15-01",
+    "question": "Which assertion is most meaningful?",
+    "options": [
+      "A boundary input with an independently known result",
+      "The same formula copied into expected",
+      "Only that a function exists"
+    ],
+    "correct": 0,
+    "explanation": "A boundary input with an independently known result. Vitest executes test modules and records assertion failures. Isolated pure functions need no DOM; interaction tests use a DOM environment."
+  },
+  {
+    "id": "quiz-15-02",
+    "question": "Which query waits for an element to appear?",
+    "options": [
+      "queryByRole",
+      "findByRole",
+      "getByRole"
+    ],
+    "correct": 1,
+    "explanation": "findByRole. userEvent schedules realistic input sequences. Await its asynchronous operations so assertions observe the completed interaction."
+  },
+  {
+    "id": "quiz-15-03",
+    "question": "What needs a real browser or manual review?",
+    "options": [
+      "A pure arithmetic assertion",
+      "JSON parsing alone",
+      "Responsive layout and practical keyboard flow"
+    ],
+    "correct": 2,
+    "explanation": "Responsive layout and practical keyboard flow. A mocked boundary supplies specific outcomes. It proves handling of those outcomes, not compatibility with every real service or browser."
+  }
+]

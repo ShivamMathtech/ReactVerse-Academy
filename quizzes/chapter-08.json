@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-08-01",
+    "question": "Which field attribute is necessary for FormData inclusion?",
+    "options": [
+      "className",
+      "placeholder",
+      "name"
+    ],
+    "correct": 2,
+    "explanation": "name. FormData reads successful named controls. Disabled controls are omitted; unchecked checkboxes are absent rather than false."
+  },
+  {
+    "id": "quiz-08-02",
+    "question": "Does client validation make an API input trustworthy?",
+    "options": [
+      "No; validate on the trusted server too",
+      "Yes, if using React",
+      "Yes, if required is set"
+    ],
+    "correct": 0,
+    "explanation": "No; validate on the trusted server too. Validation computes a result from values. The UI decides when to show that result and where to move focus."
+  },
+  {
+    "id": "quiz-08-03",
+    "question": "Where should values live when step components unmount?",
+    "options": [
+      "In a CSS variable",
+      "In a persistent parent",
+      "Only in the unmounted step"
+    ],
+    "correct": 1,
+    "explanation": "In a persistent parent. Mounting and unmounting a step would reset local state, so shared values must live in a parent that stays mounted."
+  }
+]

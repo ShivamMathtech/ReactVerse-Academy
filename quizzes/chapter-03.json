@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-03-01",
+    "question": "Which command uses the committed lockfile for a clean installation?",
+    "options": [
+      "npm ci",
+      "npm update",
+      "npm init"
+    ],
+    "correct": 0,
+    "explanation": "npm ci. npm ci installs from package-lock.json and fails when package.json disagrees. Native optional packages are selected for your operating system."
+  },
+  {
+    "id": "quiz-03-02",
+    "question": "Which file provides the DOM container in a standard Vite app?",
+    "options": [
+      "README.md",
+      "index.html",
+      "package-lock.json"
+    ],
+    "correct": 1,
+    "explanation": "index.html. createRoot manages one DOM container. Calling root.render schedules React rendering; StrictMode checks only development behavior."
+  },
+  {
+    "id": "quiz-03-03",
+    "question": "Are VITE_ values private after deployment?",
+    "options": [
+      "Yes, they are encrypted",
+      "Only on localhost",
+      "No, they reach client code"
+    ],
+    "correct": 2,
+    "explanation": "No, they reach client code. Vite substitutes supported environment expressions at build time. A static deployment cannot read a later server environment change without rebuilding."
+  }
+]

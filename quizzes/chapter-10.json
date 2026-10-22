@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-10-01",
+    "question": "What is a useful reason to extract a component?",
+    "options": [
+      "To hide all data flow",
+      "A cohesive responsibility",
+      "Every three JSX lines"
+    ],
+    "correct": 1,
+    "explanation": "A cohesive responsibility. Props describe a contract between components. Composition can keep state near its owner and avoid making a generic wrapper depend on domain-specific stores."
+  },
+  {
+    "id": "quiz-10-02",
+    "question": "Who owns a controlled component value?",
+    "options": [
+      "A hidden child copy",
+      "The stylesheet",
+      "Its parent"
+    ],
+    "correct": 2,
+    "explanation": "Its parent. The input emits an intent, the parent updates state, and the new prop completes the loop. This keeps programmatic resets and user changes consistent."
+  },
+  {
+    "id": "quiz-10-03",
+    "question": "Which failure is not automatically caught by a React error boundary?",
+    "options": [
+      "An event-handler exception",
+      "A descendant render exception",
+      "A descendant constructor exception"
+    ],
+    "correct": 0,
+    "explanation": "An event-handler exception. An error boundary participates in React render recovery. A Promise callback outside rendering has a different execution path and needs explicit rejection handling."
+  }
+]

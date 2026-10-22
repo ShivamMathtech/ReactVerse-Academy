@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-02-01",
+    "question": "What does const prevent?",
+    "options": [
+      "Changing any property",
+      "Creating an object",
+      "Reassigning the binding"
+    ],
+    "correct": 2,
+    "explanation": "Reassigning the binding. Spread allocates a new outer object. Properties still point at the same nested references unless copied. ?? tests absence, not truthiness."
+  },
+  {
+    "id": "quiz-02-02",
+    "question": "Which method returns a boolean about at least one matching item?",
+    "options": [
+      "some",
+      "find",
+      "map"
+    ],
+    "correct": 0,
+    "explanation": "some. These methods call your callback for each visited element. filter and map return new arrays, but their object elements can still be shared references."
+  },
+  {
+    "id": "quiz-02-03",
+    "question": "What does an async function return?",
+    "options": [
+      "A DOM node",
+      "A Promise",
+      "Always a plain number"
+    ],
+    "correct": 1,
+    "explanation": "A Promise. The returned function retains access to the lexical count binding. Promise callbacks run after the current synchronous stack finishes."
+  }
+]

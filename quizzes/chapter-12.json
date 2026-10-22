@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-12-01",
+    "question": "Which provider value does a consumer read?",
+    "options": [
+      "The nearest matching provider",
+      "Always the outermost",
+      "A random provider"
+    ],
+    "correct": 0,
+    "explanation": "The nearest matching provider. React finds the nearest matching provider. When its value changes, consumers reading that context can render again even if unrelated props are memoized."
+  },
+  {
+    "id": "quiz-12-02",
+    "question": "Which operation belongs outside a reducer?",
+    "options": [
+      "Returning unchanged state",
+      "Sending an HTTP request",
+      "Calculating a new array"
+    ],
+    "correct": 1,
+    "explanation": "Sending an HTTP request. A reducer computes new references along changed paths and preserves unaffected references. Normalization makes the location of a record unambiguous."
+  },
+  {
+    "id": "quiz-12-03",
+    "question": "Which concern is characteristic of server state?",
+    "options": [
+      "Which tooltip is open",
+      "The current input focus",
+      "Freshness and cache invalidation"
+    ],
+    "correct": 2,
+    "explanation": "Freshness and cache invalidation. Context distributes a value; Redux-style stores coordinate transitions and subscriptions; query libraries also model asynchronous cache lifecycles. These are overlapping, not identical, responsibilities."
+  }
+]

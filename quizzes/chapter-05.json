@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-05-01",
+    "question": "When does points = 0 apply?",
+    "options": [
+      "When points is null",
+      "For every falsy value",
+      "When points is undefined"
+    ],
+    "correct": 2,
+    "explanation": "When points is undefined. Each parent render computes child props. Updating a parent value supplies a new snapshot; the child must not mutate its input object."
+  },
+  {
+    "id": "quiz-05-02",
+    "question": "What is children?",
+    "options": [
+      "A prop containing nested content",
+      "A global DOM query",
+      "A private state store"
+    ],
+    "correct": 0,
+    "explanation": "A prop containing nested content. children is an ordinary prop with renderable values. Wrapping content does not require cloning or mutating child elements."
+  },
+  {
+    "id": "quiz-05-03",
+    "question": "Which value usually does not need its own state?",
+    "options": [
+      "The selected tab",
+      "A total calculated from current props",
+      "User-entered search text"
+    ],
+    "correct": 1,
+    "explanation": "A total calculated from current props. Derived values recalculate during render. There is no need for an Effect to multiply two props or a second state value for the total."
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-19-01",
+    "question": "How should ordinary user comments be rendered?",
+    "options": [
+      "Using eval",
+      "As escaped text",
+      "As raw injected HTML by default"
+    ],
+    "correct": 1,
+    "explanation": "As escaped text. React DOM creates text nodes for ordinary string children. Bypassing that path with raw HTML changes the trust boundary."
+  },
+  {
+    "id": "quiz-19-02",
+    "question": "Where must access to protected server data be enforced?",
+    "options": [
+      "Only in a React route guard",
+      "Only by hiding a button",
+      "On the trusted server"
+    ],
+    "correct": 2,
+    "explanation": "On the trusted server. Users control their browser, localStorage, and network requests. Code shipped to that browser cannot prevent them from editing client state."
+  },
+  {
+    "id": "quiz-19-03",
+    "question": "Does a clean dependency audit guarantee an application is secure?",
+    "options": [
+      "No",
+      "Yes",
+      "Only for static sites"
+    ],
+    "correct": 0,
+    "explanation": "No. Storage access can throw because of browser policy or capacity. JSON parsing can fail independently; a successful parse can still have the wrong schema."
+  }
+]

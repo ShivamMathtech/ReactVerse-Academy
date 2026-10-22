@@ -1,0 +1,35 @@
+[
+  {
+    "id": "quiz-22-01",
+    "question": "What should a shared transport helper avoid owning?",
+    "options": [
+      "Cancellation forwarding",
+      "Every feature-specific UI decision",
+      "HTTP status checking"
+    ],
+    "correct": 1,
+    "explanation": "Every feature-specific UI decision. The call graph separates a generic HTTP policy from domain interpretation. Dependency direction is explicit and easy to replace in tests."
+  },
+  {
+    "id": "quiz-22-02",
+    "question": "Which variable name communicates its unit?",
+    "options": [
+      "value2",
+      "thing",
+      "estimateMinutes"
+    ],
+    "correct": 2,
+    "explanation": "estimateMinutes. Pure validation separates domain rules from when a UI chooses to reveal errors. Tests can exercise boundary values without mounting a page."
+  },
+  {
+    "id": "quiz-22-03",
+    "question": "When should an architecture decision be revisited?",
+    "options": [
+      "When constraints or evidence change",
+      "Never",
+      "After every keystroke"
+    ],
+    "correct": 0,
+    "explanation": "When constraints or evidence change. A dependency graph and state-ownership map expose coupling. Replacing one well-defined boundary is safer than rewriting an entire app at once."
+  }
+]
