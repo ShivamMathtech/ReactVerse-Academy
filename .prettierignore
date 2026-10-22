@@ -1,0 +1,9 @@
+node_modules
+dist
+package-lock.json
+curriculum/source.json
+lessons
+exercises
+quizzes
+src/data
+public/data

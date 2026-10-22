@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "jsx": "preserve",
+    "rootDir": "projects/advanced/studyflow-typescript",
+    "outDir": "projects/advanced/studyflow"
+  },
+  "include": [
+    "projects/advanced/studyflow-typescript/App.tsx",
+    "projects/advanced/studyflow-typescript/store.tsx",
+    "projects/advanced/studyflow-typescript/api.ts",
+    "projects/advanced/studyflow-typescript/model.ts"
+  ]
+}
